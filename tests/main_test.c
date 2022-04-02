@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <ctype.h> /* Isalpha, isnum ... */
 
-char *functionsChar[] = {"ft_isalpha"};
+char *functionsChar[] = {"ft_isalpha", "ft_isdigit"};
 
 
 void testLibFtCharFunctions(int (*libftFunction)(int), int(*functionStdLib)(int)) {
@@ -24,4 +24,5 @@ void testLibFtCharFunctions(int (*libftFunction)(int), int(*functionStdLib)(int)
 
 int main(void) {
   testLibFtCharFunctions(ft_isalpha, isalpha); 
+  testLibFtCharFunctions(ft_isdigit, isdigit); 
 }
