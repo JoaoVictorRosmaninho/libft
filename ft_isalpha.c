@@ -8,5 +8,5 @@ int ft_isalpha(int c)
   return (
         (c >= ALPHA_MASC_INIT && c <= ALPHA_MASC_END) 
         || (c >= ALPHA_MIN_INIT && c <= ALPHA_MIN_END)
-        );
+        ) * 1024;
 }

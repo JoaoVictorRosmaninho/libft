@@ -2,18 +2,18 @@
 #include <stdio.h>
 #include <ctype.h> /* Isalpha, isnum ... */
 
-char *functionsChar[] = {"ft_isalpha", "ft_isdigit"};
-
+char *functionsChar[] = {"ft_isalpha", "ft_isdigit", "ft_isalnum"};
+char *stdLibFunctions[] = {"isalpha", "isdigit", "isalnum"};
 
 void testLibFtCharFunctions(int (*libftFunction)(int), int(*functionStdLib)(int)) {
   static int pos = 0; 
   for (unsigned int value = 0; value < 256; value++) {
-    int v1, v2;
-    if ((v1 = libftFunction(value)) != (v2 = functionStdLib(value))) {
-      if (v1 > 0 && v2 > 0) 
+    int v1, v2; 
+    if ((v1 = libftFunction(value)) !=  (v2 = functionStdLib(value))) {
+      if (v1 > 0 && v2 > 0) /* Muitas funções da  libc retornam um inteiro nao nulo, nao restrito ao numeor 1 */
         continue; 
-      printf("Erro no cod ASC => %u\n", value);
-      printf("isalpha => %u, ft_isalpha => %u", functionStdLib(value), libftFunction(value));
+      printf("Erro em %s, no cod ASC => %u\n", functionsChar[pos], value);
+      printf("%s => %u, %s => %u\n", stdLibFunctions[pos], functionStdLib(value), functionsChar[pos],  libftFunction(value));
       return; 
     }
   }
@@ -25,4 +25,5 @@ void testLibFtCharFunctions(int (*libftFunction)(int), int(*functionStdLib)(int)
 int main(void) {
   testLibFtCharFunctions(ft_isalpha, isalpha); 
   testLibFtCharFunctions(ft_isdigit, isdigit); 
+  testLibFtCharFunctions(ft_isalnum, isalnum); 
 }

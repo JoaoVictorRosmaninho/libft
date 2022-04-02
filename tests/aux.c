@@ -4,5 +4,5 @@
 
 
 int main(void) {
-    printf("%d %d\n", isalpha('a'), isalpha('B'));
+    printf("%d %d\n", isdigit('0'), isalnum('B'));
 }
