@@ -1,8 +1,10 @@
+#include "../libft.h"
 #include <stdio.h>
 #include <ctype.h>
 
 
 
 int main(void) {
-    printf("%d %d\n", isascii(127), isalnum('B'));
+  char nome[10]; 
+  printf("%c\n", toupper(41));
 }

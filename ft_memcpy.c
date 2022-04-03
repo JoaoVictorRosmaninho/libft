@@ -1,6 +1,6 @@
 
 
-void *ft_memcpy(void *TO, void *FROM, unsigned int size) 
+void *ft_memcpy(void *TO, const void *FROM, unsigned int size) 
 {
   unsigned int index; 
 

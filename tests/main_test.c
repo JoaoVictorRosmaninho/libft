@@ -3,14 +3,15 @@
 #include <ctype.h> /* Isalpha, isnum ... */ 
 #include <string.h>
 #include <stdlib.h>
+#include <bsd/string.h>
 
 char *functionsChar[] = {
       "ft_isalpha", "ft_isdigit", "ft_isalnum", "ft_isascii", 
-      "ft_isprint"
+      "ft_isprint", "ft_toupper", "ft_tolower"
 };
 char *stdLibFunctions[] = {
       "isalpha", "isdigit", "isalnum", "isascii", 
-      "isprint"              
+      "isprint", "toupper", "tolower"              
 };
 char *strings[] = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
@@ -104,19 +105,106 @@ void testLibMemCpy(void) {
     ft_memcpy(ptrA, strings[i], size); 
     memcpy(ptrB, strings[i], size);
     if (memcmp(ptrA, ptrB, size) != 0) {
-      printf("Erro na função memcmp\n");
+      printf("Erro na função ft_memove\n");
       return; 
     }
     free(ptrA); free(ptrB); 
   }
   ft_memcpy(arrayB, arrayA, 11); 
   if (memcmp(arrayA, arrayB, 11) != 0) {
-      printf("Erro na função memcmp\n");
+      printf("Erro na função ft_memmove\n");
       return; 
   }
 
   printf("Sucesso na execução da função: ft_memcpy\n");
 } 
+
+void testLibMemMove(void) {
+  char *ptrA = NULL; 
+  char *ptrB = NULL; 
+  int arrayA[] = {10,20,30,40,50,60,70,80,90,100,0};
+  int arrayB[11];
+  for(int i = 0; strings[i] != NULL; i++) {
+    size_t size = ft_strlen(strings[i]) + 1;
+    ptrA = (char *) malloc(size); 
+    ptrB = (char *) malloc(size);
+    ft_memmove(ptrA, strings[i], size); 
+    memmove(ptrB, strings[i], size);
+    if (memcmp(ptrA, ptrB, size) != 0) {
+      printf("Erro na função ft_memmove\n");
+      return; 
+    }
+    free(ptrA); free(ptrB); 
+  }
+  ft_memmove(arrayB, arrayA, 11); 
+  if (memcmp(arrayA, arrayB, 11) != 0) {
+      printf("Erro na função ft_memmove\n");
+      return; 
+  }
+
+  printf("Sucesso na execução da função: ft_memmove\n");
+} 
+
+void testLibStrLcpy(void) {
+  char strA[30] = {0}; 
+  char strB[30] = {0}; 
+  for (unsigned int i = 0; strings[i] != NULL; i++) {
+    ft_strlcpy(strA, strings[i], 30);
+    strlcpy(strB, strings[i], 30);
+    if (strcmp(strA, strB) != 0) { // memcmp nao funcionou
+      printf("Erro na função ft_strlcpy\n");
+      printf("%s\n", strA);
+      printf("%s\n", strB);
+      return;
+    }
+  }
+  printf("Sucesso na execução da função: ft_strlcpy\n");
+}
+
+void testLibStrlCat(void) {
+  /* incrementar os testes  */
+  char str[10] = {0};
+  char str2[10] = {0};
+  ft_strlcat(str, "joao", 10); 
+  strlcat(str2, "joao", 10); 
+  if (memcmp(str, str2, 10) != 0) 
+  {
+    printf("%s <=> %s\n", str, str2);
+    puts("Erro na função ft_strlcat");
+    return;
+  }
+  ft_strlcat(str, "dskdasdsadklsdlkksdop", 10); 
+  strlcat(str2, "dskdasdsadklsdlkksdop", 10); 
+  if (memcmp(str, str2, 10) != 0) 
+  {
+    puts("Erro na função ft_strlcat");
+    return;
+  }
+  char s1[20] = "Bom dia";
+  char s2[20] = "Bom dia";
+  ft_strlcat(s1, ", Boa noite", 20); 
+  strlcat(s2, ", Boa noite", 20); 
+  if (memcmp(s1, s2, 20) != 0) 
+  {
+    puts("Erro na função ft_strlcat");
+    return;
+  }
+  printf("Sucesso na execução da função: ft_strlcat\n");
+} 
+
+void testLibStrChr(void) 
+{
+  for(int i = 0; strings[i] != NULL; i++) {
+    for(char letter = 'a'; letter <= 'z'; letter++) {
+      if (ft_strchr(strings[i], letter) != strchr(strings[i], letter)) {
+        puts("Erro na função ft_strchr");
+        return; 
+      }
+    }
+  }
+  printf("Sucesso na execução da função: ft_strchr\n");
+}
+
 
 
 int main(void) {
@@ -125,9 +213,15 @@ int main(void) {
   testLibFtCharFunctions(ft_isalnum, isalnum); 
   testLibFtCharFunctions(ft_isascii, isascii); 
   testLibFtCharFunctions(ft_isprint, isprint);
+  testLibFtCharFunctions(ft_toupper, toupper);
+  testLibFtCharFunctions(ft_tolower, tolower);
   
   testLibStrLen(); 
   testLibMemSet();
   testLibBzero();
   testLibMemCpy();
+  testLibMemMove();
+  testLibStrLcpy();
+  testLibStrlCat();
+  testLibStrChr();
 }
