@@ -18,5 +18,7 @@ size_t ft_strlcat(char *dst, const char *src, size_t size);
 char *ft_strchr(const char *STRING, int C);
 char *ft_strrchr(const char *STRING, int C);
 int ft_strncmp(const char *S1, const char *S2, size_t SIZE);
+int ft_memcmp(const void *A1, const void *A2, size_t SIZE);
+char *ft_strnstr(const char *big, const char *little, size_t len);
 
 #endif

@@ -227,11 +227,55 @@ void testLibStrnCmp(void) {
      return;
     }
   }  
-  printf("Sucesso na execução da função: ft_strncmp");
+  printf("Sucesso na execução da função: ft_strncmp\n");
 
 }
 
+void  testLibMemCmp(void) {
+  int arrayA[] = {10,20,30}; 
+  int arrayB[] = {10,20,40};
+  int arrayC[] = {5,10,20};
+  int arrayD[] = {5,21,32}; 
+  int v1, v2;
+  if ((v1 = ft_memcmp(arrayA, arrayB, sizeof(arrayA))) != (v2 = memcmp(arrayA, arrayB, sizeof(arrayA)))) {
+     printf("Erro na função: ft_memcmp\n");
+     printf("ft_memcmp: %d,  memcmp: %d\n", v1, v2);
+     return;
+  }
+  if (ft_memcmp(arrayA, arrayA, sizeof(arrayA)) != memcmp(arrayA, arrayA, sizeof(arrayA))) {
+     printf("Erro na função: ft_memcmp");
+     return;
+  }
+  if ((v1 = ft_memcmp(arrayC, arrayD, sizeof(arrayC))) != (v2 = memcmp(arrayC, arrayD, sizeof(arrayC)))) {
+     printf("Erro na função: ft_memcmp\n");
+     printf("ft_memcmp: %d,  memcmp: %d\n", v1, v2);
+     return;
+  }
+  if (ft_memcmp(arrayC, arrayC, sizeof(arrayC)) != memcmp(arrayC, arrayC, sizeof(arrayC))) {
+     printf("Erro na função: ft_memcmp");
+     return;
+  }
+  printf("Sucesso na execução da função: ft_memcmp\n");
+}
 
+void testLibStrnstr(void) {
+  FILE *text = fopen("./test.txt", "r");
+  FILE *textInput = fopen("./testInput.txt", "r");
+  char buff_frase[254];
+  char buff_word[16];
+  size_t size, sizeb; 
+  while ((size = fread(buff_frase, 254, 1, text)) != 0) {
+    buff_frase[size] = '\0';
+    while ((sizeb = fread(buff_frase, 16, 1, textInput) != 0)) {
+      buff_word[sizeb] = '\0';      
+      if (ft_strnstr(buff_frase, buff_word, sizeb - 1 ) != strnstr(buff_frase, buff_word, sizeb)) {
+        printf("Erro na função: ft_strnstr\n");
+        return; 
+    }
+  }
+}
+  printf("Sucesso na execução da função: ft_strnstr\n");
+}
 
 int main(void) {
   testLibFtCharFunctions(ft_isalpha, isalpha); 
@@ -252,4 +296,6 @@ int main(void) {
   testLibStrChr(ft_strchr, strchr, "ft_strchr");
   testLibStrChr(ft_strrchr, strrchr, "ft_strrchr");
   testLibStrnCmp();
+  testLibMemCmp();
+  testLibStrnstr();
 }
