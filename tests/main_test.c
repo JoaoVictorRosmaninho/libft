@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <bsd/string.h>
 
+
+#define SIZE_STRINGS 5
 char *functionsChar[] = {
       "ft_isalpha", "ft_isdigit", "ft_isalnum", "ft_isascii", 
       "ft_isprint", "ft_toupper", "ft_tolower"
@@ -192,17 +194,41 @@ void testLibStrlCat(void) {
   printf("Sucesso na execução da função: ft_strlcat\n");
 } 
 
-void testLibStrChr(void) 
+void testLibStrChr(char *(flibft)(const char *, int), char *(flibc)(const char *, int), char *name) 
 {
   for(int i = 0; strings[i] != NULL; i++) {
     for(char letter = 'a'; letter <= 'z'; letter++) {
-      if (ft_strchr(strings[i], letter) != strchr(strings[i], letter)) {
-        puts("Erro na função ft_strchr");
+      if (flibft(strings[i], letter) != flibc(strings[i], letter)) {
+        printf("Erro na função: %s\n", name);
         return; 
       }
     }
   }
-  printf("Sucesso na execução da função: ft_strchr\n");
+  printf("Sucesso na execução da função: %s\n", name);
+}
+
+/* Incrementar os testes  */
+void testLibStrnCmp(void) {
+  for(int i = 0; strings[i] != NULL; i++) {
+   if (ft_strncmp(strings[i], strings[i], 10) != strncmp(strings[i], strings[i], 10)) {
+     printf("Erro na função: ft_strncmp");
+     return;
+   } 
+  }
+  for (int i = SIZE_STRINGS, j = 0; i > 0; i--, j++) {
+    if (ft_strncmp(strings[i], strings[j], 12) != strncmp(strings[i], strings[j], 12)) {
+     printf("Erro na função: ft_strncmp");
+     return;
+    }
+  }  
+  for (int i = SIZE_STRINGS, j = 0; i > 0; i--, j++) {
+    if (ft_strncmp(strings[i], strings[j], ft_strlen(strings[i])) != strncmp(strings[i], strings[j], ft_strlen(strings[i]))) {
+     printf("Erro na função: ft_strncmp");
+     return;
+    }
+  }  
+  printf("Sucesso na execução da função: ft_strncmp");
+
 }
 
 
@@ -223,5 +249,7 @@ int main(void) {
   testLibMemMove();
   testLibStrLcpy();
   testLibStrlCat();
-  testLibStrChr();
+  testLibStrChr(ft_strchr, strchr, "ft_strchr");
+  testLibStrChr(ft_strrchr, strrchr, "ft_strrchr");
+  testLibStrnCmp();
 }

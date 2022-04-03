@@ -5,6 +5,6 @@
 
 
 int main(void) {
-  char nome[10]; 
-  printf("%c\n", toupper(41));
+  char nome[50] = {"bom dia mundo, meu nome é vetor!"}; 
+  printf("%s\n", ft_strchr(nome, 'v'));
 }
