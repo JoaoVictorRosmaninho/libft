@@ -259,22 +259,37 @@ void  testLibMemCmp(void) {
 }
 
 void testLibStrnstr(void) {
-  FILE *text = fopen("./test.txt", "r");
-  FILE *textInput = fopen("./testInput.txt", "r");
+  FILE *text = fopen("./files/strstr.txt", "r");
+  FILE *textInput = fopen("./files/strInput.txt", "r");
   char buff_frase[254];
   char buff_word[16];
-  size_t size, sizeb; 
-  while ((size = fread(buff_frase, 254, 1, text)) != 0) {
-    buff_frase[size] = '\0';
-    while ((sizeb = fread(buff_frase, 16, 1, textInput) != 0)) {
-      buff_word[sizeb] = '\0';      
-      if (ft_strnstr(buff_frase, buff_word, sizeb - 1 ) != strnstr(buff_frase, buff_word, sizeb)) {
+  while (fread(buff_frase, 254, 1, text) != 0) {
+   while (fscanf(textInput, "%s", buff_word) != EOF) {
+     char *p1, *p2; 
+      if ((p1 = ft_strnstr(buff_frase, buff_word, 254 )) != (p2 = strnstr(buff_frase, buff_word, 254))) {
         printf("Erro na função: ft_strnstr\n");
+        printf("input: %s\nft_strnstr: %s\nstrnstr: %s", buff_word, p1,  p2);
         return; 
     }
-  }
+   }
 }
+  fclose(text); fclose(textInput);
   printf("Sucesso na execução da função: ft_strnstr\n");
+}
+
+void testLibatoi(void) {
+  FILE *input = fopen("./files/atoi.txt", "r"); 
+  char buff[32]; 
+  while (fscanf(input, "%s", buff) != EOF) {
+    register int v1, v2; 
+    if ((v1 = ft_atoi(buff)) !=  (v2 = atoi(buff))) {
+      printf("Error na função: ft_atoi\n value: %s\n", buff);
+      printf("ft_atoi: %d, atoi: %d", v1, v2); 
+      return;
+    }
+  }
+  fclose(input);
+  printf("Sucesso na execução da função: ft_atoi\n");
 }
 
 int main(void) {
@@ -296,6 +311,8 @@ int main(void) {
   testLibStrChr(ft_strchr, strchr, "ft_strchr");
   testLibStrChr(ft_strrchr, strrchr, "ft_strrchr");
   testLibStrnCmp();
-  testLibMemCmp();
-  testLibStrnstr();
+  testLibMemCmp();  
+  testLibStrnstr();  
+  testLibatoi(); 
+
 }

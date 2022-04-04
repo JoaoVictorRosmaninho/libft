@@ -1,8 +1,8 @@
+#include "./libft.h"
 
 
-
-unsigned int ft_strlen(const char *S) {
-  unsigned int size; 
+size_t ft_strlen(const char *S) {
+  size_t size; 
 
   size = 0; 
   while (S[size])

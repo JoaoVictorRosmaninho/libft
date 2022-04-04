@@ -1,7 +1,7 @@
-
-void *ft_memset(void *BLOCK, int C, unsigned int SIZE) {
+#include "./libft.h"
+void *ft_memset(void *BLOCK, int C, size_t SIZE) {
   unsigned char value; 
-  unsigned int index; 
+  size_t index; 
 
   value = (unsigned char) C; 
   index = 0; 

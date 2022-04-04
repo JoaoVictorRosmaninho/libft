@@ -1,6 +1,6 @@
-
-void *ft_bzero(void *BLOCK, unsigned int SIZE) {
-  unsigned int index; 
+#include "./libft.h"
+void *ft_bzero(void *BLOCK, size_t SIZE) {
+  size_t index; 
 
   index = 0; 
   while (index < SIZE) {

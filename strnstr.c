@@ -1,7 +1,5 @@
 #include "./libft.h"
 
-
-
 char *ft_strnstr(const char *big, const char *little, size_t len) 
 {
   size_t index;
@@ -15,7 +13,7 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
     if (*little == big[index]) {
       if ((index + size + 1) > len) 
         break; 
-      if (ft_strncmp(big, little, size) == 0)
+      if (ft_strncmp((big + index), little, size) == 0)
         return ((char *) (big + index)); 
     }
     index++;

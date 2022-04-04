@@ -3,7 +3,7 @@
 
 char *ft_strchr(const char *STRING, int C)
 {
-  unsigned int index; 
+  size_t index; 
 
   index = 0; 
   while (STRING[index]) {

@@ -1,8 +1,8 @@
+#include "./libft.h"
 
-
-void *ft_memcpy(void *TO, const void *FROM, unsigned int size) 
+void *ft_memcpy(void *TO, const void *FROM, size_t size) 
 {
-  unsigned int index; 
+  size_t index; 
 
   index = 0; 
   while (index < size) 
