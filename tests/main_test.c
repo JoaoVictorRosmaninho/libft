@@ -292,7 +292,75 @@ void testLibatoi(void) {
   printf("Sucesso na execução da função: ft_atoi\n");
 }
 
+void testLibstrdup(void) {
+  for(int i = 0; strings[i] != NULL; i++) {
+   char *str = ft_strdup(strings[i]);
+   if(ft_memcmp(str, strings[i], ft_strlen(strings[i])) != 0) {
+     puts("Erro na função ft_strdup");
+     return; 
+   }
+  }
+  printf("Sucesso na execução da função ft_strdup\n");
+}
+
+void testLibcalloc(void) {
+  int *numbers = ft_calloc(10, sizeof(int)); 
+  int *numbers_aux = calloc(10, sizeof(int)); 
+  if (ft_memcmp(numbers, numbers_aux, 10 * sizeof(int)) != 0) {
+     puts("Erro na função ft_calloc");
+     return;
+  }
+  free(numbers); free(numbers_aux);
+  printf("Sucesso na execução da função ft_calloc\n");
+
+}
+
+/* Incrementar os testes */
+void testLibftSubStr(void) {
+  char str[] = "bom dia C, já é cedo hora de ir codar, bora bora bora!";
+  char *ptr = ft_substr(str, 4, 3);
+  if (ft_memcmp(ptr, "dia", 3) != 0) {
+    printf("Error na função ft_substr: %s\n", ptr); 
+    free(ptr);
+    return; 
+  }
+  free(ptr);
+  ptr = ft_substr(str, 18, 4); 
+  if (ft_memcmp(ptr, "cedo", 4) != 0) {
+    printf("Error na função ft_substr: %s\n", ptr); 
+    free(ptr);
+    return; 
+  }
+  puts("Sucesso na execução da função ft_substr");
+  free(ptr);
+}
+
+/* Incrementar testes com arquivo de texto*/
+void testLibstrJoin(void) {
+ char *ptr = ft_strjoin("joao", "victor");
+ if (ft_memcmp(ptr, "joaovictor", ft_strlen("joaovictor")) != 0) {
+   puts("Error na função: ft_strjoin");
+   return; 
+ }
+ ptr = ft_strjoin(NULL, NULL); 
+ if (ptr !=  NULL) {
+  puts("Error na função: ft_strjoin");
+   return; 
+ }
+ puts("Sucesso na execução da função: ft_strjoin");
+}
+
+
+// desemvolver testes
+void testLibstrTrim(void) {
+  char str[] = "aaaavaaaa"; 
+  puts(ft_strtrim(str, "a"));
+  char str2[] = "TjoaoAjoaoa"; 
+  puts(ft_strtrim(str2, "joao"));
+}
+
 int main(void) {
+ /*
   testLibFtCharFunctions(ft_isalpha, isalpha); 
   testLibFtCharFunctions(ft_isdigit, isdigit); 
   testLibFtCharFunctions(ft_isalnum, isalnum); 
@@ -313,6 +381,12 @@ int main(void) {
   testLibStrnCmp();
   testLibMemCmp();  
   testLibStrnstr();  
-  testLibatoi(); 
+  testLibatoi();
+  testLibstrdup();
+  testLibcalloc();
+  testLibftSubStr();
+  testLibstrJoin();
+  */
+  testLibstrTrim(); 
 
 }

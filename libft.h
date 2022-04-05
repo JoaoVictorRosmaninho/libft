@@ -22,5 +22,9 @@ int ft_strncmp(const char *S1, const char *S2, size_t SIZE);
 int ft_memcmp(const void *A1, const void *A2, size_t SIZE);
 char *ft_strnstr(const char *big, const char *little, size_t len);
 int ft_atoi(const char *STRING);
-
+char *ft_strdup(const char *S);
+void *ft_calloc(size_t COUNT, size_t ELTSIZE);
+char *ft_substr(char const *s, unsigned int start, size_t len);
+char *ft_strjoin(char const *s1, char const *s2);
+char *ft_strtrim(char const *s1, char const *set);
 #endif
