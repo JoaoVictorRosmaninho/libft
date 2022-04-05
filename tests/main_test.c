@@ -359,6 +359,17 @@ void testLibstrTrim(void) {
   puts(ft_strtrim(str2, "joao"));
 }
 
+
+void testLibFtSplit(void)
+{
+  char str[] = "bom dia macaco careca!"; 
+  char **splited = ft_split(str, ' ');
+  for(int i = 0; splited[i] != NULL; i++)
+    puts(splited[i]);
+}
+
+
+
 int main(void) {
  /*
   testLibFtCharFunctions(ft_isalpha, isalpha); 
@@ -386,7 +397,7 @@ int main(void) {
   testLibcalloc();
   testLibftSubStr();
   testLibstrJoin();
-  */
   testLibstrTrim(); 
-
+  */
+  testLibFtSplit();
 }
