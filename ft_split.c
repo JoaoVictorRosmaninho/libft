@@ -41,6 +41,5 @@ char **ft_split(const char *s, char c) {
     end++;
   }
   bipointer[index++] = ft_substr(s, ini, (end - ini));
-  bipointer[index] = NULL; 
   return (bipointer);
 }

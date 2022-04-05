@@ -362,8 +362,8 @@ void testLibstrTrim(void) {
 
 void testLibFtSplit(void)
 {
-  char str[] = "bom dia macaco careca!"; 
-  char **splited = ft_split(str, ' ');
+  char str[] = "bom,dia,macaco,careca,abobora,noite,cabeça,televisao,teste!"; 
+  char **splited = ft_split(str, ',');
   for(int i = 0; splited[i] != NULL; i++)
     puts(splited[i]);
 }
