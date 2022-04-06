@@ -3,6 +3,7 @@
 #include <ctype.h> /* Isalpha, isnum ... */ 
 #include <string.h>
 #include <stdlib.h>
+#include <limits.h>
 #include <bsd/string.h>
 
 
@@ -360,14 +361,37 @@ void testLibstrTrim(void) {
 }
 
 
+// desemvolver testes
 void testLibFtSplit(void)
 {
-  char str[] = "bom,dia,macaco,careca,abobora,noite,cabeça,televisao,teste!"; 
+  char str[] = "bom,,dia,macaco,careca,abobora,noite,cabeça,televisao,teste!,,doritos,,,macaco,"; 
   char **splited = ft_split(str, ',');
   for(int i = 0; splited[i] != NULL; i++)
-    puts(splited[i]);
+    printf(splited[i]);
 }
 
+
+// testes + complemento de dois
+void testLibft_itoa(void) {
+  printf("%s\n", ft_itoa(500));
+  printf("%s\n", ft_itoa(00));
+  printf("%s\n", ft_itoa(0));
+  printf("%s\n", ft_itoa(11531));
+  printf("%s\n", ft_itoa(-11531));
+  printf("%s\n", ft_itoa(INT_MAX));
+  printf("%s\n", ft_itoa(INT_MIN));
+}
+
+//testes 
+void testFtStrMapi(void) {
+
+}
+//testes 
+void testFtStrTeri(void) {
+   char nome[] = "joao victor"; 
+   ft_striteri(nome, ft_toupper);
+   puts(nome); 
+}
 
 
 int main(void) {
@@ -398,6 +422,11 @@ int main(void) {
   testLibftSubStr();
   testLibstrJoin();
   testLibstrTrim(); 
-  */
   testLibFtSplit();
+  */
+  //testLibft_itoa();
+
+ testFtStrTeri();
+  
+
 }
