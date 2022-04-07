@@ -387,11 +387,13 @@ void testFtStrMapi(void) {
 
 }
 //testes 
-void testFtStrTeri(void) {
+/*
+ void testFtStrTeri(void) {
    char nome[] = "joao victor"; 
    ft_striteri(nome, ft_toupper);
    puts(nome); 
 }
+*/
 
 
 int main(void) {
@@ -426,7 +428,7 @@ int main(void) {
   */
   //testLibft_itoa();
 
- testFtStrTeri();
+// testFtStrTeri();
   
 
 }

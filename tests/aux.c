@@ -5,7 +5,5 @@
 
 
 int main(void) {
-  char nome[50] = {"bom dia mundo, meu nome é vetor!"};
-  char *p = ft_strdup(nome); 
-  printf("%s\n", p);
+  ft_putnbr_fd(10, 1); 
 }

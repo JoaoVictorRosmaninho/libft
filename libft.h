@@ -12,7 +12,7 @@ int ft_tolower(int C);
 int ft_isspace(int C);
 size_t ft_strlen(const char *S); 
 void *ft_memset(void *BLOCK, int C, size_t SIZE); 
-void *ft_bzero(void *BLOCK, size_t SIZE); 
+void ft_bzero(void *BLOCK, size_t SIZE); 
 void *ft_memcpy(void *TO, const void *FROM, size_t size);
 void *ft_memmove(void *dest, const void *src, size_t n); 
 size_t ft_strlcpy(char *dst, const char *src, size_t size); 
@@ -33,4 +33,7 @@ char *ft_itoa(int n);
 char *ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void ft_striteri(char *s, void (*f)(unsigned int,char*));
 void ft_putchar_fd(char c, int fd);
+void ft_putstr_fd(char *s, int fd);
+void ft_putendl_fd(char *s, int fd);
+void ft_putnbr_fd(int n, int fd);
 #endif

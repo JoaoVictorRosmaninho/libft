@@ -48,7 +48,8 @@ char *ft_itoa(int n)
 {
 	char	*number;
 
-	number = ft_calloc(12, sizeof(char)); 
+	if (!(number = ft_calloc(12, sizeof(char)))) 
+          return (NULL);
         convert(n, number, 0);
 	ft_rev(number, ft_strlen(number) - 1);
         return(number); 

@@ -4,6 +4,8 @@ void *ft_memcpy(void *TO, const void *FROM, size_t size)
 {
   size_t index; 
 
+  if (!TO || !FROM)
+    return (NULL);  
   index = 0; 
   while (index < size) 
   {

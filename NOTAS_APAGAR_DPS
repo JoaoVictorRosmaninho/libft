@@ -1,9 +1,13 @@
 1 => verificar em todas as funções se os parametros são nulos e se forem retornar null
     ou seja, validar parametros
 
-    * Verificar tambem o vaor de retorno da ft_calloc armazenado nas variaveis, assim
+    * Verificar tambem o valor de retorno da ft_calloc armazenado nas variaveis, assim
       garantindo que a alocação ocorreu com sucesso
 
 2 => Arrumar os testes até que fiquem satisfatorios 
 
 3 => tentar usar complemento de dois na função itoa 
+
+4 => fazer testes para as funções que escrevem em files descriptors
+
+5 => verificar retorno NULL no ft_strlcat

@@ -6,7 +6,9 @@ int		ft_atoi(const char *str)
 	int sign;
 	int n;
 
-	i = 0;
+	if (!str)
+          return (NULL); 
+        i = 0;
 	sign = 1;
 	n = 0;
 	while (ft_isspace(str[i]) && str[i])

@@ -4,6 +4,8 @@ char *ft_substr(char const *s, unsigned int start, size_t len) {
   size_t len_str; 
   char *sub_str; 
 
+  if (!s)
+    return (NULL); 
   len_str = ft_strlen(s);
   if ((start + len) > len_str) 
     NULL;
