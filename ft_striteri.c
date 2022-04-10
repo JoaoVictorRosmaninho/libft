@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/10 15:02:23 by jv                #+#    #+#             */
+/*   Updated: 2022/04/10 15:03:41 by jv               ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	unsigned int	index;
 
-void ft_striteri(char *s, void (*f)(unsigned int,char*)) {
- unsigned int index; 
-  
- if (!s || !f)
-    return ;
- index = 0;
- while (s[index])
- {
-   f(index, (s + index)); 
-   index++;
- }
+	if (!s || !f)
+		return ;
+	index = 0;
+	while (s[index])
+	{
+		f(index, (s + index));
+		index++;
+	}
 }

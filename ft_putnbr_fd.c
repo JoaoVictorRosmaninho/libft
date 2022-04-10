@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/10 14:49:21 by jv                #+#    #+#             */
+/*   Updated: 2022/04/10 14:50:38 by jv               ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./libft.h"
 
-void ft_putnbr_fd(int n, int fd) 
+void	ft_putnbr_fd(int n, int fd)
 {
- char *number = ft_itoa(n); 
- write(fd, number, ft_strlen(number)); 
+	char	*number;
+
+	number = ft_itoa(n);
+	write(fd, number, ft_strlen(number));
 }

@@ -1,5 +1,16 @@
-#include "./libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/09 22:03:49 by jv                #+#    #+#             */
+/*   Updated: 2022/04/09 22:05:35 by jv               ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "./libft.h"
 
 void	ft_rev(char *s1, int size)
 {
@@ -44,15 +55,14 @@ void	convert(int nb, char *number, int index)
 	}
 }
 
-char *ft_itoa(int n) 
+char	*ft_itoa(int n)
 {
 	char	*number;
 
-	if (!(number = ft_calloc(12, sizeof(char)))) 
-          return (NULL);
-        convert(n, number, 0);
+	number = ft_calloc(12, sizeof(char));
+	if (!number)
+		return (NULL);
+	convert(n, number, 0);
 	ft_rev(number, ft_strlen(number) - 1);
-        return(number); 
+	return (number);
 }
-
-
