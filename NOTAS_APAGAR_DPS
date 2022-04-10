@@ -1,8 +1,8 @@
 1 => verificar em todas as funções se os parametros são nulos e se forem retornar null
-    ou seja, validar parametros
+    ou seja, validar parametros OK 
 
     * Verificar tambem o valor de retorno da ft_calloc armazenado nas variaveis, assim
-      garantindo que a alocação ocorreu com sucesso
+      garantindo que a alocação ocorreu com sucesso OK
 
 2 => Arrumar os testes até que fiquem satisfatorios 
 

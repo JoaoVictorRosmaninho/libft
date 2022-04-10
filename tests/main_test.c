@@ -300,6 +300,7 @@ void testLibstrdup(void) {
      puts("Erro na função ft_strdup");
      return; 
    }
+   free(str);
   }
   printf("Sucesso na execução da função ft_strdup\n");
 }
@@ -332,32 +333,69 @@ void testLibftSubStr(void) {
     free(ptr);
     return; 
   }
+  free(ptr);
+  ptr = ft_substr(str, 0, 3); 
+  if (ft_memcmp(ptr, "bom", 4) != 0) {
+    printf("Error na função ft_substr: %s\n", ptr); 
+    free(ptr);
+    return; 
+  }
+  
+  free(ptr);  
+  ptr = ft_substr(str, 46, 5); 
+  if (ft_memcmp(ptr, "bora!", 4) != 0) {
+    printf("Error na função ft_substr: %s", ptr); 
+    free(ptr);
+    return; 
+  } 
   puts("Sucesso na execução da função ft_substr");
   free(ptr);
 }
 
 /* Incrementar testes com arquivo de texto*/
-void testLibstrJoin(void) {
+void testLibstrJoin(void) 
+{
  char *ptr = ft_strjoin("joao", "victor");
  if (ft_memcmp(ptr, "joaovictor", ft_strlen("joaovictor")) != 0) {
-   puts("Error na função: ft_strjoin");
+   printf("Error na função: ft_strjoin, erro: %s\n", ptr);
    return; 
  }
  ptr = ft_strjoin(NULL, NULL); 
  if (ptr !=  NULL) {
-  puts("Error na função: ft_strjoin");
+   printf("Error na função: ft_strjoin, erro: %s\n", ptr);
+   return; 
+ }
+ ptr = ft_strjoin(" teste", " -teste");
+ if (ft_memcmp(ptr, " teste -teste", ft_strlen(ptr)) != 0) {
+   printf("Error na função: ft_strjoin, erro: %s\n", ptr);
+   return; 
+ }
+ ptr = ft_strjoin("AAAAA", "BBBBBB   ");
+ if (ft_memcmp(ptr, "AAAAABBBBBB   ", ft_strlen(ptr)) != 0) {
+   printf("Error na função: ft_strjoin, erro: %s\n", ptr);
    return; 
  }
  puts("Sucesso na execução da função: ft_strjoin");
 }
 
 
-// desemvolver testes
 void testLibstrTrim(void) {
-  char str[] = "aaaavaaaa"; 
-  puts(ft_strtrim(str, "a"));
-  char str2[] = "TjoaoAjoaoa"; 
-  puts(ft_strtrim(str2, "joao"));
+  char str[] = "aaaavaaaa";
+  if (ft_memcmp(ft_strtrim(str, "a"), "v", 1) != 0) { 
+   printf("Error na função: ft_strtrim, erro: %s\n", str);
+   return; 
+  }
+  char str2[] = "TjoaoAjoaoa";
+  if (ft_memcmp(ft_strtrim(str2, "joaoa"), "TjoaoA", 6) != 0) {
+   printf("Error na função: ft_strtrim, erro: %s\n", str);
+   return; 
+  }
+  char str3[] = "kopAkop";
+  if (ft_memcmp(ft_strtrim(str3, "kop"), "A", 1) != 0) {
+   printf("Error na função: ft_strtrim, erro: %s\n", str);
+   return; 
+  }
+  puts("Sucesso na execução da função: ft_strtrim"); 
 }
 
 
@@ -368,18 +406,60 @@ void testLibFtSplit(void)
   char **splited = ft_split(str, ',');
   for(int i = 0; splited[i] != NULL; i++)
     printf(splited[i]);
+  putchar('\n');
+  char str2[] = "bom####dia#macaco#car#e#c#a#abo#b####ora#noite##ca#beça#t###elevisao##teste!#d###orito#s####macaco#"; 
+  splited = ft_split(str2, '#');
+  for(int i = 0; splited[i] != NULL; i++)
+    printf(splited[i]); 
+  putchar('\n');
+  puts("Sucesso na execução da função: ft_strsplit, porém devo implementar os testes"); 
 }
 
 
 // testes + complemento de dois
 void testLibft_itoa(void) {
-  printf("%s\n", ft_itoa(500));
-  printf("%s\n", ft_itoa(00));
-  printf("%s\n", ft_itoa(0));
-  printf("%s\n", ft_itoa(11531));
-  printf("%s\n", ft_itoa(-11531));
-  printf("%s\n", ft_itoa(INT_MAX));
-  printf("%s\n", ft_itoa(INT_MIN));
+  char *number = ft_itoa(500);
+  if (ft_memcmp("500", number, 3) != 0) {
+    printf("Error na função: ft_memcmp, value: %s\n", number);
+    return; 
+  }
+  free(number); 
+  number = ft_itoa(00);
+  if (ft_memcmp("0", number, 1) != 0) {
+    printf("Error na função: ft_itoa, value: %s\n", number);
+    return; 
+  }
+  free(number); 
+  number = ft_itoa(0);
+  if (ft_memcmp("0", number, 0) != 0) {
+    printf("Error na função: ft_itoa, value: %s\n", number);
+    return; 
+  } 
+  free(number); 
+  number = ft_itoa(11531);
+  if (ft_memcmp("11531", number, 5) != 0) {
+    printf("Error na função: ft_itoa, value: %s\n", number);
+    return; 
+  }
+  free(number); 
+  number = ft_itoa(-11531);
+  if (ft_memcmp("-11531", number, 6) != 0) {
+    printf("Error na função: ft_itoa, value: %s\n", number);
+    return; 
+  }
+  free(number); 
+  number = ft_itoa(INT_MAX);
+  if (ft_memcmp("2147483647", number, 10) != 0) {
+    printf("Error na função: ft_itoa, value: %s\n", number);
+    return; 
+  }
+  free(number); 
+  number = ft_itoa(INT_MIN);
+  if (ft_memcmp("-2147483648", number, 11) != 0) {
+    printf("Error na função: ft_itoa, value: %s\n", number);
+    return; 
+  }
+  puts("Sucesso na execução da função: ft_itoa"); 
 }
 
 //testes 
@@ -388,16 +468,34 @@ void testFtStrMapi(void) {
 }
 //testes 
 /*
- void testFtStrTeri(void) {
+ void testFtStrTriteri(void) {
    char nome[] = "joao victor"; 
    ft_striteri(nome, ft_toupper);
    puts(nome); 
 }
 */
 
+void printElement(t_list *node) {
+  if (!node) {
+    puts("A lista está vazia");
+    return ;
+  }
+  while (node != NULL) {
+    printf("%d ", *(int *) node->content); 
+    node = node->next; 
+  }
+  putchar('\n');
+}
+
+
+void *retorna(void *tmp) {
+
+  *(int *) tmp *= 2;
+  return tmp;
+}
 
 int main(void) {
- /*
+/* 
   testLibFtCharFunctions(ft_isalpha, isalpha); 
   testLibFtCharFunctions(ft_isdigit, isdigit); 
   testLibFtCharFunctions(ft_isalnum, isalnum); 
@@ -425,10 +523,25 @@ int main(void) {
   testLibstrJoin();
   testLibstrTrim(); 
   testLibFtSplit();
+  testLibft_itoa();
   */
-  //testLibft_itoa();
-
-// testFtStrTeri();
+  t_list *list = NULL;
+  /*
+   ft_lstadd_back(&list, ft_lstnew("joao victor"));
+  ft_lstadd_back(&list, ft_lstnew("bananinha")); 
+  ft_lstadd_back(&list, ft_lstnew("cherengo_tengo"));
+  ft_lstadd_back(&list, ft_lstnew("mamoela")); 
+  */
   
-
+  int a = 10;
+  int b = 20;
+  ft_lstadd_front(&list, ft_lstnew(&a));
+  ft_lstadd_front(&list, ft_lstnew(&b)); 
+  //ft_lstadd_front(&list, ft_lstnew(3));
+  //ft_lstadd_front(&list, ft_lstnew(4)); 
+ // printElement(list);
+  //ft_lstclear(&list, retorna);  
+  printElement(list);
+  t_list *t = ft_lstmap(list, retorna, NULL); 
+  printElement(t);
 }

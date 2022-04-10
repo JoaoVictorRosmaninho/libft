@@ -3,7 +3,7 @@ void ft_bzero(void *BLOCK, size_t SIZE) {
   size_t index; 
 
   if (!BLOCK)
-    return (NULL); 
+    return ; 
   index = 0; 
   while (index < SIZE) {
     *(((unsigned char *) BLOCK) + index) = 0; 

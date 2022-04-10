@@ -7,7 +7,7 @@ int		ft_atoi(const char *str)
 	int n;
 
 	if (!str)
-          return (NULL); 
+          return (0); 
         i = 0;
 	sign = 1;
 	n = 0;

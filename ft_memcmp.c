@@ -6,7 +6,7 @@ int ft_memcmp(const void *A1, const void *A2, size_t SIZE) {
   unsigned char *a2; 
 
   if (!A1 || !A2)
-    return (NULL);
+    return (0);
   index = 0;
   a1 = (unsigned char *) A1; 
   a2 = (unsigned char *) A2; 
