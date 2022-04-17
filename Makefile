@@ -1,9 +1,16 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
+#    Updated: 2022/04/17 20:28:25 by jv               ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME		= libft.a
-
-GREEN		= \033[0;32m
-RED		= \033[0;31m
-RESET		= \033[0m
 
 CC 		= gcc
 
@@ -65,25 +72,25 @@ BONUS_OBJS 	= $(BONUS_SRCS:.c=.o)
 all:		${NAME}
 
 ${NAME}: 	${OBJS}
-		@echo "\n$(NAME): $(GREEN)$(NAME) was created$(RESET)"
+		@echo "\n$(NAME): $(NAME) was created"
 		ar -rcs ${NAME} ${OBJS}
 
 bonus:		${NAME} ${BONUS_OBJS}
-		@echo "\n$(NAME): $(GREEN)$(NAME) was created with Bonus$(RESET)"
+		@echo "\n$(NAME): $(NAME) was created with Bonus"
 		ar -rcs ${NAME} ${BONUS_OBJS}
 		@echo
 
 .c.o:
-		@echo "\n$(NAME): $(GREEN)object files were created$(RESET)"
+		@echo "\n$(NAME): object files were created"
 		${CC} ${FLAGS} -c $< -o ${<:.c=.o} ${INCLUDE}
 
 clean:
-		@echo "\n$(NAME): $(RED)object files were deleted$(RESET)"
+		@echo "\n$(NAME): object files were deleted"
 		${REMOVE} ${OBJS} ${BONUS_OBJS}
 		@echo
 
 fclean:		clean
-		@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
+		@echo "$(NAME): $(NAME) was deleted"
 		${REMOVE} ${NAME}
 		@echo
 
