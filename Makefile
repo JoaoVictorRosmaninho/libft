@@ -15,6 +15,7 @@ SRCS 		= ft_isalpha.c 			\
 		ft_isdigit.c 			\
 		ft_isalnum.c 			\
 		ft_isascii.c 			\
+		ft_isspace.c 			\
 		ft_isprint.c 			\
 		ft_strlen.c 			\
 		ft_memset.c 			\
@@ -88,4 +89,3 @@ fclean:		clean
 
 re :		fclean all
 
-.PHONY:		all clean fclean re bonus
