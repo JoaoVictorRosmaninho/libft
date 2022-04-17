@@ -462,40 +462,200 @@ void testLibft_itoa(void) {
   puts("Sucesso na execução da função: ft_itoa"); 
 }
 
-//testes 
-void testFtStrMapi(void) {
 
+void upper(unsigned int index, char *ch) {
+  *ch = ft_toupper(*ch); 
 }
-//testes 
-/*
+
+
+void lower(unsigned int index, char *ch) {
+  *ch = ft_tolower(*ch); 
+}
+
+char mapi_upper(unsigned int index, char ch) {
+  return ft_toupper(ch); 
+}
+
+
+char mapi_lower(unsigned int index, char ch) {
+  return ft_tolower(ch); 
+}
+
  void testFtStrTriteri(void) {
    char nome[] = "joao victor"; 
-   ft_striteri(nome, ft_toupper);
-   puts(nome); 
+   char tst[] = "oLa45"; 
+   ft_striteri(nome, upper);
+   if (ft_memcmp(nome, "JOAO VICTOR", 11) != 0) {
+     puts("Error na função ft_striteri");
+     return; 
+   }
+   ft_striteri(nome, lower);
+   if (ft_memcmp(nome, "joao victor", 11) != 0) {
+     puts("Error na função ft_striteri");
+     return; 
+   }
+   ft_striteri(tst, upper);
+   if (ft_memcmp(tst, "OLA45", 5) != 0) {
+     puts("Error na função ft_striteri");
+     return; 
+   }
+   ft_striteri(tst, lower);
+   if (ft_memcmp(tst, "ola45", 5) != 0) {
+     puts("Error na função ft_striteri");
+     return; 
+   }
+   puts("Sucesso na execução da função: ft_striteri"); 
 }
-*/
 
-void printElement(t_list *node) {
+ void testFtstrmapi(void) {
+   char *nome = ft_strmapi("joao victor", mapi_upper);
+   if (ft_memcmp(nome, "JOAO VICTOR", 11) != 0) {
+     printf("Error na função ft_strmapi, error: %s\n", nome);
+     return; 
+   }
+   free(nome); 
+   nome = ft_strmapi("joao victor", mapi_lower);
+   if (ft_memcmp(nome, "joao victor", 11) != 0) {
+     printf("Error na função ft_strmapi, error: %s\n", nome);
+     return; 
+   }
+   char *tst = ft_strmapi("oLa45", mapi_upper);
+   if (ft_memcmp(tst, "OLA45", 5) != 0) {
+     printf("Error na função ft_strmapi, error: %s\n", tst);
+     return; 
+   }
+   free(tst);
+   tst = ft_strmapi("OLa45", mapi_lower);
+   if (ft_memcmp(tst, "ola45", 5) != 0) {
+     printf("Error na função ft_strmapi, error: %s\n", tst);
+     return; 
+   } 
+   puts("Sucesso na execução da função: ft_strmapi"); 
+}
+
+
+
+
+void printElement(t_list *node, char *log) {
+  FILE *fp = fopen(log, "w"); 
+  if (!fp) {
+    puts("Erro ao abrir o arquivo\n"); 
+    return;
+  }
   if (!node) {
     puts("A lista está vazia");
     return ;
   }
   while (node != NULL) {
-    printf("%d ", *(int *) node->content); 
+    fprintf(fp, "%d ", *(int *) node->content); 
     node = node->next; 
   }
-  putchar('\n');
+  fprintf(fp, "%c", '\n');
+  fclose(fp);
 }
 
 
 void *retorna(void *tmp) {
 
-  *(int *) tmp *= 2;
+  *(int *) tmp *= 1;
   return tmp;
 }
 
-int main(void) {
-/* 
+
+void retorna_mapi(void *tmp) 
+{
+  *(int *) tmp *= -1;
+}
+
+void nullInt(void *ptr) {
+  *(int *)ptr = 0; 
+}
+
+void testListAddandSize(void) {
+  t_list *list = NULL;
+
+  for (int i = 0; i < 255; i++) {
+    ft_lstadd_back(&list, ft_lstnew(&i));
+  }
+  int value;
+  if ((value = ft_lstsize(list)) != 255) {
+    printf("Erro na função ft_lstsize e/ou na ft_lstadd_back\n");
+    printf("retorno: %d\n", value);
+    return; 
+  }
+  printElement(list, "listAddBack"); 
+  ft_lstclear(&list, NULL); 
+  if (list != NULL) {
+    printf("Erro na função: ft_lstclear\n");
+    return; 
+  }
+  puts("Sucesso na execução da função: ft_lstsize, ft_lstadd_back e ft_lstclear"); 
+}
+void testListAddFrontandSize(void) {
+  t_list *list = NULL;
+
+  for (int i = 0; i < 255; i++) {
+    ft_lstadd_front(&list, ft_lstnew(&i));
+  }
+  int value;
+  if ((value = ft_lstsize(list)) != 255) {
+    printf("Erro na função ft_lstsize e/ou na ft_lstadd_front\n");
+    printf("retorno: %d\n", value);
+    return; 
+  }
+  printElement(list, "listAddFront"); 
+  ft_lstclear(&list, NULL); 
+  if (list != NULL) {
+    printf("Erro na função: ft_lstclear\n");
+    return; 
+  }
+  puts("Sucesso na execução da função: ft_lstsize, ft_lstadd_front e ft_lstclear"); 
+}
+
+void test_ftlstiler(void) {
+  t_list *list = NULL; 
+  for (int i = 0; i < 255; i++)  
+    ft_lstadd_front(&list, ft_lstnew(&i));
+  ft_lstiter(list, retorna_mapi);
+  printElement(list, "listDobrada"); 
+  ft_lstclear(&list, NULL);
+  if (list != NULL) {
+    printf("Erro na função: ft_lstclear\n");
+    return; 
+  }
+  puts("Sucesso na execução da função: ft_lstiter, ft_lstadd_front e ft_lstclear"); 
+}
+
+
+void test_ftlstmap(void) {
+  t_list *list = NULL; 
+  /*
+  for (int i = 0; i < 255; i++)  
+    ft_lstadd_front(&list, ft_lstnew(&i));
+  */ 
+  
+  int a = 1;
+  int b = 2;
+  int c = 3;
+  ft_lstadd_front(&list, ft_lstnew(&a));
+  ft_lstadd_front(&list, ft_lstnew(&b));
+  ft_lstadd_front(&list, ft_lstnew(&c));
+  
+  t_list *new_list = ft_lstmap(list, retorna, nullInt);
+  printElement(list, "OldListMapi"); 
+  printElement(new_list, "NewListMapi");
+  if (list == new_list) {
+    printf("Erro na função: ft_lstmap\n");
+  }
+  ft_lstclear(&list, NULL); 
+  ft_lstclear(&new_list, NULL); 
+  puts("Sucesso na execução da função: ft_lstadd_front, ft_lstadd_front e ft_lstclear"); 
+}
+
+
+int main(void) 
+{
+ 
   testLibFtCharFunctions(ft_isalpha, isalpha); 
   testLibFtCharFunctions(ft_isdigit, isdigit); 
   testLibFtCharFunctions(ft_isalnum, isalnum); 
@@ -503,7 +663,7 @@ int main(void) {
   testLibFtCharFunctions(ft_isprint, isprint);
   testLibFtCharFunctions(ft_toupper, toupper);
   testLibFtCharFunctions(ft_tolower, tolower);
-  
+
   testLibStrLen(); 
   testLibMemSet();
   testLibBzero();
@@ -522,17 +682,16 @@ int main(void) {
   testLibftSubStr();
   testLibstrJoin();
   testLibstrTrim(); 
-  testLibFtSplit();
   testLibft_itoa();
-  */
-  t_list *list = NULL;
-  /*
-   ft_lstadd_back(&list, ft_lstnew("joao victor"));
-  ft_lstadd_back(&list, ft_lstnew("bananinha")); 
-  ft_lstadd_back(&list, ft_lstnew("cherengo_tengo"));
-  ft_lstadd_back(&list, ft_lstnew("mamoela")); 
-  */
+  testListAddFrontandSize();
+  testFtStrTriteri();
+  testFtstrmapi();
+  testListAddandSize();
+  test_ftlstiler();
+  test_ftlstmap();
+  //testLibFtSplit();
   
+  /*
   int a = 10;
   int b = 20;
   ft_lstadd_front(&list, ft_lstnew(&a));
@@ -544,4 +703,5 @@ int main(void) {
   printElement(list);
   t_list *t = ft_lstmap(list, retorna, NULL); 
   printElement(t);
+  */
 }

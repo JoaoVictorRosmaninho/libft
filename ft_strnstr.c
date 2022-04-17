@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   strnstr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 15:10:57 by jv                #+#    #+#             */
-/*   Updated: 2022/04/10 15:14:15 by jv               ###   ########.fr       */
+/*   Created: 2022/04/10 16:09:01 by jv                #+#    #+#             */
+/*   Updated: 2022/04/10 16:12:57 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	unsigned int	index;
-	char			*new_str;
+	size_t	index;
+	size_t	size;
 
-	if (!s || !f)
+	index = 0;
+	size = ft_strlen(little);
+	if (*little == '\0')
+		return ((char *) big);
+	if (!big || !len)
 		return (NULL);
-	new_str = (char *)ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (!new_str)
-		return (NULL);
-        index = 0; 
-	while (s[index])
+	while (index < len)
 	{
-		new_str[index] = f(index, s[index]);
+		if (*little == big[index])
+		{
+			if ((index + size + 1) > len)
+				break ;
+			if (ft_strncmp((big + index), little, size) == 0)
+				return ((char *)(big + index));
+		}
 		index++;
 	}
-        new_str[index] = '\0'; 
-	return (new_str);
+	return (NULL);
 }

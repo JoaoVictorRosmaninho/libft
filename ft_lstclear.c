@@ -20,12 +20,22 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	if (!lst)
 		return ;
 	node = *lst;
-	while (node != NULL)
-	{
+        if (del)
+        {
+	  while (node != NULL)
+	  {
 		tmp = node;
 		del(node->content);
 		node = node->next;
 		free(tmp);
-	}
+	  }
+        }
+        else 
+          while (node != NULL)
+          {
+		tmp = node;
+		node = node->next;
+		free(tmp);
+          }
 	*lst = NULL;
 }
