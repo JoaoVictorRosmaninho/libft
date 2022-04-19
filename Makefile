@@ -6,7 +6,7 @@
 #    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2022/04/17 20:28:25 by jv               ###   ########.fr        #
+#    Updated: 2022/04/18 19:07:31 by jv               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,13 +41,11 @@ SRCS 		= ft_isalpha.c 			\
 		ft_atoi.c 			\
 		ft_strdup.c 			\
 		ft_calloc.c 			\
-		ft_strnstr.c 			\
 		ft_itoa.c 			\
 		ft_substr.c	 		\
 		ft_split.c 			\
 		ft_strjoin.c 			\
 		ft_strtrim.c			\
-		ft_itoa.c 			\
 		ft_strmapi.c 			\
 		ft_striteri.c 			\
 		ft_putchar_fd.c 		\
@@ -89,10 +87,14 @@ clean:
 		${REMOVE} ${OBJS} ${BONUS_OBJS}
 		@echo
 
-fclean:		clean
+fclean:	clean
 		@echo "$(NAME): $(NAME) was deleted"
 		${REMOVE} ${NAME}
 		@echo
 
-re :		fclean all
+re:	
+		fclean all
 
+so:
+		$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(BONUS_SRCS)
+		gcc -nostartfiles -shared -o libft.so $(OBJ) $(BONUS_OBJS)

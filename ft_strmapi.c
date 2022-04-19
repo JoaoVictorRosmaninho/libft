@@ -22,7 +22,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	new_str = (char *)ft_calloc(ft_strlen(s) + 1, sizeof(char));
 	if (!new_str)
 		return (NULL);
-		index = 0;
+	index = 0;
 	while (s[index])
 	{
 		new_str[index] = f(index, s[index]);
