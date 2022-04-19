@@ -6,7 +6,7 @@
 #    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2022/04/18 19:07:31 by jv               ###   ########.fr        #
+#    Updated: 2022/04/19 19:01:58 by jv               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,5 +96,5 @@ re:
 		fclean all
 
 so:
-		$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(BONUS_SRCS)
-		gcc -nostartfiles -shared -o libft.so $(OBJ) $(BONUS_OBJS)
+		$(CC) -nostartfiles -fPIC $(FLAGS) $(SRCS) $(BONUS_SRCS)
+		gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
