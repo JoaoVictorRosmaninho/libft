@@ -422,8 +422,8 @@ void testLibFtSplit(void)
   for(int i = 0; splited[i] != NULL; i++)
     printf(splited[i]); 
   putchar('\n');
-  char str5[] = ""; 
-  splited = ft_split(str2, '#');
+  char *str5="\0aa\0bbb";  
+  splited = ft_split(str5, '\0');
   for(int i = 0; splited[i] != NULL; i++)
     printf(splited[i]); 
   putchar('\n');
