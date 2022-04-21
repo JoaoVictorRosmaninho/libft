@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:51:56 by jv                #+#    #+#             */
-/*   Updated: 2022/04/21 16:17:55 by jv               ###   ########.fr       */
+/*   Updated: 2022/04/21 17:47:29 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	**ft_split(const char *s, char c)
 	unsigned int	delimiters;
 	char			**bipointer;
 
-	if (!s || !c)
+	if (!s || !c || ft_strlen(s) < 1)
 		return (NULL);
 	delimiters = ft_count_char(s, c) + 1;
 	bipointer = (char **) ft_calloc(delimiters + 1, sizeof(char *));
