@@ -649,7 +649,7 @@ void test_ftlstmap(void) {
   }
   ft_lstclear(&list, NULL); 
   ft_lstclear(&new_list, NULL); 
-  puts("Sucesso na execução da função: ft_lstadd_front, ft_lstadd_front e ft_lstclear"); 
+  puts("Sucesso na execução da função: ft_lstmap ft_lstadd_front, ft_lstadd_front e ft_lstclear"); 
 }
 
 
@@ -689,6 +689,7 @@ int main(void)
   testListAddandSize();
   test_ftlstiler();
   test_ftlstmap();
+
   //testLibFtSplit();
   
   /*
