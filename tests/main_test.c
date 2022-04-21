@@ -412,6 +412,17 @@ void testLibFtSplit(void)
   for(int i = 0; splited[i] != NULL; i++)
     printf(splited[i]); 
   putchar('\n');
+  char *str3 = "split  ||this|for|me|||||!|";
+  splited = ft_split(str3, '|');
+  for(int i = 0; splited[i] != NULL; i++)
+    printf(splited[i]); 
+  putchar('\n');  
+  char *str4 = "      split       this for   me  !       ";
+  splited = ft_split(str4, ' ');
+  for(int i = 0; splited[i] != NULL; i++)
+    printf(splited[i]); 
+  putchar('\n');
+
   puts("Sucesso na execução da função: ft_strsplit, porém devo implementar os testes"); 
 }
 
@@ -683,14 +694,13 @@ int main(void)
   testLibstrJoin();
   testLibstrTrim(); 
   testLibft_itoa();
+  testLibFtSplit();
   testListAddFrontandSize();
   testFtStrTriteri();
   testFtstrmapi();
   testListAddandSize();
   test_ftlstiler();
   test_ftlstmap();
-
-  //testLibFtSplit();
   
   /*
   int a = 10;
