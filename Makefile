@@ -6,7 +6,7 @@
 #    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2022/04/19 19:01:58 by jv               ###   ########.fr        #
+#    Updated: 2022/04/19 19:50:22 by jv               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRCS 		= ft_isalpha.c 			\
 		ft_strchr.c 			\
 		ft_strrchr.c 			\
 		ft_strncmp.c			\
-		ft_memcmp.c			\
+		ft_memcmp.c				\
+		ft_memchr.c				\
 		ft_strnstr.c			\
 		ft_atoi.c 			\
 		ft_strdup.c 			\
@@ -87,14 +88,13 @@ clean:
 		${REMOVE} ${OBJS} ${BONUS_OBJS}
 		@echo
 
-fclean:	clean
+fclean:		clean
 		@echo "$(NAME): $(NAME) was deleted"
 		${REMOVE} ${NAME}
 		@echo
 
-re:	
-		fclean all
+re :		fclean all
 
-so:
-		$(CC) -nostartfiles -fPIC $(FLAGS) $(SRCS) $(BONUS_SRCS)
-		gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
+so :
+	$(CC) -nostartfiles -fPIC $(FLAGS) $(SRCS) $(BONUS_SRCS)
+	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)

@@ -16,8 +16,6 @@ void	ft_bzero(void *BLOCK, size_t SIZE)
 {
 	size_t	index;
 
-	if (!BLOCK)
-		return ;
 	index = 0;
 	while (index < SIZE)
 	{

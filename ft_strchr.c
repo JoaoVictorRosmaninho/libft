@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:59:00 by jv                #+#    #+#             */
-/*   Updated: 2022/04/10 14:59:42 by jv               ###   ########.fr       */
+/*   Updated: 2022/04/19 20:30:00 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ char	*ft_strchr(const char *STRING, int C)
 {
 	size_t	index;
 
-	if (!STRING)
-		return (NULL);
 	index = 0;
 	while (STRING[index])
 	{
@@ -25,5 +23,7 @@ char	*ft_strchr(const char *STRING, int C)
 			return (((char *) STRING) + index);
 		index++;
 	}
+	if ((unsigned char ) STRING[index] == (unsigned char ) C)
+		return (((char *) STRING) + index);
 	return (NULL);
 }

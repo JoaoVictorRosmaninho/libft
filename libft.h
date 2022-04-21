@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2022/04/10 16:08:38 by jv               ###   ########.fr       */
+/*   Updated: 2022/04/19 19:47:47 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char		*ft_strchr(const char *STRING, int C);
 char		*ft_strrchr(const char *STRING, int C);
 int			ft_strncmp(const char *S1, const char *S2, size_t SIZE);
 int			ft_memcmp(const void *A1, const void *A2, size_t SIZE);
+void		*ft_memchr(const void *BLOCK, int C, size_t SIZE);
 char		*ft_strnstr(const char *big, const char *little, size_t len);
 int			ft_atoi(const char *STRING);
 char		*ft_strdup(const char *S);
