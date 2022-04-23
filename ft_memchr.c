@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 19:20:19 by jv                #+#    #+#             */
-/*   Updated: 2022/04/23 15:36:14 by jv               ###   ########.fr       */
+/*   Updated: 2022/04/23 18:54:47 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memchr(const void *BLOCK, int C, size_t SIZE)
 	while (SIZE)
 	{
 		if (*ptr == ch)
-			return(ptr);
+			return (ptr);
 		SIZE--;
 		ptr++;
 	}
