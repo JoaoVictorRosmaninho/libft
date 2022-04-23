@@ -421,7 +421,7 @@ void testLibFtSplit(void)
   splited = ft_split(str4, ' ');
   for(int i = 0; splited[i] != NULL; i++)
     printf(splited[i]); 
-  putchar('\n');
+  putchar('\n'); 
   char *str5="\0aa\0bbb";  
   splited = ft_split(str5, '\0');
   for(int i = 0; splited[i] != NULL; i++)
@@ -671,6 +671,7 @@ void test_ftlstmap(void) {
 
 int main(void) 
 {
+  
  
   testLibFtCharFunctions(ft_isalpha, isalpha); 
   testLibFtCharFunctions(ft_isdigit, isdigit); 
@@ -706,18 +707,5 @@ int main(void)
   testListAddandSize();
   test_ftlstiler();
   test_ftlstmap();
-  
-  /*
-  int a = 10;
-  int b = 20;
-  ft_lstadd_front(&list, ft_lstnew(&a));
-  ft_lstadd_front(&list, ft_lstnew(&b)); 
-  //ft_lstadd_front(&list, ft_lstnew(3));
-  //ft_lstadd_front(&list, ft_lstnew(4)); 
- // printElement(list);
-  //ft_lstclear(&list, retorna);  
-  printElement(list);
-  t_list *t = ft_lstmap(list, retorna, NULL); 
-  printElement(t);
-  */
+  testLibFtSplit();
 }
