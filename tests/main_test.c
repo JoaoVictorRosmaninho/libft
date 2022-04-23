@@ -707,5 +707,4 @@ int main(void)
   testListAddandSize();
   test_ftlstiler();
   test_ftlstmap();
-  testLibFtSplit();
 }

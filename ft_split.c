@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:51:56 by jv                #+#    #+#             */
-/*   Updated: 2022/04/23 09:36:34 by jv               ###   ########.fr       */
+/*   Updated: 2022/04/23 09:50:58 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ char	**ft_split(const char *s, char c)
 	get_split(bipointer, s, c);
 	return (bipointer);
 }
-
 /*
 static int	ft_split_is_word(char const *s, char c, size_t i)
 {

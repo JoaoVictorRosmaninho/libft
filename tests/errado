@@ -1,0 +1,38 @@
+Sucesso na Execução da função: ft_isalpha
+Sucesso na Execução da função: ft_isdigit
+Sucesso na Execução da função: ft_isalnum
+Sucesso na Execução da função: ft_isascii
+Sucesso na Execução da função: ft_isprint
+Sucesso na Execução da função: ft_toupper
+Sucesso na Execução da função: ft_tolower
+Sucesso na execução da função: ft_strlen
+Sucesso na execução da função: ft_memset
+Sucesso na execução da função: ft_bzero
+Sucesso na execução da função: ft_memcpy
+Sucesso na execução da função: ft_memmove
+Sucesso na execução da função: ft_strlcpy
+Sucesso na execução da função: ft_strlcat
+Sucesso na execução da função: ft_strchr
+Sucesso na execução da função: ft_strrchr
+Sucesso na execução da função: ft_strncmp
+Sucesso na execução da função: ft_memcmp
+Sucesso na execução da função: ft_strnstr
+Sucesso na execução da função: ft_atoi
+Sucesso na execução da função ft_strdup
+Sucesso na execução da função ft_calloc
+Sucesso na execução da função ft_substr
+Sucesso na execução da função: ft_strjoin
+Sucesso na execução da função: ft_strtrim
+Sucesso na execução da função: ft_itoa
+bomdiamacacocarecaaboboranoitecabeçatelevisaoteste!doritosmacaco
+bomdiamacacocarecaaboboranoitecabeçatelevisaoteste!doritosmacaco
+split  thisforme!
+splitthisforme!
+
+Sucesso na execução da função: ft_strsplit, porém devo implementar os testes
+Sucesso na execução da função: ft_lstsize, ft_lstadd_front e ft_lstclear
+Sucesso na execução da função: ft_striteri
+Sucesso na execução da função: ft_strmapi
+Sucesso na execução da função: ft_lstsize, ft_lstadd_back e ft_lstclear
+Sucesso na execução da função: ft_lstiter, ft_lstadd_front e ft_lstclear
+Sucesso na execução da função: ft_lstmap ft_lstadd_front, ft_lstadd_front e ft_lstclear
