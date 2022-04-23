@@ -689,7 +689,7 @@ int main(void)
   testListAddandSize();
   test_ftlstiler();
   test_ftlstmap();
-  //testLibFtSplit();
+  testLibFtSplit();
   
   /*
   int a = 10;
