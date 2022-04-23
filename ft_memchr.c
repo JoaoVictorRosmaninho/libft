@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/09 22:11:47 by jv                #+#    #+#             */
-/*   Updated: 2022/04/23 15:20:15 by jv               ###   ########.fr       */
+/*   Created: 2022/04/19 19:20:19 by jv                #+#    #+#             */
+/*   Updated: 2022/04/23 15:36:14 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	*ft_memchr(const void *BLOCK, int C, size_t SIZE)
 {
-	t_list	*last;
+	unsigned char	*ptr;
+	unsigned char	ch;
 
-	if (*lst == NULL)
-		*lst = new;
-	else
+	ptr = (unsigned char *) BLOCK;
+	ch = (unsigned char) C;
+	while (SIZE)
 	{
-		last = ft_lstlast(*lst);
-		last->next = new;
+		if (*ptr == ch)
+			return(ptr);
+		SIZE--;
+		ptr++;
 	}
+	return (NULL);
 }

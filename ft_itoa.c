@@ -12,7 +12,7 @@
 
 #include "./libft.h"
 
-void	ft_rev(char *s1, int size)
+static void	ft_rev(char *s1, int size)
 {
 	int		ini;
 	char	aux;
@@ -28,7 +28,7 @@ void	ft_rev(char *s1, int size)
 	}
 }
 
-void	convert(int nb, char *number, int index)
+static void	convert(int nb, char *number, int index)
 {
 	if (nb >= 0)
 	{

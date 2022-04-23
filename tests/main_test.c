@@ -564,6 +564,7 @@ void printElement(t_list *node, char *log) {
   }
   while (node != NULL) {
     fprintf(fp, "%d ", *(int *) node->content); 
+    //fprintf(fp, "%s", (char *) node->content); 
     node = node->next; 
   }
   fprintf(fp, "%c", '\n');
@@ -573,54 +574,69 @@ void printElement(t_list *node, char *log) {
 
 void *retorna(void *tmp) {
 
-  *(int *) tmp *= 1;
-  return tmp;
+  int *new_number = (int *) malloc(sizeof(int)); 
+  if (!new_number)
+    return (NULL);
+  
+  *new_number = *(int *) tmp * 2;
+  return ((void *)new_number);
 }
 
 
 void retorna_mapi(void *tmp) 
 {
-  *(int *) tmp *= -1;
+  *(int *) tmp *= 2;
 }
 
 void nullInt(void *ptr) {
   *(int *)ptr = 0; 
 }
 
+void clearInt(void *num) {
+  int *ptr = (int *) num; 
+  free(ptr);
+}
+
 void testListAddandSize(void) {
   t_list *list = NULL;
 
-  for (int i = 0; i < 255; i++) {
-    ft_lstadd_back(&list, ft_lstnew(&i));
+  for (int i = 0; i < 500; i++) {
+    int *ptr = (int *)malloc(sizeof(int)); 
+    *ptr = i;
+    ft_lstadd_back(&list, ft_lstnew(ptr));
   }
   int value;
-  if ((value = ft_lstsize(list)) != 255) {
+  if ((value = ft_lstsize(list)) != 500) {
     printf("Erro na função ft_lstsize e/ou na ft_lstadd_back\n");
     printf("retorno: %d\n", value);
     return; 
   }
   printElement(list, "listAddBack"); 
-  ft_lstclear(&list, NULL); 
+  ft_lstclear(&list, clearInt); 
   if (list != NULL) {
     printf("Erro na função: ft_lstclear\n");
     return; 
   }
   puts("Sucesso na execução da função: ft_lstsize, ft_lstadd_back e ft_lstclear"); 
 }
+
+
 void testListAddFrontandSize(void) {
   t_list *list = NULL;
 
-  for (int i = 0; i < 255; i++) {
-    ft_lstadd_front(&list, ft_lstnew(&i));
+  for (int i = 0; i < 500; i++) {
+    int *ptr = (int *)malloc(sizeof(int)); 
+    *ptr = i;
+    ft_lstadd_front(&list, ft_lstnew(ptr));
   }
   int value;
-  if ((value = ft_lstsize(list)) != 255) {
+  if ((value = ft_lstsize(list)) != 500) {
     printf("Erro na função ft_lstsize e/ou na ft_lstadd_front\n");
     printf("retorno: %d\n", value);
     return; 
   }
   printElement(list, "listAddFront"); 
-  ft_lstclear(&list, NULL); 
+  ft_lstclear(&list, clearInt); 
   if (list != NULL) {
     printf("Erro na função: ft_lstclear\n");
     return; 
@@ -630,11 +646,14 @@ void testListAddFrontandSize(void) {
 
 void test_ftlstiler(void) {
   t_list *list = NULL; 
-  for (int i = 0; i < 255; i++)  
-    ft_lstadd_front(&list, ft_lstnew(&i));
+  for (int i = 0; i < 500; i++) {
+    int *ptr = (int *)malloc(sizeof(int)); 
+    *ptr = i;
+    ft_lstadd_front(&list, ft_lstnew(ptr));
+  }
   ft_lstiter(list, retorna_mapi);
   printElement(list, "listDobrada"); 
-  ft_lstclear(&list, NULL);
+  ft_lstclear(&list, clearInt);
   if (list != NULL) {
     printf("Erro na função: ft_lstclear\n");
     return; 
@@ -671,11 +690,12 @@ void test_ftlstmap(void) {
   ft_lstadd_front(&list, ft_lstnew(&c));
   
   t_list *new_list = ft_lstmap(list, retorna, nullInt);
-  printElement(list, "OldListMapi"); 
-  printElement(new_list, "NewListMapi");
   if (list == new_list) {
     printf("Erro na função: ft_lstmap\n");
   }
+  printElement(list, "OldListMapi"); 
+  printElement(new_list, "NewListMapi");
+
   ft_lstclear(&list, NULL); 
   ft_lstclear(&new_list, NULL); 
   puts("Sucesso na execução da função: ft_lstmap ft_lstadd_front, ft_lstadd_front e ft_lstclear"); 
@@ -684,7 +704,6 @@ void test_ftlstmap(void) {
 
 int main(void) 
 {
-  
  
   testLibFtCharFunctions(ft_isalpha, isalpha); 
   testLibFtCharFunctions(ft_isdigit, isdigit); 
@@ -714,11 +733,14 @@ int main(void)
   testLibstrTrim(); 
   testLibft_itoa();
   testLibFtSplit();
-  testListAddFrontandSize();
   testFtStrTriteri();
-  testFtstrmapi();
+  testFtstrmapi(); 
   test_ftlstnew();
+  testListAddFrontandSize();
   testListAddandSize();
   test_ftlstiler();
   test_ftlstmap();
+  
+
+
 }

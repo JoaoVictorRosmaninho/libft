@@ -34,13 +34,11 @@ SRCS 		= ft_isalpha.c 			\
 		ft_atoi.c 			\
 		ft_strdup.c 			\
 		ft_calloc.c 			\
-		ft_strnstr.c 			\
 		ft_itoa.c 			\
 		ft_substr.c	 		\
 		ft_split.c 			\
 		ft_strjoin.c 			\
 		ft_strtrim.c			\
-		ft_itoa.c 			\
 		ft_strmapi.c 			\
 		ft_striteri.c 			\
 		ft_putchar_fd.c 		\
@@ -89,3 +87,6 @@ fclean:		clean
 
 re :		fclean all
 
+so :
+	$(CC) -nostartfiles -fPIC $(FLAGS) $(SRCS) $(BONUS_SRCS)
+	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
