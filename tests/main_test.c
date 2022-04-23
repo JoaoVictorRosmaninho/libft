@@ -642,6 +642,19 @@ void test_ftlstiler(void) {
   puts("Sucesso na execução da função: ft_lstiter, ft_lstadd_front e ft_lstclear"); 
 }
 
+void test_ftlstnew(void) {
+  t_list *node;
+  for (int i = 0; strings[i]; i++) {
+    node = ft_lstnew(strings[i]);
+    if (strcmp(strings[i], node->content) != 0) {
+      printf("Erro na função: ft_lstnew\n");
+      free(node);
+      return;
+    }
+    free(node);
+  }
+  puts("Sucesso na execução da função: ft_lstnew");
+}
 
 void test_ftlstmap(void) {
   t_list *list = NULL; 
@@ -704,6 +717,7 @@ int main(void)
   testListAddFrontandSize();
   testFtStrTriteri();
   testFtstrmapi();
+  test_ftlstnew();
   testListAddandSize();
   test_ftlstiler();
   test_ftlstmap();
