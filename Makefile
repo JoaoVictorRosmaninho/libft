@@ -7,7 +7,7 @@ RESET		= \033[0m
 
 CC 		= gcc
 
-FLAGS 		= -Wall -Werror -Wextra
+FLAGS 		= -Wall -Werror -Wextra -g3
 
 REMOVE 		= rm -f
 
@@ -24,6 +24,7 @@ SRCS 		= ft_isalpha.c 			\
 		ft_memmove.c 			\
 		ft_strlcpy.c 			\
 		ft_strlcat.c 			\
+		ft_memchr.c 			\
 		ft_toupper.c 			\
 		ft_tolower.c 			\
 		ft_strchr.c 			\

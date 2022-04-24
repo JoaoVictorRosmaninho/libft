@@ -201,9 +201,15 @@ void testLibStrChr(char *(flibft)(const char *, int), char *(flibc)(const char *
     for(char letter = 'a'; letter <= 'z'; letter++) {
       if (flibft(strings[i], letter) != flibc(strings[i], letter)) {
         printf("Erro na função: %s\n", name);
-        return; 
       }
     }
+  }
+  char nome[] = "joao victor"; 
+  char *p1, *p2;
+  if ((p1 = flibft(nome, 0)) != (p2 = flibc(nome, 0))) {
+      printf("Erro na função: %s\n", name);
+      printf("ft_strchr: %s, strrchr: %s\n", p1, p2); 
+      exit(1);
   }
   printf("Sucesso na execução da função: %s\n", name);
 }

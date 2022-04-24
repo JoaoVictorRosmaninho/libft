@@ -1,0 +1,3 @@
+fr_strrchr -> retornando nulo quando size = 0 
+memleak-> atoi, itoa
+compilar com a flag -g3

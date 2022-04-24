@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2022/04/10 16:08:38 by jv               ###   ########.fr       */
+/*   Updated: 2022/04/24 11:56:30 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void		*ft_memset(void *BLOCK, int C, size_t SIZE);
 void		ft_bzero(void *BLOCK, size_t SIZE);
 void		*ft_memcpy(void *TO, const void *FROM, size_t size);
 void		*ft_memmove(void *dest, const void *src, size_t n);
+void		*ft_memchr(const void *BLOCK, int C, size_t SIZE);
 char		*ft_strchr(const char *STRING, int C);
 char		*ft_strrchr(const char *STRING, int C);
 int			ft_strncmp(const char *S1, const char *S2, size_t SIZE);

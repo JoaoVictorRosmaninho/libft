@@ -12,29 +12,29 @@
 
 #include "./libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *STRING)
 {
 	int	i;
 	int	sign;
 	int	n;
 
-	if (!str)
+	if (!STRING)
 		return (0);
 	i = 0;
 	sign = 1;
 	n = 0;
-	while (ft_isspace(str[i]) && str[i])
+	while (ft_isspace(STRING[i]) && STRING[i])
 		i++;
-	if (str[i] == '-')
+	if (STRING[i] == '-')
 	{
 		sign = -1;
 		i++;
 	}
-	else if (str[i] == '+')
+	else if (STRING[i] == '+')
 		i++;
-	while ((str[i] >= '0' && str[i] <= '9') && str[i])
+	while ((STRING[i] >= '0' && STRING[i] <= '9') && STRING[i])
 	{
-		n = n * 10 + (str[i] - '0');
+		n = n * 10 + (STRING[i] - '0');
 		i++;
 	}
 	return (n * sign);
