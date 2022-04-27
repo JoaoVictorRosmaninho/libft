@@ -10,19 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include "libft.h"
 
-void	*ft_calloc(size_t COUNT, size_t ELTSIZE)
+void	*ft_calloc(size_t nelem, size_t elsize)
 {
 	void	*ptr;
 
-	if (!COUNT || !ELTSIZE)
+	ptr = malloc(nelem * elsize);
+	if (ptr == NULL)
 		return (NULL);
-	if (COUNT == __SIZE_MAX__ || ELTSIZE == __SIZE_MAX__)
-		return (NULL);
-	ptr = malloc(COUNT * ELTSIZE);
-	if (!ptr)
-		return (NULL);
-	ft_bzero(ptr, COUNT * ELTSIZE);
+	ft_bzero(ptr, (nelem * elsize));
 	return (ptr);
 }
