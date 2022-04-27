@@ -6,145 +6,59 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:51:56 by jv                #+#    #+#             */
-/*   Updated: 2022/04/23 09:50:58 by jv               ###   ########.fr       */
+/*   Updated: 2022/04/26 20:59:50 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-static unsigned int	ft_count_char(const char *s, char c)
+static int	words_counter(const char *s, char c)
 {
-	unsigned int	delimiter;
-	unsigned int	index;
-
-	delimiter = 0;
-	index = 0;
-	while (s[index])
-	{
-		if (s[index] == c)
-			delimiter++;
-		index++;
-	}
-	return (delimiter);
-}
-
-static void	get_split(char **bipointer, const char *s, char c)
-{
-	unsigned int	ini;
-	unsigned int	end;
-	unsigned int	index;
-
-	ini = 0;
-	end = 0;
-	index = 0;
-	while (s[end])
-	{
-		if (s[end] == c)
-		{
-			if ((end - ini) < 1)
-			{
-				end++;
-				ini++;
-				continue ;
-			}
-			bipointer[index++] = ft_substr(s, ini, (end - ini));
-			ini = end + 1;
-		}
-		end++;
-	}
-	bipointer[index++] = ft_substr(s, ini, (end - ini));
-}
-
-char	**ft_split(const char *s, char c)
-{
-	unsigned int	delimiters;
-	char			**bipointer;
-
-	if (!s || !c || ft_strlen(s) < 1)
-	{
-		bipointer = (char **) ft_calloc(1, sizeof(char *));
-		if (!bipointer)
-			return (NULL);
-		return (bipointer);
-	}
-	delimiters = ft_count_char(s, c) + 1;
-	bipointer = (char **) ft_calloc(delimiters + 1, sizeof(char *));
-	if (!bipointer)
-		return (NULL);
-	get_split(bipointer, s, c);
-	return (bipointer);
-}
-/*
-static int	ft_split_is_word(char const *s, char c, size_t i)
-{
-	if (s[i] != c)
-		if (i == 0 || (i > 0 && s[i - 1] == c))
-			return (1);
-	return (0);
-}
-
-static size_t	ft_split_count_words(char const *s, char c)
-{
-	size_t	i;
-	size_t	count_words;
+	int	i;
+	int	flag;
+	int	counter;
 
 	i = 0;
-	count_words = 0;
-	while (s[i] != '\0')
+	flag = 0;
+	counter = 0;
+	while (i <= (int)ft_strlen(s))
 	{
-		if (ft_split_is_word(s, c, i) == 1)
-			count_words++;
+		if (s[i] != c && s[i] != '\0' && flag == 0)
+		{
+			counter++;
+			flag = 1;
+		}
+		else if (s[i] == c)
+			flag = 0;
 		i++;
 	}
-	return (count_words);
-}
-
-static size_t	ft_split_next_word(char const *s, char c, size_t idword)
-{
-	size_t	i;
-
-	i = idword;
-	while (ft_split_is_word(s, c, i) == 0 && s[i] != '\0')
-		i++;
-	return (i);
-}
-
-static size_t	ft_split_count_characters(char const *sc, char c, size_t i)
-{
-	size_t	count_c;
-
-	count_c = 0;
-	while (sc[i + count_c] != c && sc[i + count_c] != '\0')
-		count_c++;
-	return (count_c);
+	return (counter);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	count_c;
-	size_t	count_w;
-	size_t	idword;
-	char	**splited;
+	int		i;
+	int		j;
+	int		flag;
+	char	**result;
 
-	if (s == NULL)
-		return (NULL);
-	count_w = ft_split_count_words(s, c);
-	splited = (char **) malloc(sizeof(char *) * (count_w + 1));
-	if (splited == NULL)
-		return (NULL);
-	idword = -1;
-	i = -1;
-	while (++i < count_w)
+	i = 0;
+	j = 0;
+	flag = -1;
+	result = malloc((words_counter(s, c) + 1) * sizeof(char *));
+	if (!s || !result)
+		return (0);
+	while (i <= (int)ft_strlen(s))
 	{
-		idword = ft_split_next_word(s, c, ++idword);
-		count_c = ft_split_count_characters(s, c, idword);
-		splited[i] = (char *) malloc(sizeof(char) * (count_c + 1));
-		if (splited[i] == NULL)
-			return (NULL);
-		ft_strlcpy(splited[i], &s[idword], count_c + 1);
+		if (s[i] != c && flag < 0)
+			flag = i;
+		else if ((s[i] == c || i == (int)ft_strlen(s)) && flag >= 0)
+		{
+			result[j++] = ft_substr(s, flag, i - flag);
+			flag = -1;
+		}
+		i++;
 	}
-	splited[count_w] = NULL;
-	return (splited);
+	result[j] = 0;
+	return (result);
 }
-*/

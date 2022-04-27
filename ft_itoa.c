@@ -1,68 +1,76 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/09 22:03:49 by jv                #+#    #+#             */
-/*   Updated: 2022/04/09 22:05:35 by jv               ###   ########.fr       */
+/*   Created: 2022/04/09 21:49:22 by jv                #+#    #+#             */
+/*   Updated: 2022/04/24 14:55:50 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include "libft.h"
 
-static void	ft_rev(char *s1, int size)
+static int	is_negative(int n)
 {
-	int		ini;
-	char	aux;
-
-	ini = 0;
-	while (ini < size)
-	{
-		aux = s1[ini];
-		s1[ini] = s1[size];
-		s1[size] = aux;
-		ini++;
-		size--;
-	}
+	if (n < 0)
+		return (1);
+	return (0);
 }
 
-static void	convert(int nb, char *number, int index)
+static int	is_zero(int n)
+{	
+	if (n == 0)
+		return (1);
+	return (0);
+}
+
+static int	len_number(int n)
 {
-	if (nb >= 0)
+	int				len;
+	unsigned int	l;
+
+	len = 0;
+	l = n;
+	if (is_negative(l))
 	{
-		while (nb > 0)
-		{
-			number[index++] = '0' + (nb % 10);
-			nb /= 10;
-		}
-		if (index == 0)
-			number[index++] = '0';
-		number[index] = '\0';
+		l = l * -1;
+		len++;
 	}
-	else
+	while (l > 0)
 	{
-		number[index++] = '0' + ((nb % -10) * -1);
-		nb /= -10;
-		while (nb > 0)
-		{
-			number[index++] = '0' + (nb % 10);
-			nb /= 10;
-		}
-		number[index++] = '-';
-		number[index] = '\0';
+		l = l / 10;
+		len++;
 	}
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*number;
+	char			*num;
+	int				len;
+	unsigned int	nbr;
 
-	number = ft_calloc(12, sizeof(char));
-	if (!number)
-		return (NULL);
-	convert(n, number, 0);
-	ft_rev(number, ft_strlen(number) - 1);
-	return (number);
+	nbr = n;
+	len = len_number(n);
+	if (is_zero(n))
+		len++;
+	if (is_negative(n))
+		nbr = (unsigned int)n * -1;
+	num = (char *)malloc(len + 1);
+	if (!num)
+		return (0);
+	num[len--] = '\0';
+	while (len >= 0 && nbr > 0)
+	{
+		num[len] = (nbr % 10) + '0';
+		nbr = nbr / 10;
+		len--;
+	}
+	if (is_zero(n))
+		num[len] = '0';
+	if (is_negative(n))
+		num[len] = '-';
+	return (num);
 }

@@ -1,17 +1,17 @@
 
-NAME		= libft.a
+NAME = libft.a
 
-GREEN		= \033[0;32m
-RED		= \033[0;31m
-RESET		= \033[0m
+GREEN = \033[0;32m
+RED = \033[0;31m
+RESET = \033[0m
 
-CC 		= gcc
+CC = gcc
 
-FLAGS 		= -Wall -Werror -Wextra -g3
+FLAGS = -Wall -Werror -Wextra -g3
 
-REMOVE 		= rm -f
+REMOVE 	= rm -f
 
-SRCS 		= ft_isalpha.c 			\
+SRCS = 	ft_isalpha.c 			\
 		ft_isdigit.c 			\
 		ft_isalnum.c 			\
 		ft_isascii.c 			\
@@ -19,7 +19,7 @@ SRCS 		= ft_isalpha.c 			\
 		ft_isprint.c 			\
 		ft_strlen.c 			\
 		ft_memset.c 			\
-		ft_bzero.c 			\
+		ft_bzero.c 				\
 		ft_memcpy.c 			\
 		ft_memmove.c 			\
 		ft_strlcpy.c 			\
@@ -30,14 +30,14 @@ SRCS 		= ft_isalpha.c 			\
 		ft_strchr.c 			\
 		ft_strrchr.c 			\
 		ft_strncmp.c			\
-		ft_memcmp.c			\
+		ft_memcmp.c				\
 		ft_strnstr.c			\
-		ft_atoi.c 			\
+		ft_atoi.c 				\
 		ft_strdup.c 			\
 		ft_calloc.c 			\
-		ft_itoa.c 			\
-		ft_substr.c	 		\
-		ft_split.c 			\
+		ft_itoa.c 				\
+		ft_substr.c	 			\
+		ft_split.c 				\
 		ft_strjoin.c 			\
 		ft_strtrim.c			\
 		ft_strmapi.c 			\
@@ -47,7 +47,7 @@ SRCS 		= ft_isalpha.c 			\
 		ft_putendl_fd.c 		\
 		ft_putnbr_fd.c			\
 
-BONUS_SRCS  	= ft_lstnew.c		\
+BONUS_SRCS	= ft_lstnew.c			\
 		ft_lstadd_front.c	\
 		ft_lstsize.c		\
 		ft_lstlast.c		\
@@ -57,13 +57,13 @@ BONUS_SRCS  	= ft_lstnew.c		\
 		ft_lstiter.c		\
 		ft_lstmap.c
 
-OBJS 		= $(SRCS:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
 BONUS_OBJS 	= $(BONUS_SRCS:.c=.o)
 
-all:		${NAME}
+all:	${NAME}
 
-${NAME}: 	${OBJS}
+${NAME}:	${OBJS}
 		@echo "\n$(NAME): $(GREEN)$(NAME) was created$(RESET)"
 		ar -rcs ${NAME} ${OBJS}
 
@@ -87,7 +87,3 @@ fclean:		clean
 		@echo
 
 re :		fclean all
-
-so :
-	$(CC) -nostartfiles -fPIC $(FLAGS) $(SRCS) $(BONUS_SRCS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)

@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:49:21 by jv                #+#    #+#             */
-/*   Updated: 2022/04/10 14:50:38 by jv               ###   ########.fr       */
+/*   Updated: 2022/04/26 21:14:09 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,16 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	*number;
+	unsigned int	nbr;
 
-	number = ft_itoa(n);
-	write(fd, number, ft_strlen(number));
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nbr = (unsigned int)(n * -1);
+	}
+	else
+		nbr = (unsigned int)n;
+	if (nbr >= 10)
+		ft_putnbr_fd(nbr / 10, fd);
+	ft_putchar_fd(nbr % 10 + '0', fd);
 }
