@@ -12,11 +12,14 @@
 
 #include "./libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+ssize_t	ft_putnbr_fd(int n, int fd)
 {
 	char	*number;
+        ssize_t bytes_write; 
 
+        bytes_write = 0;
 	number = ft_itoa(n);
-	write(fd, number, ft_strlen(number));
+	bytes_write += write(fd, number, ft_strlen(number));
 	free(number); 
+        return (bytes_write);
 }
