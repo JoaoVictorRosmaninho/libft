@@ -14,6 +14,7 @@
 # define LIBFT_H 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -65,4 +66,12 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstdelone(t_list *lst, void (*del)(void*));
 void		ft_lstclear(t_list **lst, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
+int		ft_printf(const char *TEMPLATE, ...);
+ssize_t	ft_printf_hex_lower(int n);
+ssize_t	ft_printf_hex_upper(int n);
+ssize_t	ft_printf_uint(unsigned	int n);
+void	reverse_array(char *str, int end);
+char	*int2hex(unsigned int n, unsigned char op);
+char	*lint2hex(unsigned long int n);
+ssize_t	ft_printf_ptr(unsigned long int n);
 #endif

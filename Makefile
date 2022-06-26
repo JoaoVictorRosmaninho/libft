@@ -53,6 +53,12 @@ SRCS 		= ft_isalpha.c 			\
 		ft_putstr_fd.c 			\
 		ft_putendl_fd.c 		\
 		ft_putnbr_fd.c			\
+		ft_printf.c 			\
+		ft_printf_hex_lower.c 		\
+		ft_printf_hex_upper.c 		\
+		ft_printf_hex_ptr.c 		\
+		ft_printf_uint.c 		\
+		ft_printf_utils.c 		\
 
 BONUS_SRCS  	= ft_lstnew.c		\
 		ft_lstadd_front.c	\
