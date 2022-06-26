@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:09:00 by jv                #+#    #+#             */
-/*   Updated: 2022/04/10 15:10:43 by jv               ###   ########.fr       */
+/*   Updated: 2022/06/26 00:08:55 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 size_t	ft_strlen(const char *S)
 {
-	size_t	size;
+	char	*tmp;
 
-	size = 0;
-	while (S[size])
-		size++;
-	return (size);
+	tmp = NULL;
+	if (!S)
+		return (0);
+	tmp = (char *) S;
+	while (*tmp)
+		tmp++;
+	return ((size_t)(tmp - S));
 }

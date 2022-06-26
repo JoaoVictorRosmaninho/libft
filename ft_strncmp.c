@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:15:10 by jv                #+#    #+#             */
-/*   Updated: 2022/04/19 21:20:48 by jv               ###   ########.fr       */
+/*   Updated: 2022/06/26 00:09:23 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_strncmp(const char *S1, const char *S2, size_t SIZE)
 {
 	unsigned char	*s1;
 	unsigned char	*s2;
-	size_t		i;
+	size_t			i;
 
 	i = 0;
 	s1 = (unsigned char *) S1;
