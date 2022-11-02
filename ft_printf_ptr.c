@@ -6,11 +6,11 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:47:09 by jv                #+#    #+#             */
-/*   Updated: 2022/06/25 23:47:30 by jv               ###   ########.fr       */
+/*   Updated: 2022/11/02 11:57:01 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "./libft.h"
 
 ssize_t	ft_printf_ptr(unsigned long int n)
 {

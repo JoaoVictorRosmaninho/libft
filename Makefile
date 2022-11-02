@@ -54,9 +54,9 @@ SRCS 		= ft_isalpha.c 			\
 		ft_putendl_fd.c 		\
 		ft_putnbr_fd.c			\
 		ft_printf.c 			\
+		ft_printf_ptr.c   \
 		ft_printf_hex_lower.c 		\
 		ft_printf_hex_upper.c 		\
-		ft_printf_hex_ptr.c 		\
 		ft_printf_uint.c 		\
 		ft_printf_utils.c 		\
 

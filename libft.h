@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2022/04/19 19:47:47 by jv               ###   ########.fr       */
+/*   Updated: 2022/11/02 09:55:48 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstdelone(t_list *lst, void (*del)(void*));
 void		ft_lstclear(t_list **lst, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
-int		ft_printf(const char *TEMPLATE, ...);
-ssize_t	ft_printf_hex_lower(int n);
-ssize_t	ft_printf_hex_upper(int n);
-ssize_t	ft_printf_uint(unsigned	int n);
-void	reverse_array(char *str, int end);
-char	*int2hex(unsigned int n, unsigned char op);
-char	*lint2hex(unsigned long int n);
-ssize_t	ft_printf_ptr(unsigned long int n);
+int			ft_printf(const char *TEMPLATE, ...);
+ssize_t		ft_printf_hex_lower(int n);
+ssize_t		ft_printf_hex_upper(int n);
+ssize_t		ft_printf_uint(unsigned	int n);
+void		reverse_array(char *str, int end);
+char		*int2hex(unsigned int n, unsigned char op);
+char		*lint2hex(unsigned long int n);
+ssize_t		ft_printf_ptr(unsigned long int n);
 #endif
