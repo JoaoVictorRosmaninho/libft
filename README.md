@@ -8,9 +8,11 @@
 
 <h3 align="center">125/100 &nbsp;&nbsp;:heavy_check_mark:</h3>
 <p align="center"> 
-  <img align="center" src="https://game.42sp.org.br/static/assets/achievements/libftm.png" />
+  <img align="center" src="https://game.42sp.org.br/static/assets/achievements/minitalkm.png" />
 </p>
 
 ## Thoughts
    - this project teach you the importance of manual. The Gnu docs really are a full course completely free and of great quality. 
-   - This project in general was easy, but the major struggling here was avoid memory leaks (all funcions are tested with [Valgrind](https://valgrind.org/))  
+   - Otimization with bitwise operations
+   - problem solving
+
