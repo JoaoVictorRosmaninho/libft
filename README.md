@@ -8,7 +8,7 @@
 
 <h3 align="center">125/100 &nbsp;&nbsp;:heavy_check_mark:</h3>
 <p align="center"> 
-  <img align="center" src="https://game.42sp.org.br/static/assets/achievements/minitalkm.png" />
+  <img align="center" src="https://game.42sp.org.br/static/assets/achievements/libftm.png" />
 </p>
 
 ## Thoughts
