@@ -12,10 +12,10 @@
 
 #include "./libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstdelone(t_node *node, void (*del)(void*))
 {
-	if (!lst || !del)
+	if (!node || !del)
 		return ;
-	del(lst->content);
-	free(lst);
+	del(node->content);
+	free(node);
 }

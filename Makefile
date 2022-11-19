@@ -62,19 +62,20 @@ SRCS 		= ft_isalpha.c 			\
 
 BONUS_SRCS  	= ft_lstnew.c		\
 		ft_lstadd_front.c	\
-		ft_lstsize.c		\
-		ft_lstlast.c		\
 		ft_lstadd_back.c	\
 		ft_lstdelone.c		\
 		ft_lstclear.c		\
 		ft_lstiter.c		\
+		ft_lstpop.c \
+		ft_lstpop_head.c \
+		ft_lstitem.c \
 		ft_lstmap.c
 
 OBJS 		= $(SRCS:.c=.o)
 
 BONUS_OBJS 	= $(BONUS_SRCS:.c=.o)
 
-all:		${NAME}
+all:	${NAME} bonus
 
 ${NAME}: 	${OBJS}
 		@echo "\n$(NAME): $(NAME) was created"

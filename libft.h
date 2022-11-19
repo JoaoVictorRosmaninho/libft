@@ -16,11 +16,18 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-typedef struct s_list
+typedef struct s_node
 {
-	struct s_list	*next;
+	struct s_node	*next;
+  struct s_node *prev;
 	void			*content;
-}	t_list;
+}	t_node;
+
+typedef struct {
+    t_node *head;
+    t_node *tail;
+    unsigned int size;
+} t_list;
 
 int			ft_isalpha(int C);
 int			ft_isdigit(int C);
@@ -57,15 +64,16 @@ ssize_t		ft_putchar_fd(char c, int fd);
 ssize_t		ft_putstr_fd(char *s, int fd);
 ssize_t		ft_putendl_fd(char *s, int fd);
 ssize_t		ft_putnbr_fd(int n, int fd);
-t_list		*ft_lstnew(void *content);
-t_list		*ft_lstlast(t_list *lst);
+t_node		*ft_lstnew(void *content);
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-int			ft_lstsize(t_list *lst);
-void		ft_lstadd_front(t_list **lst, t_list *new);
-void		ft_lstadd_back(t_list **lst, t_list *new);
-void		ft_lstdelone(t_list *lst, void (*del)(void*));
-void		ft_lstclear(t_list **lst, void (*del)(void*));
+void		ft_lstadd_front(t_list *lst, t_node *new);
+void		ft_lstadd_back(t_list *lst, t_node *new);
+void		ft_lstdelone(t_node *node, void (*del)(void*));
+void		ft_lstclear(t_list *lst, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
+t_node  *ft_lstpop(t_list *lst, unsigned int at);
+t_node  *ft_lstpop_head(t_list *lst);
+t_node  *ft_lstitem(t_list *lst, unsigned int at);
 int			ft_printf(const char *TEMPLATE, ...);
 ssize_t		ft_printf_hex_lower(int n);
 ssize_t		ft_printf_hex_upper(int n);
