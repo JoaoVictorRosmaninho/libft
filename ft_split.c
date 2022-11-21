@@ -61,17 +61,21 @@ char	**ft_split(const char *s, char c)
 	char			**bipointer;
 
 	if (!s || !c || ft_strlen(s) < 1)
-	{
-		bipointer = (char **) ft_calloc(1, sizeof(char *));
-		if (!bipointer)
 			return (NULL);
-		return (bipointer);
-	}
 	delimiters = ft_count_char(s, c) + 1;
-	bipointer = (char **) ft_calloc(delimiters + 1, sizeof(char *));
-	if (!bipointer)
-		return (NULL);
-	get_split(bipointer, s, c);
+  if (delimiters < 2) {
+	  bipointer = (char **) ft_calloc(2, sizeof(char *));
+    if (!bipointer)
+      return (NULL);
+    bipointer[0] = ft_strdup(s);
+    bipointer[1] = NULL;
+  }
+  else {
+	  bipointer = (char **) ft_calloc(delimiters + 1, sizeof(char *));
+	  if (!bipointer)
+		  return (NULL);
+	  get_split(bipointer, s, c);
+  }
 	return (bipointer);
 }
 

@@ -71,6 +71,7 @@ void		ft_lstadd_back(t_list *lst, t_node *new);
 void		ft_lstdelone(t_node *node, void (*del)(void*));
 void		ft_lstclear(t_list *lst, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
+void    ft_mlsort(t_list *lst);
 t_node  *ft_lstpop(t_list *lst, unsigned int at);
 t_node  *ft_lstpop_head(t_list *lst);
 t_node  *ft_lstitem(t_list *lst, unsigned int at);
