@@ -14,7 +14,7 @@ NAME		= libft.a
 
 CC 		= gcc
 
-FLAGS 		= -Wall -Werror -Wextra
+FLAGS 		= -Wall -Werror -Wextra -g
 
 REMOVE 		= rm -f
 
