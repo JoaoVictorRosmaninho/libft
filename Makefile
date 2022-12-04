@@ -70,6 +70,7 @@ BONUS_SRCS  	= ft_lstnew.c		\
 		ft_lstpop_head.c \
 		ft_lstitem.c \
 		ft_mlsort.c \
+		ft_lstsize.c \
 		ft_lstmap.c
 
 OBJS 		= $(SRCS:.c=.o)
