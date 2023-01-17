@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2022/11/06 20:01:23 by jv               ###   ########.fr       */
+/*   Updated: 2023/01/17 16:38:11 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,7 @@
 # define LIBFT_H 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdarg.h>
-
-typedef struct s_node
-{
-	struct s_node	*next;
-  struct s_node *prev;
-	void			*content;
-}	t_node;
-
-typedef struct {
-    t_node *head;
-    t_node *tail;
-    unsigned int size;
-} t_list;
+# include <stdarg.h> 
 
 int			ft_isalpha(int C);
 int			ft_isdigit(int C);
