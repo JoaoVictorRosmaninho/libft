@@ -12,89 +12,101 @@
 
 NAME		= libft.a
 
-CC 		= gcc
+CC 		= clang
 
 FLAGS 		= -Wall -Werror -Wextra -g
 
 REMOVE 		= rm -f
 
-SRCS 		= ft_isalpha.c 			\
-		ft_isdigit.c 			\
-		ft_isalnum.c 			\
-		ft_isascii.c 			\
-		ft_isspace.c 			\
-		ft_isprint.c 			\
-		ft_strlen.c 			\
-		ft_memset.c 			\
-		ft_bzero.c 			\
-		ft_memcpy.c 			\
-		ft_memmove.c 			\
-		ft_strlcpy.c 			\
-		ft_strlcat.c 			\
-		ft_toupper.c 			\
-		ft_tolower.c 			\
-		ft_strchr.c 			\
-		ft_strrchr.c 			\
-		ft_strncmp.c			\
-		ft_memcmp.c				\
-		ft_memchr.c				\
-		ft_strnstr.c			\
-		ft_atoi.c 			\
-		ft_strdup.c 			\
-		ft_calloc.c 			\
-		ft_itoa.c 			\
-		ft_substr.c	 		\
-		ft_split.c 			\
-		ft_strjoin.c 			\
-		ft_strtrim.c			\
-		ft_strmapi.c 			\
-		ft_striteri.c 			\
-		ft_putchar_fd.c 		\
-		ft_putstr_fd.c 			\
-		ft_putendl_fd.c 		\
-		ft_putnbr_fd.c			\
-		ft_printf.c 			\
-		ft_printf_ptr.c   \
-		ft_printf_hex_lower.c 		\
-		ft_printf_hex_upper.c 		\
-		ft_printf_uint.c 		\
-		ft_printf_utils.c 		\
+TARGET 	 = utils/string/ft_isalpha.c 			\
+					utils/string/ft_isdigit.c 			\
+					utils/string/ft_isalnum.c 			\
+					utils/string/ft_isascii.c 			\
+					utils/string/ft_isspace.c 			\
+					utils/string/ft_isprint.c 			\
+					utils/string/ft_strlen.c 			  \
+					utils/string/ft_strlcpy.c 			\
+					utils/string/ft_strlcat.c 			\
+					utils/string/ft_toupper.c 			\
+					utils/string/ft_tolower.c 			\
+					utils/string/ft_strchr.c 			  \
+					utils/string/ft_strrchr.c 			\
+					utils/string/ft_strncmp.c			  \
+					utils/string/ft_strnstr.c			  \
+					utils/string/ft_atoi.c 			    \
+					utils/string/ft_strdup.c 			  \
+					utils/string/ft_itoa.c 			    \
+					utils/string/ft_substr.c	 		  \
+					utils/string/ft_split.c 			  \
+					utils/string/ft_strjoin.c 			\
+					utils/string/ft_strtrim.c			  \
+					utils/string/ft_strmapi.c 			\
+					utils/string/ft_striteri.c 			\
+					utils/memory/ft_bzero.c 			  \
+					utils/memory/ft_calloc.c 			  \
+					utils/memory/ft_memmove.c 			\
+					utils/memory/ft_memset.c 			  \
+					utils/memory/ft_memchr.c				\
+					utils/memory/ft_memcpy.c 			  \
+					utils/memory/ft_memcmp.c				\
+					utils/input_output/utils/ft_putchar_fd.c 		          \
+				  utils/input_output/utils/ft_putstr_fd.c 			        \
+					utils/input_output/utils/ft_putendl_fd.c 		          \
+					utils/input_output/utils/ft_putnbr_fd.c			          \
+					utils/input_output/ft_printf/ft_printf.c 			        \
+					utils/input_output/ft_printf/ft_printf_ptr.c          \
+					utils/input_output/ft_printf/ft_printf_hex_lower.c 		\
+					utils/input_output/ft_printf/ft_printf_hex_upper.c 		\
+					utils/input_output/ft_printf/ft_printf_uint.c 		    \
+					utils/input_output/ft_printf/ft_printf_utils.c 				\
+					ds/ft_list/src/ft_lstnew.c		 			 \
+					ds/ft_list/src/ft_lstadd_front.c	   \
+					ds/ft_list/src/ft_lstadd_back.c	     \
+					ds/ft_list/src/ft_lstdelone.c		     \
+					ds/ft_list/src/ft_lstclear.c		     \
+					ds/ft_list/src/ft_lstiter.c		       \
+					ds/ft_list/src/ft_lstpop.c           \
+					ds/ft_list/src/ft_lstpop_head.c      \
+					ds/ft_list/src/ft_lstitem.c          \
+					ds/ft_list/src/ft_lstmap.c           \
+					ds/ft_list/utils/mk_int_content.c    \
+					ds/ft_list/utils/mk_char_content.c   \
+					ds/ft_list/utils/mk_float_content.c  \
+					ds/ft_list/utils/mk_double_content.c \
+					ds/ft_list/utils/mk_string_content.c 
 
-BONUS_SRCS  	= ft_lstnew.c		\
-		ft_lstadd_front.c	\
-		ft_lstadd_back.c	\
-		ft_lstdelone.c		\
-		ft_lstclear.c		\
-		ft_lstiter.c		\
-		ft_lstpop.c \
-		ft_lstpop_head.c \
-		ft_lstitem.c \
-		ft_mlsort.c \
-		ft_lstsize.c \
-		ft_lstmap.c
 
-OBJS 		= $(SRCS:.c=.o)
+SRCS 		= $(addprefix ./src/, $(TARGET))
+OBJS 		= $(addprefix ./$(OBJ_DIR)/, $(TARGET:.c=.o)) 
 
-BONUS_OBJS 	= $(BONUS_SRCS:.c=.o)
+OBJ_DIR  = obj
+OBJ_DIRS = obj \
+					 obj/ds \
+					 obj/ds/ft_list \
+					 obj/ds/ft_list/src \
+					 obj/ds/ft_list/utils \
+					 obj/utils/input_output 	\
+					 obj/utils/input_output/ft_printf 	\
+					 obj/utils/input_output/utils 	\
+					 obj/utils/memory 	\
+					 obj/utils/string 	
 
-all:	${NAME} bonus
+all:	${NAME}
 
-${NAME}: 	${OBJS}
+${NAME}:  $(OBJ_DIR)	$(OBJS) 
 		@echo "\n$(NAME): $(NAME) was created"
-		ar -rcs ${NAME} ${OBJS}
+		ar -rcs $(NAME) $(OBJS)
 
-bonus:		${NAME} ${BONUS_OBJS}
-		@echo "\n$(NAME): $(NAME) was created with Bonus"
-		ar -rcs ${NAME} ${BONUS_OBJS}
-		@echo
+$(OBJ_DIR):
+	mkdir -p ${OBJ_DIRS}
 
-.c.o:
-		@echo "\n$(NAME): object files were created"
-		${CC} ${FLAGS} -c $< -o ${<:.c=.o} ${INCLUDE}
+$(OBJ_DIR)/%.o: src/%.c
+		@echo "$@: object files were created"
+		$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 		@echo "\n$(NAME): object files were deleted"
-		${REMOVE} ${OBJS} ${BONUS_OBJS}
+		${REMOVE} ${OBJS} 
 		@echo
 
 fclean:		clean
