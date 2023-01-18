@@ -12,13 +12,17 @@
 
 NAME		= libft.a
 
-CC 		= clang
+CC 		= gcc
+
+GDB_FLAG  	= -ggdb -fsanitize=address -fno-omit-frame-pointer
 
 FLAGS 	= -Wall -Werror -Wextra -g
 
 REMOVE 	= rm -f
 
 LFLAGS =	-L. -lft 
+
+VALGRIND_FLAGS = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose
 
 TARGET 	 = utils/string/ft_isalpha.c 			\
 					utils/string/ft_isdigit.c 			\
@@ -61,7 +65,8 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					utils/input_output/ft_printf/ft_printf_hex_upper.c 		\
 					utils/input_output/ft_printf/ft_printf_uint.c 		    \
 					utils/input_output/ft_printf/ft_printf_utils.c 				\
-					ds/ft_list/src/ft_lstnew.c		 			 \
+					ds/ft_list/src/ft_lstnew_node.c		 	 \
+					ds/ft_list/src/ft_lstprint.c		 		 \
 					ds/ft_list/src/ft_lstadd_front.c	   \
 					ds/ft_list/src/ft_lstadd_back.c	     \
 					ds/ft_list/src/ft_lstdelone.c		     \
@@ -71,6 +76,7 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					ds/ft_list/src/ft_lstpop_head.c      \
 					ds/ft_list/src/ft_lstitem.c          \
 					ds/ft_list/src/ft_lstmap.c           \
+					ds/ft_list/src/ft_lst_mv_next_to_front.c           \
 					ds/ft_list/utils/mk_int_content.c    \
 					ds/ft_list/utils/mk_char_content.c   \
 					ds/ft_list/utils/mk_float_content.c  \
@@ -95,8 +101,8 @@ OBJ_DIRS = obj \
 
 all:	${NAME}
 
-test: $(NAME)
-	$(CC) test/main.c $(LFLAGS) -o test_run
+test: $(NAME) test/main.c
+	$(CC) test/main.c $(LFLAGS) -o test_bin
 
 ${NAME}:  $(OBJ_DIR)	$(OBJS) 
 		@echo "\n$(NAME): $(NAME) was created"

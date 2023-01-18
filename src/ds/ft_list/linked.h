@@ -40,9 +40,10 @@
 
   Data *mk_char_content(char content);
 
-  t_node		*ft_lstnew(Data *data);
 
   t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+  t_list    *ft_lstnew(void);
 
   void		ft_lstadd_front(t_list *lst, t_node *new);
 
@@ -54,9 +55,15 @@
 
   void		ft_lstiter(t_list *lst, void (*f)(void *));
 
+  void    ft_lstprint(t_list *lst);
+
   void    ft_mlsort(t_list *lst);
 
+  void    ft_lst_mv_next_to_front(t_list *lst, t_node * node);
+
   t_node  *ft_lstpop(t_list *lst, unsigned int at);
+
+  t_node		*ft_lstnew_node(Data *data);
 
   t_node  *ft_lstpop_head(t_list *lst);
 
