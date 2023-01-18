@@ -14,9 +14,11 @@ NAME		= libft.a
 
 CC 		= clang
 
-FLAGS 		= -Wall -Werror -Wextra -g
+FLAGS 	= -Wall -Werror -Wextra -g
 
-REMOVE 		= rm -f
+REMOVE 	= rm -f
+
+LFLAGS =	-L. -lft 
 
 TARGET 	 = utils/string/ft_isalpha.c 			\
 					utils/string/ft_isdigit.c 			\
@@ -92,6 +94,9 @@ OBJ_DIRS = obj \
 					 obj/utils/string 	
 
 all:	${NAME}
+
+test: $(NAME)
+	$(CC) test/main.c $(LFLAGS) -o test_run
 
 ${NAME}:  $(OBJ_DIR)	$(OBJS) 
 		@echo "\n$(NAME): $(NAME) was created"
