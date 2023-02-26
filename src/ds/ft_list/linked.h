@@ -61,6 +61,8 @@
 
   void    ft_lst_mv_next_to_front(t_list *lst, t_node * node);
 
+  void    ft_lstpop_tail(t_list *lst);
+
   t_node  *ft_lstpop(t_list *lst, unsigned int at);
 
   t_node		*ft_lstnew_node(Data *data);

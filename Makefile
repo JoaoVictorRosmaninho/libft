@@ -66,6 +66,7 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					utils/input_output/ft_printf/ft_printf_uint.c 		    \
 					utils/input_output/ft_printf/ft_printf_utils.c 				\
 					ds/ft_list/src/ft_lstnew_node.c		 	 \
+					ds/ft_list/src/ft_lstnew.c		 	     \
 					ds/ft_list/src/ft_lstprint.c		 		 \
 					ds/ft_list/src/ft_lstadd_front.c	   \
 					ds/ft_list/src/ft_lstadd_back.c	     \
@@ -74,6 +75,7 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					ds/ft_list/src/ft_lstiter.c		       \
 					ds/ft_list/src/ft_lstpop.c           \
 					ds/ft_list/src/ft_lstpop_head.c      \
+					ds/ft_list/src/ft_lstpop_tail.c      \
 					ds/ft_list/src/ft_lstitem.c          \
 					ds/ft_list/src/ft_lstmap.c           \
 					ds/ft_list/src/ft_lst_mv_next_to_front.c           \
