@@ -6,7 +6,7 @@
 #    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2022/04/19 19:50:22 by jv               ###   ########.fr        #
+#    Updated: 2023/03/25 22:11:48 by jv               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					utils/memory/ft_memcpy.c 			  \
 					utils/memory/ft_memcmp.c				\
 					utils/input_output/utils/ft_putchar_fd.c 		          \
-				  utils/input_output/utils/ft_putstr_fd.c 			        \
+				  	utils/input_output/utils/ft_putstr_fd.c 			        \
 					utils/input_output/utils/ft_putendl_fd.c 		          \
 					utils/input_output/utils/ft_putnbr_fd.c			          \
 					utils/input_output/ft_printf/ft_printf.c 			        \
@@ -65,6 +65,7 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					utils/input_output/ft_printf/ft_printf_hex_upper.c 		\
 					utils/input_output/ft_printf/ft_printf_uint.c 		    \
 					utils/input_output/ft_printf/ft_printf_utils.c 				\
+					utils/input_output/get_next_line/get_next_line.c 				\
 					ds/ft_list/src/ft_lstnew_node.c		 	 \
 					ds/ft_list/src/ft_lstnew.c		 	     \
 					ds/ft_list/src/ft_lstprint.c		 		 \
@@ -83,30 +84,43 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					ds/ft_list/utils/mk_char_content.c   \
 					ds/ft_list/utils/mk_float_content.c  \
 					ds/ft_list/utils/mk_double_content.c \
-					ds/ft_list/utils/mk_string_content.c 
+					ds/ft_list/utils/mk_string_content.c
+
+TEST_TARGET = test/main.c \
+			  test/test_utils.c \
+			  test/utils/input_output/get_next_line/get_next_line_test.c
 
 
 SRCS 		= $(addprefix ./src/, $(TARGET))
 OBJS 		= $(addprefix ./$(OBJ_DIR)/, $(TARGET:.c=.o)) 
+OBJS_TEST   = $(addprefix ./$(OBJ_DIR)/, $(TEST_TARGET:.c=.o))
 
 OBJ_DIR  = obj
-OBJ_DIRS = obj \
-					 obj/ds \
-					 obj/ds/ft_list \
-					 obj/ds/ft_list/src \
-					 obj/ds/ft_list/utils \
-					 obj/utils/input_output 	\
-					 obj/utils/input_output/ft_printf 	\
-					 obj/utils/input_output/utils 	\
-					 obj/utils/memory 	\
-					 obj/utils/string 	
+
+OBJ_DIRS = 	 obj \
+			 obj/ds \
+			 obj/ds/ft_list \
+			 obj/ds/ft_list/src \
+			 obj/ds/ft_list/utils \
+			 obj/utils/input_output 	\
+			 obj/utils/input_output/ft_printf 	\
+			 obj/utils/input_output/utils 	\
+			 obj/utils/input_output/get_next_line	\
+			 obj/utils/memory 	\
+			 obj/utils/string	\
+			 obj/test	\
+			 obj/test/utils	\
+			 obj/test/utils/input_output
 
 all:	${NAME}
 
-test: $(NAME) test/main.c
-	$(CC) test/main.c $(LFLAGS) -o test_bin
+test: $(NAME) $(OBJS_TEST) 
+	$(CC) $(OBJS_TEST) $(LFLAGS) -o $(NAME)_test
+	@clear
+	@./$(NAME)_test 
+	@rm -f $(NAME)_test
 
-${NAME}:  $(OBJ_DIR)	$(OBJS) 
+$(NAME):  $(OBJ_DIR) $(OBJS) 
 		@echo "\n$(NAME): $(NAME) was created"
 		ar -rcs $(NAME) $(OBJS)
 
@@ -114,9 +128,12 @@ $(OBJ_DIR):
 	mkdir -p ${OBJ_DIRS}
 
 $(OBJ_DIR)/%.o: src/%.c
-		@echo "$@: object files were created"
-		$(CC) $(FLAGS) -c $< -o $@
+	@echo "$@: object files were created"
+	$(CC) $(FLAGS) -c $< -o $@
 
+$(OBJ_DIR)/test/%.o: test/%.c 
+	$(CC) $(FLAGS) -c $< -o $@
+	
 clean:
 		@echo "\n$(NAME): object files were deleted"
 		${REMOVE} ${OBJS} 

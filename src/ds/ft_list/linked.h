@@ -55,6 +55,8 @@
 
   void		ft_lstiter(t_list *lst, void (*f)(void *));
 
+/* passar uma função de exibição para cada indice */
+/* Uma função que seria similar ao metodo ToString do java  */
   void    ft_lstprint(t_list *lst);
 
   void    ft_mlsort(t_list *lst);

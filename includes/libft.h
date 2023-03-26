@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2023/01/17 16:38:11 by jv               ###   ########.fr       */
+/*   Updated: 2023/03/25 21:48:47 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,8 @@ void		reverse_array(char *str, int end);
 char		*int2hex(unsigned int n, unsigned char op);
 char		*lint2hex(unsigned long int n);
 ssize_t		ft_printf_ptr(unsigned long int n);
+
+/* get_next_line */
+
+char  *get_next_line(int fd);
 #endif
