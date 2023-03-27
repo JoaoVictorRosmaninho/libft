@@ -6,7 +6,7 @@
 #    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2023/03/25 22:11:48 by jv               ###   ########.fr        #
+#    Updated: 2023/03/26 18:59:15 by jv               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					utils/string/ft_strtrim.c			  \
 					utils/string/ft_strmapi.c 			\
 					utils/string/ft_striteri.c 			\
+					utils/string/ft_strtok.c			\
 					utils/memory/ft_bzero.c 			  \
 					utils/memory/ft_calloc.c 			  \
 					utils/memory/ft_memmove.c 			\
@@ -88,7 +89,8 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 
 TEST_TARGET = test/main.c \
 			  test/test_utils.c \
-			  test/utils/input_output/get_next_line/get_next_line_test.c
+			  test/utils/input_output/get_next_line/get_next_line_test.c \
+			  test/utils/string/ft_strtok_test.c
 
 
 SRCS 		= $(addprefix ./src/, $(TARGET))
@@ -110,7 +112,8 @@ OBJ_DIRS = 	 obj \
 			 obj/utils/string	\
 			 obj/test	\
 			 obj/test/utils	\
-			 obj/test/utils/input_output
+			 obj/test/utils/input_output \
+			 obj/test/utils/string
 
 all:	${NAME}
 
@@ -118,7 +121,6 @@ test: $(NAME) $(OBJS_TEST)
 	$(CC) $(OBJS_TEST) $(LFLAGS) -o $(NAME)_test
 	@clear
 	@./$(NAME)_test 
-	@rm -f $(NAME)_test
 
 $(NAME):  $(OBJ_DIR) $(OBJS) 
 		@echo "\n$(NAME): $(NAME) was created"

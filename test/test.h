@@ -6,13 +6,16 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:58:02 by jv                #+#    #+#             */
-/*   Updated: 2023/03/25 22:08:20 by jv               ###   ########.fr       */
+/*   Updated: 2023/03/26 18:56:53 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEST_H
 # define TEST_H
 # include "../includes/libft.h"
+# include <unistd.h>
+# include <fcntl.h>
+# include <string.h>
 
 # define RED "\x1B[31m"
 # define GREEN "\x1B[32m"
@@ -32,6 +35,7 @@ void    assert(unsigned char result);
 
 // tests 
 
-void    get_next_line_test(void);
+void	get_next_line_test(void);
+void	ft_strtok_test(void);
 
 #endif
