@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 22:44:06 by jv                #+#    #+#             */
-/*   Updated: 2023/03/26 22:07:40 by jv               ###   ########.fr       */
+/*   Updated: 2023/03/27 07:46:10 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char *ft_strtok(char *str, const char *delimiter)
 
 	if (!str || !delimiter)
 		return (NULL);
-	start = NULL;
 	if (!current_position)
 		current_position = str;
 	if (!(*current_position))
