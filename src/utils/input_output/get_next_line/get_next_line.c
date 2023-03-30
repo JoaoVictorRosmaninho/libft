@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:49:59 by jv                #+#    #+#             */
-/*   Updated: 2023/03/26 22:03:00 by jv               ###   ########.fr       */
+/*   Updated: 2023/03/29 22:59:10 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char  *get_next_line(int fd)
 	if (!buffer)
 		ft_printf("GNL error: alocate buffer error\n");
 	result = read_line(buffer, fd);
-	if (!result)
+	if (!result || fd == 0)
 	{
 		free(buffer);
 		buffer = NULL;
