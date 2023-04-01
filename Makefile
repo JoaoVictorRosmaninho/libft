@@ -48,7 +48,8 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					utils/string/ft_strtrim.c			  \
 					utils/string/ft_strmapi.c 			\
 					utils/string/ft_striteri.c 			\
-					utils/string/ft_strtok.c			\
+					utils/string/ft_strtok.c				\
+					utils/string/ft_strndup.c				\
 					utils/memory/ft_bzero.c 			  \
 					utils/memory/ft_calloc.c 			  \
 					utils/memory/ft_memmove.c 			\

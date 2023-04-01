@@ -55,6 +55,7 @@ char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char		*ft_strtok(char *str, const char *delimiter);
+char	  *ft_strndup(const char *str, unsigned int n);
 
 ssize_t		ft_putchar_fd(char c, int fd);
 ssize_t		ft_putstr_fd(char *s, int fd);
