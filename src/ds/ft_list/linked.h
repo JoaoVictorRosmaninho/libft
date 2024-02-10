@@ -8,7 +8,8 @@
     DOUBLE,
     INTEGER,
     CHAR,
-    FLOAT
+    FLOAT,
+    GENERIC
   } DataType;
 
   typedef struct t_data {
@@ -39,6 +40,8 @@
   Data *mk_float_content(float content);
 
   Data *mk_char_content(char content);
+
+  Data *mk_generic_content(void *content);
 
 
   t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));

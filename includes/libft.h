@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2023/03/26 18:32:32 by jv               ###   ########.fr       */
+/*   Updated: 2023/11/26 19:52:21 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ ssize_t		ft_putstr_fd(char *s, int fd);
 ssize_t		ft_putendl_fd(char *s, int fd);
 ssize_t		ft_putnbr_fd(int n, int fd);
 int			ft_printf(const char *TEMPLATE, ...);
+int         ft_fprintf(int fout, const char *TEMPLATE, ...);
 ssize_t		ft_printf_hex_lower(int n);
 ssize_t		ft_printf_hex_upper(int n);
 ssize_t		ft_printf_uint(unsigned	int n);
