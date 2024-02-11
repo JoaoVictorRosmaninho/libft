@@ -9,7 +9,8 @@
     INTEGER,
     CHAR,
     FLOAT,
-    GENERIC
+    GENERIC,
+    DATA
   } DataType;
 
   typedef struct t_data {
@@ -71,7 +72,7 @@
 
   t_node  *ft_lstpop(t_list *lst, unsigned int at);
 
-  t_node		*ft_lstnew_node(Data *data);
+  t_node		*ft_lstnew_node(Data *data, DataType type);
 
   t_node  *ft_lstpop_head(t_list *lst);
 
