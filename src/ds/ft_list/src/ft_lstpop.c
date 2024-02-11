@@ -23,6 +23,9 @@ t_node *ft_lstpop(t_list *list, unsigned int at)
     list->head = node->next; 
     if (list->head)
       list->head->prev = NULL;
+    else {
+      list->tail = NULL;
+    }
   } else {
     node->prev->next = node->next;
     if (node->next)
