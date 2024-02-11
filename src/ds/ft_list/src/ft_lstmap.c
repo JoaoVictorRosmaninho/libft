@@ -6,13 +6,13 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 22:58:06 by jv                #+#    #+#             */
-/*   Updated: 2024/02/11 10:11:03 by jv               ###   ########.fr       */
+/*   Updated: 2024/02/11 14:22:28 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../linked.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *))
 {
 	t_list	*new_list;
 	t_node	*node;
@@ -28,7 +28,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		ft_lstadd_back(new_list, new_node);
 		if (!new_node)
 		{
-			ft_lstclear(new_list, del);
+			ft_lstclear(new_list);
 			return (NULL);
 		}
 		node = node->next;
