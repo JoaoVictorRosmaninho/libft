@@ -1,6 +1,6 @@
 #include "../linked.h"
 
-Data * mk_float_content(float content) 
+Data * mk_float_content(float content, void (*ffree)(void *)) 
 {
   float *new_float;
   Data *data;
@@ -20,6 +20,8 @@ Data * mk_float_content(float content)
   *new_float = content;
   data->content = (void *) new_float;
   data->type = FLOAT;
+  data->ffree = ffree;
+
 
   return (data);
 }

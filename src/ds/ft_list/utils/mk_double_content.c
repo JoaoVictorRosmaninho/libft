@@ -1,6 +1,6 @@
 #include "../linked.h"
 
-Data * mk_double_content(double content) 
+Data * mk_double_content(double content, void (*ffree)(void *)) 
 {
   double *new_double;
   Data *data;
@@ -20,6 +20,8 @@ Data * mk_double_content(double content)
   *new_double = content;
   data->content = (void *) new_double;
   data->type = DOUBLE;
+  data->ffree = ffree;
+
 
   return (data);
 }

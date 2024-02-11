@@ -1,6 +1,6 @@
 #include "../linked.h"
 
-Data * mk_generic_content(void *content) 
+Data * mk_generic_content(void *content, void (*ffree)(void *)) 
 {
   Data *data;
   
@@ -11,5 +11,7 @@ Data * mk_generic_content(void *content)
 
   data->content = content;
   data->type = POINTER;
+  data->ffree = ffree;
+
   return (data);
 }

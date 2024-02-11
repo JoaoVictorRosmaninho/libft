@@ -1,6 +1,6 @@
 #include "../linked.h"
 
-Data * mk_char_content(char content) 
+Data * mk_char_content(char content, void (*ffree)(void *)) 
 {
   char *new_char;
   Data *data;
@@ -20,6 +20,8 @@ Data * mk_char_content(char content)
   *new_char = content;
   data->content = (void *) new_char;
   data->type = CHAR;
+  data->ffree = ffree;
+
 
   return (data);
 }

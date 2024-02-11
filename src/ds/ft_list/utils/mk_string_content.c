@@ -1,6 +1,6 @@
 #include "../linked.h"
 
-Data * mk_string_content(char *content) 
+Data * mk_string_content(char *content,  void (*ffree)(void *)) 
 {
   size_t size;
   char *new_str;
@@ -24,6 +24,8 @@ Data * mk_string_content(char *content)
   ft_memcpy(new_str, content, size);
   data->content = new_str;
   data->type = STRING;
+  data->ffree = ffree;
+
 
   return (data);
 }
