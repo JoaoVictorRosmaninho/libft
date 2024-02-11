@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 22:58:06 by jv                #+#    #+#             */
-/*   Updated: 2022/04/17 20:37:00 by jv               ###   ########.fr       */
+/*   Updated: 2024/02/11 09:50:47 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
   node = lst->head;
 	while (node != NULL)
 	{
-    new_node = ft_lstnew_node(f(node->data->content));
+    new_node = ft_lstnew_node(f(node->data->content), node->data->type);
 		ft_lstadd_back(new_list, new_node);
 		if (!new_node)
 		{

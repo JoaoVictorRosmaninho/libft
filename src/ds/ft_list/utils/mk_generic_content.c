@@ -10,6 +10,6 @@ Data * mk_generic_content(void *content)
     return (NULL);
 
   data->content = content;
-  data->type = GENERIC;
+  data->type = POINTER;
   return (data);
 }

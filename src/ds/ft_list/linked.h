@@ -9,7 +9,7 @@
     INTEGER,
     CHAR,
     FLOAT,
-    GENERIC,
+    POINTER,
     DATA
   } DataType;
 
@@ -72,7 +72,7 @@
 
   t_node  *ft_lstpop(t_list *lst, unsigned int at);
 
-  t_node		*ft_lstnew_node(Data *data, DataType type);
+  t_node		*ft_lstnew_node(void *data, DataType type);
 
   t_node  *ft_lstpop_head(t_list *lst);
 

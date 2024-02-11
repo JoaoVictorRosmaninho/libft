@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 23:38:53 by jv                #+#    #+#             */
-/*   Updated: 2024/02/11 09:46:47 by jv               ###   ########.fr       */
+/*   Updated: 2024/02/11 09:52:26 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_node	*ft_lstnew_node(void *data, DataType type)
 		node->data = mk_char_content(*(char *)data);
 	else if (type == FLOAT)
 		node->data = mk_float_content(*(float *)data);
-	else if (type == GENERIC)
+	else if (type == POINTER)
 		node->data = mk_generic_content(data);
 	else if (type == DATA) 
 		node->data = (Data *)data;
