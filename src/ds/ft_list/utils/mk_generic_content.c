@@ -2,7 +2,6 @@
 
 Data * mk_generic_content(void *content) 
 {
-  char *new_char;
   Data *data;
   
   data = (Data *) ft_calloc(1, sizeof(Data));

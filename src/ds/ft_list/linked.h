@@ -14,6 +14,7 @@
 
   typedef struct t_data {
     void *content;
+    void *ffree;
     DataType type;
   } Data;
 
