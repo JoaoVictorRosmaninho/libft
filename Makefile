@@ -6,7 +6,7 @@
 #    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2024/02/10 20:00:04 by jv               ###   ########.fr        #
+#    Updated: 2024/02/25 15:54:50 by jv               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,8 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					ds/ft_list/utils/mk_generic_content.c   \
 					ds/ft_list/utils/mk_float_content.c  \
 					ds/ft_list/utils/mk_double_content.c \
-					ds/ft_list/utils/mk_string_content.c
+					ds/ft_list/utils/mk_string_content.c \
+					memory/arena.c
 
 TEST_TARGET = test/main.c \
 			  test/test_utils.c \
@@ -111,6 +112,7 @@ OBJ_DIRS = 	 obj \
 			 obj/utils/input_output/utils 	\
 			 obj/utils/input_output/get_next_line	\
 			 obj/utils/memory 	\
+			 obj/memory \
 			 obj/utils/string	\
 			 obj/test	\
 			 obj/test/utils	\
