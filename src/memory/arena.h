@@ -6,7 +6,7 @@
 
 # define ARENA_MIN_ALLOC_SIZE 8
 # define ARENA_MALLOC_PTR_SIZE sizeof(void*)
-# define ARENA_ALIGN_SIZE 16
+# define ARENA_ALIGN_SIZE 8
 # define ARENA_SIZE sizeof(t_arena)
 
 # define ARENA_64B 64 // 64 bytes
