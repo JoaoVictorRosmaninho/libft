@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2023/11/26 19:52:21 by jv               ###   ########.fr       */
+/*   Updated: 2024/02/25 13:11:07 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdarg.h> 
 # include "../src/ds/ft_list/linked.h"
+# include "../src/memory/arena.h"
 
 # define BUFFER_SIZE 64
 
