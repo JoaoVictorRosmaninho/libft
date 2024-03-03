@@ -4,15 +4,22 @@ static size_t ft_align(size_t request_size) {
     return (((request_size) + ((ARENA_ALIGN_SIZE) - 1)) & ~((ARENA_ALIGN_SIZE) - 1));
 }
 
+static size_t ft_arena_normalizer(size_t chunk) {
+    chunk--;
+    chunk |= chunk >> 1;
+    chunk |= chunk >> 2;
+    chunk |= chunk >> 4;
+    chunk |= chunk >> 8;
+    chunk |= chunk >> 16;
+    return(++chunk);
+}
+
 static t_arena* ft_arena_init(size_t chunk) // 1024 bytes min (4096)
 {
     t_arena* arena;
 
     if (chunk & (chunk -1))
-    {
-        ft_printf("Tamanho precisa ser uma potência de 2, ex: 4096");
-        return (NULL);
-    }
+        chunk = ft_arena_normalizer(chunk);
 
     if (chunk < ARENA_MALLOC_PTR_SIZE || (chunk - ARENA_MALLOC_PTR_SIZE) < ARENA_ALIGN_SIZE) {
         ft_printf("tamanho %d menor que o minimo aceitável\n", chunk);
@@ -72,7 +79,7 @@ static void* ft_find_or_create_arena(t_coliseu *coliseu, size_t chunk) {
                     real_size = coliseu->region->chunk;
                 else
                     real_size = coliseu->size;
-                while ((ptrdiff_t)(chunk + ARENA_SIZE) > real_size)
+                while ((ptrdiff_t)(chunk + ARENA_SIZE) >= real_size)
                     real_size *= 2;
                 coliseu->region = coliseu->region->next = ft_arena_init(real_size);
             }
@@ -103,11 +110,11 @@ void ft_arena_destroy(t_coliseu *coliseu)
     t_arena* _arena;
 
     arena = coliseu->door;
-    while(arena) {
-        _arena = arena;
-        arena = arena->next;
-        free(_arena);
-    }
+    while (arena) {
+     _arena = arena;
+      arena = arena->next;
+     free(_arena);
+    } 
     coliseu->door   = NULL;
     coliseu->region = NULL;
 }

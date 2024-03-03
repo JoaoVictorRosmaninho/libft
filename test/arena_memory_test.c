@@ -38,11 +38,30 @@ Test(free_arena, ft_arena_alloc_test) {
     };
 
     ft_coliseu_create(&coliseu);
-    t_arena* start = coliseu.region->begin;
+    char* start = coliseu.region->begin;
 
     char* file_content      = ft_arena_alloc(150, &coliseu);
 
     ft_arena_free(&coliseu);
     cr_expect(start == coliseu.region->begin, "expect to free the correct amount of memory and adjust pointer location");
+    ft_arena_destroy(&coliseu);
+}
+
+Test(arena_allocation, stress) {
+    t_coliseu coliseu = {
+        .door   = NULL,
+        .region = NULL,
+        .size   = ARENA_128B
+    };
+    
+    ft_coliseu_create(&coliseu);
+    for (uint8_t i = 0; i < 16; i++) {
+        char* space = ft_arena_alloc(1024, &coliseu);
+    }
+    uint8_t size = 0;
+    for (t_arena* aux = coliseu.door; aux != NULL; aux = aux->next) size++;
+    cr_expect(size == 9, "expect to free the correct amount of memory and adjust pointer location");
+    
+    ft_arena_free(&coliseu);
     ft_arena_destroy(&coliseu);
 }
