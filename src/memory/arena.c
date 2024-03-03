@@ -102,6 +102,7 @@ void    ft_arena_free(t_coliseu *coliseu)
         arena->begin = (char*) arena + ARENA_SIZE;
         arena = arena->next;
     }
+    coliseu->region = coliseu->door;
 }
 
 void ft_arena_destroy(t_coliseu *coliseu)
@@ -141,7 +142,7 @@ void* ft_arena_alloc(size_t chunk, t_coliseu *coliseu) {
     } else {
         memory = coliseu->region->begin;
         if ((real_chunk + ARENA_SIZE) > PTRDIFF_MAX) {
-           // ft_printf("Impossivel  alocar, overflow condition\n");
+            ft_printf("Impossivel  alocar, overflow condition\n");
             return (NULL);
         }
         // Marcando como usada

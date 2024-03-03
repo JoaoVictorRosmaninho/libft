@@ -6,7 +6,7 @@
 #    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2024/02/25 15:54:50 by jv               ###   ########.fr        #
+#    Updated: 2024/03/03 01:56:07 by jv               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= libft.a
 
 CC 		= gcc
 
-GDB_FLAG  	= -ggdb -fsanitize=address -fno-omit-frame-pointer
+GDB_FLAG  	= -ggdb -g -fsanitize=address -fno-omit-frame-pointer
 
 FLAGS 	= -Wall -Werror -Wextra -g
 
@@ -135,7 +135,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)/%.o: src/%.c
 	@echo "$@: object files were created"
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) $(GDB_FLAG) -c $< -o $@
 
 $(OBJ_DIR)/test/%.o: test/%.c 
 	$(CC) $(FLAGS) -c $< -o $@
