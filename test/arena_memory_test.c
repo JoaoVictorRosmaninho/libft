@@ -65,3 +65,36 @@ Test(arena_allocation, stress) {
     ft_arena_free(&coliseu);
     ft_arena_destroy(&coliseu);
 }
+
+Test(arena_allocation, coliseu_rollback) {
+    t_coliseu coliseu = {
+        .door   = NULL,
+        .region = NULL,
+        .size   = ARENA_4M
+    };
+    
+    char *ini;
+    char *mid;
+    char *end;
+
+    ft_coliseu_create(&coliseu);
+
+    ini = coliseu.region->begin;
+
+    ft_arena_alloc(1024, &coliseu);
+    mid = coliseu.region->begin;
+
+    ft_arena_alloc(1024, &coliseu);
+    end = coliseu.region->begin;
+
+    ft_coliseu_rollback(coliseu.region, 1024);
+    cr_expect(coliseu.region->begin == mid, "It is expected to return to correct size");
+    
+    ft_coliseu_rollback(coliseu.region, 1024);
+    cr_expect(coliseu.region->begin == ini, "It is expected to return to correct size");
+
+    ft_coliseu_rollback(coliseu.region, 1024);
+    cr_expect(coliseu.region->begin == ini, "It is expected to  do nothing when  break arena rollbacl limit");
+
+    ft_arena_destroy(&coliseu);
+}

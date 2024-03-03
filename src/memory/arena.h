@@ -52,4 +52,7 @@ void* ft_arena_alloc(size_t chunk, t_coliseu *coliseu);
 // create a coliseu
 void ft_coliseu_create(t_coliseu* coliseu);
 
+// rollback a specific size
+void ft_coliseu_rollback(t_arena *region, size_t rollback);
+
 #endif

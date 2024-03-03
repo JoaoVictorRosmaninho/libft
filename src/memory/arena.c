@@ -105,6 +105,18 @@ void    ft_arena_free(t_coliseu *coliseu)
     coliseu->region = coliseu->door;
 }
 
+void    ft_coliseu_rollback(t_arena *region, size_t rollback) {
+    if (!region) {
+        ft_printf("endereço de arena inválido\n");
+        return ;
+    }
+    if ((region->begin - rollback) < (region->end + ARENA_MALLOC_PTR_SIZE - region->chunk)) {
+        ft_printf("endereço de retorno inválido\n");
+        return ;
+    }
+    region->begin -= rollback;
+}   
+
 void ft_arena_destroy(t_coliseu *coliseu)
 {
     t_arena* arena;
