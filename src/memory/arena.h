@@ -13,14 +13,14 @@
 # define ARENA_128B 128 // 128 bytes
 # define ARENA_256B 256 // 256 bytes
 # define ARENA_512B 512 // 512 bytes
-# define ARENA_1M 1024 // 1kb
-# define ARENA_2M 2056 // 2kb
-# define ARENA_4M 4096 //  4kb
-# define ARENA_8M 8192 // 8kb
-# define ARENA_16M 16384 // 16KB
-# define ARENA_32M 32768 // 32KB
-# define ARENA_65M 65536 // 65KB
-# define ARENA_131M 131072 // 130KB
+# define ARENA_1KB 1024 // 1kb
+# define ARENA_2KB 2056 // 2kb
+# define ARENA_4KB 4096 //  4kb
+# define ARENA_8KB 8192 // 8kb
+# define ARENA_16KB 16384 // 16KB
+# define ARENA_32KB 32768 // 32KB
+# define ARENA_65KB 65536 // 65KB
+# define ARENA_131KB 131072 // 130KB
 
 
 // T h e arenas for objects with lifetime t are linked together
