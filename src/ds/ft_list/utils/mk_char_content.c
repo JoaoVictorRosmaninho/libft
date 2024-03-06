@@ -1,16 +1,16 @@
 #include "../linked.h"
 
-Data * mk_char_content(char content, void (*ffree)(void *)) 
+Data * mk_char_content(char content, t_coliseu* coliseu) 
 {
   char *new_char;
   Data *data;
   
-  data = (Data *) ft_calloc(1, sizeof(Data), NULL);
+  data = (Data *) ft_calloc(1, sizeof(Data), coliseu);
 
   if (!data)
     return (NULL);
 
-  new_char = (char *) ft_calloc(1, sizeof(char), NULL);
+  new_char = (char *) ft_calloc(1, sizeof(char), coliseu);
 
   if (!new_char) 
   {
@@ -20,8 +20,6 @@ Data * mk_char_content(char content, void (*ffree)(void *))
   *new_char = content;
   data->content = (void *) new_char;
   data->type = CHAR;
-  data->ffree = ffree;
-
 
   return (data);
 }

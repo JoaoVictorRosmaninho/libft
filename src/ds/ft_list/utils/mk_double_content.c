@@ -1,16 +1,16 @@
 #include "../linked.h"
 
-Data * mk_double_content(double content, void (*ffree)(void *)) 
+Data * mk_double_content(double content, t_coliseu* coliseu) 
 {
   double *new_double;
   Data *data;
   
-  data = (Data *) ft_calloc(1, sizeof(Data), NULL);
+  data = (Data *) ft_calloc(1, sizeof(Data), coliseu);
 
   if (!data)
     return (NULL);
 
-  new_double = (double *) ft_calloc(1, sizeof(double), NULL);
+  new_double = (double *) ft_calloc(1, sizeof(double), coliseu);
 
   if (!new_double) 
   {
@@ -20,8 +20,6 @@ Data * mk_double_content(double content, void (*ffree)(void *))
   *new_double = content;
   data->content = (void *) new_double;
   data->type = DOUBLE;
-  data->ffree = ffree;
-
 
   return (data);
 }

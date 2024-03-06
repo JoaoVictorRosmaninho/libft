@@ -15,7 +15,6 @@
 
   typedef struct t_data {
     void *content;
-    void (*ffree)(void *);
     DataType type;
   } Data;
 
@@ -33,22 +32,22 @@
   } t_list;
 
 
-  Data *mk_string_content(char *content, void (*ffree)(void *));
+  Data *mk_string_content(char *content, t_coliseu* coliseu);
 
-  Data *mk_int_content(int content, void (*ffree)(void *));
+  Data *mk_int_content(int content, t_coliseu* coliseu);
 
-  Data *mk_double_content(double content, void (*ffree)(void *));
+  Data *mk_double_content(double content, t_coliseu* coliseu);
 
-  Data *mk_float_content(float content, void (*ffree)(void *));
+  Data *mk_float_content(float content, t_coliseu* coliseu);
 
-  Data *mk_char_content(char content, void (*ffree)(void *));
+  Data *mk_char_content(char content, t_coliseu* coliseu);
 
-  Data *mk_generic_content(void *content, void (*ffree)(void *));
+  Data *mk_generic_content(void *content, t_coliseu* coliseu);
 
 
   t_list		*ft_lstmap(t_list *lst, void *(*f)(void *));
 
-  t_list    *ft_lstnew(void);
+  t_list    *ft_lstnew(t_coliseu* coliseu);
 
   void		ft_lstadd_front(t_list *lst, t_node *new);
 
@@ -72,7 +71,7 @@
 
   t_node  *ft_lstpop(t_list *lst, unsigned int at);
 
-  t_node		*ft_lstnew_node(void *data, DataType type, void (*ffree)(void *));
+  t_node		*ft_lstnew_node(void *data, DataType type, t_coliseu* coliseu);
 
   t_node  *ft_lstpop_head(t_list *lst);
 
