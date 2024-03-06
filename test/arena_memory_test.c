@@ -5,7 +5,7 @@ Test(allocate_memory, ft_arena_alloc_test)
     t_coliseu coliseu = {
         .door   = NULL,
         .region = NULL,
-        .size   = ARENA_8M
+        .size   = ARENA_8KB
     };
 
     int* vector = ft_arena_alloc(3 * sizeof(int), &coliseu);
@@ -19,13 +19,13 @@ Test(allocate_with_right_size, ft_arena_alloc_test) {
     t_coliseu coliseu = {
         .door   = NULL,
         .region = NULL,
-        .size   = ARENA_8M
+        .size   = ARENA_8KB
     };
 
     char* file_content      = ft_arena_alloc(150, &coliseu);
     ptrdiff_t diff          = coliseu.region->end - coliseu.region->begin;
     ptrdiff_t diff2         = coliseu.region->chunk - ARENA_SIZE - ARENA_MALLOC_PTR_SIZE - 150;
-    cr_expect(coliseu.region->chunk == ARENA_8M - ARENA_MALLOC_PTR_SIZE, "It is expected do create arena with right size");
+    cr_expect(coliseu.region->chunk == ARENA_8KB - ARENA_MALLOC_PTR_SIZE, "It is expected do create arena with right size");
     cr_expect(diff2 - diff <= 2, "It is to allocate the correct size");
     ft_arena_destroy(&coliseu);
 }
@@ -34,7 +34,7 @@ Test(free_arena, ft_arena_alloc_test) {
     t_coliseu coliseu = {
         .door   = NULL,
         .region = NULL,
-        .size   = ARENA_8M
+        .size   = ARENA_8KB
     };
 
     ft_coliseu_create(&coliseu);
@@ -70,7 +70,7 @@ Test(arena_allocation, coliseu_rollback) {
     t_coliseu coliseu = {
         .door   = NULL,
         .region = NULL,
-        .size   = ARENA_4M
+        .size   = ARENA_4KB
     };
     
     char *ini;
