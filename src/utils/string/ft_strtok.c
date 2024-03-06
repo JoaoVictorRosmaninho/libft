@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 22:44:06 by jv                #+#    #+#             */
-/*   Updated: 2023/03/27 07:46:10 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/05 23:24:41 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char *ft_strtok(char *str, const char *delimiter)
 		return (NULL); 
 	}
 	if (current_tok != NULL) ft_flush(&current_tok, NULL);
-	current_tok = (char *) ft_calloc((current_position - start) + 1, sizeof(char));
+	current_tok = (char *) ft_calloc((current_position - start) + 1, sizeof(char), NULL);
 	ft_strlcpy(current_tok, start, current_position - start + 1);
 	if ((*current_position)) current_position += size;
 	return (current_tok);

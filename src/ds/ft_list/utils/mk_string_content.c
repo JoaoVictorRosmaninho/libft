@@ -8,12 +8,12 @@ Data * mk_string_content(char *content,  void (*ffree)(void *))
   
   size = ft_strlen(content) + 1;
 
-  data = (Data *) ft_calloc(1, sizeof(Data));
+  data = (Data *) ft_calloc(1, sizeof(Data), NULL);
 
   if (!data)
     return (NULL);
 
-  new_str = (char *) ft_calloc(size, sizeof(char));
+  new_str = (char *) ft_calloc(size, sizeof(char),  NULL);
 
   if (!new_str) 
   {

@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 23:38:53 by jv                #+#    #+#             */
-/*   Updated: 2024/02/11 15:18:31 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/05 23:22:10 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_node	*ft_lstnew_node(void *data, DataType type, void (*ffree)(void *))
 {
 	t_node	*node;
 
-	node = (t_node *)ft_calloc(1, sizeof(t_node));
+	node = (t_node *)ft_calloc(1, sizeof(t_node), NULL);
 	if (!node)
 		return (NULL);
 	if (type == STRING)

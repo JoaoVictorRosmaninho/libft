@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:03:59 by jv                #+#    #+#             */
-/*   Updated: 2022/04/10 15:06:04 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/05 23:24:19 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	size = ft_strlen(s1) + ft_strlen(s2) + 1;
-	new_str = (char *) ft_calloc(size, 1);
+	new_str = (char *) ft_calloc(size, 1, NULL);
 	if (!new_str)
 		return (NULL);
 	ft_strlcat(new_str, s1, size);

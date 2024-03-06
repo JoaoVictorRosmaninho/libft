@@ -6,13 +6,13 @@
 #    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2024/03/03 01:56:07 by jv               ###   ########.fr        #
+#    Updated: 2024/03/05 23:34:46 by jv               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libft.a
 
-CC 		= gcc
+CC 		= clang
 
 GDB_FLAG  	= -ggdb -g -fsanitize=address -fno-omit-frame-pointer
 
@@ -135,7 +135,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)/%.o: src/%.c
 	@echo "$@: object files were created"
-	$(CC) $(FLAGS) $(GDB_FLAG) -c $< -o $@
+	$(CC) $(FLAGS)  $(GDB_FLAG) -c $< -o $@
 
 $(OBJ_DIR)/test/%.o: test/%.c 
 	$(CC) $(FLAGS) -c $< -o $@

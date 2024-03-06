@@ -2,7 +2,6 @@
 # define ARENA_H
 
 # include <stdint.h>
-# include "../../includes/libft.h"
 
 # define ARENA_MIN_ALLOC_SIZE 8
 # define ARENA_MALLOC_PTR_SIZE sizeof(void*)
@@ -24,6 +23,11 @@
 
 
 // T h e arenas for objects with lifetime t are linked together
+
+typedef enum {
+    TAKE,
+    GIVE_BACK
+} e_action;
 
 typedef long ptrdiff_t;
 
@@ -54,5 +58,8 @@ void ft_coliseu_create(t_coliseu* coliseu);
 
 // rollback a specific size
 void ft_coliseu_rollback(t_arena *region, size_t rollback);
+
+// arena manager for better interface
+t_coliseu* ft_coliseu_manager(e_action action);
 
 #endif

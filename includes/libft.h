@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/02/25 13:11:07 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/05 23:36:59 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # include <unistd.h>
 # include <stdarg.h> 
 # include "../src/ds/ft_list/linked.h"
-# include "../src/memory/arena.h"
+# include "./arena.h"
 
 # define BUFFER_SIZE 64
+# define NUMBER_OF_COLISEUS 10
 
 int			ft_isalpha(int C);
 int			ft_isdigit(int C);
@@ -41,7 +42,7 @@ void		ft_bzero(void *BLOCK, size_t SIZE);
 void		*ft_memcpy(void *TO, const void *FROM, size_t size);
 void		*ft_memmove(void *dest, const void *src, size_t n);
 void		*ft_memchr(const void *BLOCK, int C, size_t SIZE);
-void		*ft_calloc(size_t COUNT, size_t ELTSIZE);
+void		*ft_calloc(size_t COUNT, size_t ELTSIZE, t_coliseu* coliseu);
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 

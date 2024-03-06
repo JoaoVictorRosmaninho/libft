@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 22:03:49 by jv                #+#    #+#             */
-/*   Updated: 2022/04/09 22:05:35 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/05 23:23:59 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_itoa(int n)
 {
 	char	*number;
 
-	number = ft_calloc(12, sizeof(char));
+	number = ft_calloc(12, sizeof(char), NULL);
 	if (!number)
 		return (NULL);
 	convert(n, number, 0);

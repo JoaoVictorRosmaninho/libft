@@ -5,12 +5,12 @@ Data * mk_char_content(char content, void (*ffree)(void *))
   char *new_char;
   Data *data;
   
-  data = (Data *) ft_calloc(1, sizeof(Data));
+  data = (Data *) ft_calloc(1, sizeof(Data), NULL);
 
   if (!data)
     return (NULL);
 
-  new_char = (char *) ft_calloc(1, sizeof(char));
+  new_char = (char *) ft_calloc(1, sizeof(char), NULL);
 
   if (!new_char) 
   {

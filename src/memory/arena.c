@@ -1,4 +1,4 @@
-#include "arena.h"
+#include "../../includes/libft.h"
 
 static size_t ft_align(size_t request_size) {
     return (((request_size) + ((ARENA_ALIGN_SIZE) - 1)) & ~((ARENA_ALIGN_SIZE) - 1));
@@ -33,7 +33,7 @@ static t_arena* ft_arena_init(size_t chunk) // 1024 bytes min (4096)
         return (NULL);
     }
 
-    arena = (t_arena*) ft_calloc(1, chunk); // Alocando o chunk
+    arena = (t_arena*) malloc(chunk); // Alocando o chunk
     if (!arena) {
         ft_printf("Tamanho, insuficiente para Arena\n");
         return (NULL);
@@ -166,4 +166,40 @@ void* ft_arena_alloc(size_t chunk, t_coliseu *coliseu) {
     }
     coliseu->region->begin += real_chunk;
     return (memory);
+}
+
+
+t_coliseu* ft_coliseu_manager(e_action action)
+{
+    static t_coliseu coliseus[NUMBER_OF_COLISEUS] = { 0 };
+    t_coliseu*  ptr;
+    unsigned short int index;
+
+    index = 0;
+    if (!coliseus[0].region) {
+        while (index < NUMBER_OF_COLISEUS) {
+            coliseus[index].size = ARENA_16KB;
+            ft_coliseu_create(&coliseus[index]);
+            index++;
+        }
+    }
+    if (action == TAKE) {
+        index = 1;
+        ptr   = &coliseus[0];
+        while (index < NUMBER_OF_COLISEUS)
+        {
+            if ((coliseus[index].region->end - coliseus[index].region->begin) > (ptr->region->end - ptr->region->begin)) {
+                ptr = &coliseus[index];
+            }
+            index++;
+        }
+        return ptr;
+    } else {
+        index = 0;
+        while (index < NUMBER_OF_COLISEUS) {
+            ft_arena_destroy(&coliseus[index]);
+            index++;
+        }
+    }
+    return (NULL);
 }

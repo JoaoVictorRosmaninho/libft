@@ -4,7 +4,7 @@ Data * mk_generic_content(void *content, void (*ffree)(void *))
 {
   Data *data;
   
-  data = (Data *) ft_calloc(1, sizeof(Data));
+  data = (Data *) ft_calloc(1, sizeof(Data), NULL);
 
   if (!data)
     return (NULL);

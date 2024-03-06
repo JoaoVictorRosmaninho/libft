@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 22:58:06 by jv                #+#    #+#             */
-/*   Updated: 2024/02/11 14:22:28 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/05 23:22:14 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *))
 
 	if (!lst)
 		return (NULL);
-	new_list = (t_list *) ft_calloc(1, sizeof(t_list));
+	new_list = (t_list *) ft_calloc(1, sizeof(t_list), NULL);
   node = lst->head;
 	while (node != NULL)
 	{

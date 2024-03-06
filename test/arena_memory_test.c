@@ -9,6 +9,8 @@ Test(allocate_memory, ft_arena_alloc_test)
     };
 
     int* vector = ft_arena_alloc(3 * sizeof(int), &coliseu);
+
+    ft_memset(vector, 0, 3 * sizeof(int));
     cr_expect(vector[0] == 0, "it is expected that position allocataed to be \\0");
     cr_expect(vector[1] == 0, "it is expected that position allocataed to be \\0");
     cr_expect(vector[2] == 0, "it is expected that position allocataed to be \\0");
@@ -88,13 +90,30 @@ Test(arena_allocation, coliseu_rollback) {
     end = coliseu.region->begin;
 
     ft_coliseu_rollback(coliseu.region, 1024);
-    cr_expect(coliseu.region->begin == mid, "It is expected to return to correct size");
+    cr_assert(coliseu.region->begin == mid, "It is expected to return to correct size");
     
     ft_coliseu_rollback(coliseu.region, 1024);
-    cr_expect(coliseu.region->begin == ini, "It is expected to return to correct size");
+    cr_assert(coliseu.region->begin == ini, "It is expected to return to correct size");
 
     ft_coliseu_rollback(coliseu.region, 1024);
-    cr_expect(coliseu.region->begin == ini, "It is expected to  do nothing when  break arena rollbacl limit");
+    cr_assert(coliseu.region->begin == ini, "It is expected to  do nothing when  break arena rollbacl limit");
 
     ft_arena_destroy(&coliseu);
+}
+
+
+Test(arena_allocator, ft_coliseu_manager) {
+    char* ini;
+    char* mid;
+    char* end;
+    
+    ini = ft_calloc(1, 1024, NULL);
+    mid = ft_calloc(1, 1024, NULL);
+    end = ft_calloc(1, 1024, NULL);
+
+    cr_expect(ini != NULL, "expect recieve a valid pointer");
+    cr_expect(mid != NULL, "expect recieve a valid pointer");
+    cr_expect(end != NULL, "expect recieve a valid pointer");
+
+    ft_coliseu_manager(GIVE_BACK);
 }
