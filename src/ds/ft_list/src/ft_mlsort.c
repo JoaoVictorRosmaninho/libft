@@ -1,4 +1,4 @@
-#include "../linked.h"
+#include "../../../../includes/libft.h"
 
 
 static void split_list(t_node **a, t_node **b, t_node *source) {

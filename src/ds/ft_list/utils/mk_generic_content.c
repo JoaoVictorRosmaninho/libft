@@ -1,4 +1,4 @@
-#include "../linked.h"
+#include "../../../../includes/libft.h"
 
 Data * mk_generic_content(void *content, t_coliseu* coliseu) 
 {

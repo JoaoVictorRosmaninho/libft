@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/03/05 23:36:59 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/10 14:46:00 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h> 
-# include "../src/ds/ft_list/linked.h"
 # include "./arena.h"
+# include "./linked.h"
 
 # define BUFFER_SIZE 64
 # define NUMBER_OF_COLISEUS 10

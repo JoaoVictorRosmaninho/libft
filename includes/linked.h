@@ -1,7 +1,6 @@
 #ifndef LINKED_H
 # define LINKED_H
 # include <stdlib.h>
-# include "../../../includes/libft.h"
 
   typedef enum {
     STRING,
@@ -45,7 +44,7 @@
   Data *mk_generic_content(void *content, t_coliseu* coliseu);
 
 
-  t_list		*ft_lstmap(t_list *lst, void *(*f)(void *));
+  t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), t_coliseu* coliseu);
 
   t_list    *ft_lstnew(t_coliseu* coliseu);
 

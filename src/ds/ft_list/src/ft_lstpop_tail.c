@@ -1,4 +1,4 @@
-#include "../linked.h"
+#include "../../../../includes/libft.h"
 
 void ft_lstpop_tail(t_list *lst) 
 {

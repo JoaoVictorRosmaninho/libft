@@ -6,11 +6,11 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 22:11:47 by jv                #+#    #+#             */
-/*   Updated: 2022/04/09 22:12:24 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/10 14:59:55 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../linked.h"
+#include "../../../../includes/libft.h"
 
 void	ft_lstadd_back(t_list *lst, t_node *new)
 {
