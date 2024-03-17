@@ -158,7 +158,7 @@ void* ft_arena_alloc(size_t chunk, t_coliseu *coliseu) {
             return (NULL);
         }
         // Marcando como usada
-        if (coliseu->region->begin > coliseu->region->end) {
+        if (coliseu->region->begin + real_chunk > coliseu->region->end) {
             // Não tem meomoria suficiente
             // alocar uma nova
             memory = ft_find_or_create_arena(coliseu, chunk);
