@@ -62,4 +62,6 @@ void ft_coliseu_rollback(t_arena *region, size_t rollback);
 // arena manager for better interface
 t_coliseu* ft_coliseu_manager(e_action action);
 
+void ft_coliseu_initialize(t_coliseu* group, size_t size_of_coliseu, size_t length);
+
 #endif

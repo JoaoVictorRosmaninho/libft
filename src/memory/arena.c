@@ -89,6 +89,20 @@ static void* ft_find_or_create_arena(t_coliseu *coliseu, size_t chunk) {
     return (coliseu->region->begin);
 }
 
+void ft_coliseu_initialize(t_coliseu* group, size_t size_of_coliseu, size_t length) {
+
+    size_t index;
+
+    index = 0;
+
+    while (index < length) {
+        group[index].region = NULL;
+        group[index].door   = NULL;
+        group[index].size   = size_of_coliseu;
+        index++;
+    }
+}
+
 void    ft_arena_free(t_coliseu *coliseu)
 {
     t_arena *arena;
