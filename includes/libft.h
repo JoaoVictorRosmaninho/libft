@@ -15,11 +15,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h> 
-# include "./arena.h"
-# include "./linked.h"
+# include "arena.h"
+# include "linked.h"
 
 # define BUFFER_SIZE 64
-# define NUMBER_OF_COLISEUS 10
+# define NUMBER_OF_COLISEUS 5
 
 int			ft_isalpha(int C);
 int			ft_isdigit(int C);

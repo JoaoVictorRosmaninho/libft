@@ -6,7 +6,7 @@
 #    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2024/03/05 23:34:46 by jv               ###   ########.fr        #
+#    Updated: 2024/03/18 22:53:18 by jv               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,9 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					ds/ft_list/utils/mk_float_content.c  \
 					ds/ft_list/utils/mk_double_content.c \
 					ds/ft_list/utils/mk_string_content.c \
-					memory/arena.c
+					memory/arena.c \
+					memory/arena_utils.c \
+					memory/arena_align_utils.c \
 
 TEST_TARGET = test/main.c \
 			  test/test_utils.c \
