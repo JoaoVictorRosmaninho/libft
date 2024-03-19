@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.slim": "html",
+        "libft.h": "c",
+        "arena.h": "c",
+        "stdint.h": "c",
+        "bitset": "c"
+    }
+}
