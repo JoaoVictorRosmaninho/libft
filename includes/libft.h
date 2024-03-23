@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/03/10 14:46:00 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/23 15:53:54 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 
 char		*ft_strnstr(const char *big, const char *little, size_t len);
-char		*ft_strdup(const char *S);
+char		*ft_strdup(const char *S, t_coliseu* coliseu);
 char		*ft_strchr(const char *STRING, int C);
 char		*ft_strrchr(const char *STRING, int C);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
