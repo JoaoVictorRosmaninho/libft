@@ -64,6 +64,7 @@ void	ft_coliseu_initialize(t_coliseu	*group,
 		group[index].region = NULL;
 		group[index].door = NULL;
 		group[index].size = size_of_coliseu;
+		group[index].total_arenas = 0;
 		ft_coliseu_create(&group[index]);
 		index++;
 	}

@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:48:59 by jv                #+#    #+#             */
-/*   Updated: 2024/03/18 23:17:53 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/24 17:02:25 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ t_arena	*ft_arena_init(size_t chunk)
 		printf("tamanho %ld menor que o minimo aceitável\n", chunk);
 		return (NULL);
 	}
-	chunk -= sizeof(void *);
-	if (chunk <= sizeof(t_arena))
+	chunk -= sizeof(void*);
+
+	if (chunk <= sizeof(t_arena)) 
 		return (NULL);
 	arena = (t_arena *) malloc(chunk);
 	if (!arena)
@@ -85,17 +86,20 @@ void	*ft_find_or_create_arena(t_coliseu *coliseu, size_t chunk)
 		ctx.arena_prev = ctx.arena;
 		ctx.arena = ctx.arena->next;
 	}
-	if (ctx.arena)
+	if (ctx.arena) {
+		coliseu->region = ctx.arena;
 		return (ctx.arena->begin);
+	}
 	if (coliseu->region && coliseu->size)
 		ctx.real_size = coliseu->region->chunk;
 	else
 		ctx.real_size = coliseu->size;
 	while ((long)(chunk + sizeof(t_arena)) >= ctx.real_size)
-		ctx.real_size *= 2;
+		ctx.real_size <<= 1;
 	ctx.arena = ft_arena_init(ctx.real_size);
 	ctx.arena_prev->next = ctx.arena;
 	coliseu->region = ctx.arena;
+	coliseu->total_arenas++;
 	return (ctx.arena->begin);
 }
 
