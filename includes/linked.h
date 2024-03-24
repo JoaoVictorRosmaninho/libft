@@ -44,7 +44,7 @@
   Data *mk_generic_content(void *content, t_coliseu* coliseu);
 
 
-  t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), t_coliseu* coliseu);
+  t_list	*ft_lstmap(t_list *lst, void *(*f)(void *,  t_coliseu*), t_coliseu* coliseu);
 
   t_list  *ft_lstnew(t_coliseu* coliseu);
 

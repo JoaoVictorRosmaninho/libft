@@ -63,6 +63,7 @@ typedef struct s_coliseu
 	t_arena	*door;
 	t_arena	*region;
 	size_t	size;
+	size_t  total_arenas;
 }	t_coliseu;
 // free arena
 void		ft_arena_free(t_coliseu *coliseu);

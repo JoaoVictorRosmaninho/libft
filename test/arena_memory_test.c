@@ -5,7 +5,8 @@ Test(allocate_memory, ft_arena_alloc_test)
     t_coliseu coliseu = {
         .door   = NULL,
         .region = NULL,
-        .size   = ARENA_8KB
+        .size   = ARENA_8KB,
+        .total_arenas = 0
     };
 
     int* vector = ft_arena_alloc(3 * sizeof(int), &coliseu);
@@ -21,7 +22,8 @@ Test(allocate_with_right_size, ft_arena_alloc_test) {
     t_coliseu coliseu = {
         .door   = NULL,
         .region = NULL,
-        .size   = ARENA_8KB
+        .size   = ARENA_8KB,
+        .total_arenas = 0
     };
 
     char* file_content      = ft_arena_alloc(150, &coliseu);
@@ -36,7 +38,8 @@ Test(free_arena, ft_arena_alloc_test) {
     t_coliseu coliseu = {
         .door   = NULL,
         .region = NULL,
-        .size   = ARENA_8KB
+        .size   = ARENA_8KB,
+        .total_arenas = 0
     };
 
     ft_coliseu_create(&coliseu);
@@ -53,7 +56,8 @@ Test(arena_allocation, stress) {
     t_coliseu coliseu = {
         .door   = NULL,
         .region = NULL,
-        .size   = ARENA_128B
+        .size   = ARENA_128B,
+        .total_arenas = 0
     };
     
     ft_coliseu_create(&coliseu);
@@ -75,7 +79,8 @@ Test(arena_allocation, coliseu_rollback) {
     t_coliseu coliseu = {
         .door   = NULL,
         .region = NULL,
-        .size   = ARENA_4KB
+        .size   = ARENA_4KB,
+        .total_arenas = 0
     };
     
     char *ini;
@@ -119,4 +124,67 @@ Test(arena_allocator, ft_coliseu_manager) {
     cr_expect(end != NULL, "expect recieve a valid pointer");
 
     ft_coliseu_manager(GIVE_BACK);
+}
+
+
+Test(arena_allocator, resize) {
+    t_coliseu coliseu = { .door = NULL, .region = NULL, .size = ARENA_64B, .total_arenas = 0 };
+
+
+    char* space = ft_arena_alloc(1024, &coliseu);
+
+    ft_strlcpy(space, "JOAO VICTOR", 1024);
+    
+    int cmp = ft_strncmp(space, "JOAO VICTOR", 11);
+    
+    cr_expect(cmp == 0, "Espera-se pode escrever");
+    
+    ft_arena_free(&coliseu);
+
+
+    space = ft_arena_alloc(1024, &coliseu);
+    space = ft_arena_alloc(1024, &coliseu);
+    space = ft_arena_alloc(1024, &coliseu);
+    space = ft_arena_alloc(1024, &coliseu);
+    space = ft_arena_alloc(1024, &coliseu);
+    space = ft_arena_alloc(1024, &coliseu);
+    space = ft_arena_alloc(1024, &coliseu);
+    space = ft_arena_alloc(1024, &coliseu);
+    space = ft_arena_alloc(1024, &coliseu);
+
+    cr_expect(space != NULL, "valid addresss");
+
+
+    ft_arena_destroy(&coliseu);
+}
+
+Test(arena_allocator, resize2) {
+    t_coliseu coliseu = { .door = NULL, .region = NULL, .size = ARENA_64B, .total_arenas = 0 };
+
+    ft_coliseu_create(&coliseu);
+
+    cr_log_info("avaliabl ANTES: %zu\n", coliseu.region->end - coliseu.region->begin);
+
+    char* space = ft_arena_alloc(32, &coliseu);
+
+    cr_expect(space != NULL, "valid addresss");
+    cr_expect(coliseu.total_arenas == 1, "valid addresss");
+
+    space = ft_arena_alloc(1, &coliseu);
+    cr_expect(coliseu.total_arenas == 1, "valid addresss");
+    cr_log_info("avaliable DEPOIS: %zu\n", coliseu.region->end - coliseu.region->begin);
+
+    space = ft_arena_alloc(1, &coliseu);
+    cr_expect(coliseu.total_arenas == 1, "valid addresss");
+    cr_log_info("avaliable DEPOIS: %zu\n", coliseu.region->end - coliseu.region->begin);
+
+    space = ft_arena_alloc(1, &coliseu);
+    cr_expect(coliseu.total_arenas == 1, "valid addresss");
+    cr_log_info("avaliable DEPOIS: %zu\n", coliseu.region->end - coliseu.region->begin);
+    
+    space = ft_arena_alloc(1024, &coliseu);
+    cr_expect(coliseu.total_arenas == 2, "valid addresss");
+    cr_log_info("avaliable DEPOIS: %zu\n", coliseu.region->end - coliseu.region->begin);
+
+    ft_arena_destroy(&coliseu);
 }
