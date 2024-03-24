@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lst_remove_node.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 15:15:10 by jv                #+#    #+#             */
-/*   Updated: 2024/03/23 21:25:00 by jv               ###   ########.fr       */
+/*   Created: 2024/03/23 19:04:06 by jv                #+#    #+#             */
+/*   Updated: 2024/03/23 23:26:11 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/libft.h"
 
-int	ft_strncmp(const char *S1, const char *S2, size_t SIZE)
+#include "../../../../includes/libft.h"
+
+void ft_lst_remove_node(t_list* lst, t_node* node)
 {
-	unsigned char	*s1;
-	unsigned char	*s2;
-	size_t			i;
+	t_node	*prev;
 
-	i = 0;
-	s1 = (unsigned char *) S1;
-	s2 = (unsigned char *) S2;
-	while ((s1[i] == s2[i]) && s1[i] && s2[i] && (i < (SIZE - 1)))
-		i++;
-	return ((int)(s1[i] - s2[i]));
+    prev = node->prev;
+
+    if (prev) {
+        prev->next = node->next;
+    } else {
+        lst->head = node->next;
+        if (lst->head)
+            lst->head->prev = NULL;
+    }
+    node->prev = NULL;
+    node->next = NULL;
+    lst->size--;
 }

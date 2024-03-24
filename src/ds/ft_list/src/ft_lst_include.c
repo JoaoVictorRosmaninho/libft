@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lst_include.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 15:15:10 by jv                #+#    #+#             */
-/*   Updated: 2024/03/23 21:25:00 by jv               ###   ########.fr       */
+/*   Created: 2024/03/23 18:55:14 by jv                #+#    #+#             */
+/*   Updated: 2024/03/23 22:46:31 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/libft.h"
+#include "../../../../includes/libft.h"
 
-int	ft_strncmp(const char *S1, const char *S2, size_t SIZE)
+t_node* ft_lst_include(t_list *lst, void* item, uint8_t (*f)(void*, void*))
 {
-	unsigned char	*s1;
-	unsigned char	*s2;
-	size_t			i;
+	t_node	*node;
 
-	i = 0;
-	s1 = (unsigned char *) S1;
-	s2 = (unsigned char *) S2;
-	while ((s1[i] == s2[i]) && s1[i] && s2[i] && (i < (SIZE - 1)))
-		i++;
-	return ((int)(s1[i] - s2[i]));
+	if (!lst || lst->size < 1)
+		return (NULL);
+  	node = lst->head;
+	while (node != NULL)
+	{
+		if (f(item, node->data->content))
+            return (node);
+		node = node->next;
+	}
+
+	return (NULL);
 }

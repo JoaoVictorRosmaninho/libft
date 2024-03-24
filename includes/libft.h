@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/03/23 15:53:54 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/23 19:53:45 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 # define BUFFER_SIZE 64
 # define NUMBER_OF_COLISEUS 5
+
+# define ABS(x) ( ( (x) < 0) ? -(x) : (x) )
 
 int			ft_isalpha(int C);
 int			ft_isdigit(int C);
@@ -54,7 +56,7 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
-char		*ft_itoa(int n);
+char		*ft_itoa(int n, t_coliseu* coliseu);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char		*ft_strtok(char *str, const char *delimiter);
 char	  *ft_strndup(const char *str, unsigned int n);

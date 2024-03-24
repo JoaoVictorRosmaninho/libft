@@ -6,7 +6,7 @@
 #    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2024/03/18 22:53:18 by jv               ###   ########.fr        #
+#    Updated: 2024/03/23 19:38:08 by jv               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,11 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					ds/ft_list/src/ft_lstadd_front.c	   \
 					ds/ft_list/src/ft_lstadd_back.c	     \
 					ds/ft_list/src/ft_lstdelone.c		     \
+					ds/ft_list/src/ft_lst_for_each.c		     \
 					ds/ft_list/src/ft_lstclear.c		     \
+					ds/ft_list/src/ft_lst_include.c		     \
+					ds/ft_list/src/ft_lst_remove_node.c		     \
+					ds/ft_list/src/ft_lst_search_and_pop.c		     \
 					ds/ft_list/src/ft_lstiter.c		       \
 					ds/ft_list/src/ft_lstpop.c           \
 					ds/ft_list/src/ft_lstpop_head.c      \

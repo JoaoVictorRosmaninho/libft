@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:57:36 by jv                #+#    #+#             */
-/*   Updated: 2022/11/02 11:57:07 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/23 15:59:37 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*int2hex(unsigned int n, unsigned char op)
 	}
 	number[index] = '\0';
 	reverse_array(number, index - 1);
-	return (ft_strdup(number));
+	return (ft_strdup(number, NULL));
 }
 
 char	*lint2hex(unsigned long int n)
@@ -74,5 +74,5 @@ char	*lint2hex(unsigned long int n)
 	}
 	number[index] = '\0';
 	reverse_array(number, index - 1);
-	return (ft_strdup(number));
+	return (ft_strdup(number, NULL));
 }

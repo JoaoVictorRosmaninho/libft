@@ -5,6 +5,7 @@
 #include <criterion/new/assert.h>
 
 # include <stdio.h>
+# include <string.h>
 
 # include "../includes/libft.h"
 

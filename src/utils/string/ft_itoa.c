@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 22:03:49 by jv                #+#    #+#             */
-/*   Updated: 2024/03/05 23:23:59 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/23 18:02:36 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ static void	convert(int nb, char *number, int index)
 	}
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(int n, t_coliseu* coliseu)
 {
 	char	*number;
 
-	number = ft_calloc(12, sizeof(char), NULL);
+	number = ft_calloc(12, sizeof(char), coliseu);
 	if (!number)
 		return (NULL);
 	convert(n, number, 0);

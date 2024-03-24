@@ -4,6 +4,8 @@
         "libft.h": "c",
         "arena.h": "c",
         "stdint.h": "c",
-        "bitset": "c"
+        "bitset": "c",
+        "stdio.h": "c",
+        "utils.h": "c"
     }
 }

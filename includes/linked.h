@@ -44,9 +44,12 @@
   Data *mk_generic_content(void *content, t_coliseu* coliseu);
 
 
-  t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), t_coliseu* coliseu);
+  t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), t_coliseu* coliseu);
 
-  t_list    *ft_lstnew(t_coliseu* coliseu);
+  t_list  *ft_lstnew(t_coliseu* coliseu);
+
+
+  void    ft_lst_for_each(t_list *lst, void (*f)(void *));
 
   void		ft_lstadd_front(t_list *lst, t_node *new);
 
@@ -68,6 +71,8 @@
 
   void    ft_lstpop_tail(t_list *lst);
 
+  void    ft_lst_remove_node(t_list* lst, t_node* node);
+
   t_node  *ft_lstpop(t_list *lst, unsigned int at);
 
   t_node		*ft_lstnew_node(void *data, DataType type, t_coliseu* coliseu);
@@ -76,6 +81,10 @@
 
   t_node  *ft_lstitem(t_list *lst, unsigned int at);
   
+  t_node* ft_lst_include(t_list *lst, void* item, uint8_t (*f)(void*, void*));
+
+  uint8_t ft_lst_search_and_pop(t_list *lst, void* item, uint8_t (*f)(void*, void*));
+
 #endif
 
 

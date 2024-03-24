@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:49:59 by jv                #+#    #+#             */
-/*   Updated: 2024/03/05 23:23:47 by jv               ###   ########.fr       */
+/*   Updated: 2024/03/23 16:00:04 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char *read_line(char *buffer, int fd)
 	line  = ft_strtok(buffer, "\n");
 	if (!line && size_read > 0)
 	{
-		final = ft_strdup(buffer);
+		final = ft_strdup(buffer, NULL);
 		while (1)
 		{
 			tmp = final;
@@ -42,7 +42,7 @@ char *read_line(char *buffer, int fd)
 	} 
 	else
 	{
-		final = ft_strdup(line);
+		final = ft_strdup(line, NULL);
 		while (line)
 		{
 			tmp = final;

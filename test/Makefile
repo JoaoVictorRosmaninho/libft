@@ -26,7 +26,7 @@ GFLAGS  := -fsanitize=address
 LDLIBS  := -lft -lcriterion
 
 define run
- 	$(CC) $^ $(LDFLAGS) $(LDLIBS) $(GFLAGS) -o $@ && ./$@ --verbose
+ 	$(CC) $^ $(LDFLAGS)  $(LDLIBS) $(GFLAGS) -o $@ && ./$@ --verbose
 endef
 
 ################################################################################
@@ -41,6 +41,14 @@ debug:
 	@echo $(OBJS)
 
 memory: arena_memory_test.c $(LIBFT)
+	cp ../libft.a .
+	@$(call run, "$^")
+
+list: linked_list_test.c $(LIBFT)
+	cp ../libft.a .
+	@$(call run, "$^")
+
+main: main.c $(LIBFT)
 	cp ../libft.a .
 	@$(call run, "$^")
 
