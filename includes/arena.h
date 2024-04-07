@@ -38,7 +38,7 @@
 enum e_types
 {
 	TAKE,
-	GIVE_BACK
+	FREE
 };
 
 typedef struct s_arena

@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:48:59 by jv                #+#    #+#             */
-/*   Updated: 2024/04/07 12:37:06 by jv               ###   ########.fr       */
+/*   Updated: 2024/04/07 14:54:19 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,9 @@ void	*ft_find_or_create_arena(t_coliseu *coliseu, size_t chunk)
 t_coliseu	*ft_coliseu_manager(enum e_types action)
 {
 	static t_coliseu	coliseus[NUMBER_OF_COLISEUS] = {0};
-	unsigned short int	index;
+	unsigned short int	index = 0;
 	t_coliseu			*ptr;
-//	size_t				sizes[NUMBER_OF_COLISEUS]    = { ARENA_32KB };
-	index = 0;
+	
 	if (!coliseus[0].region)
 		ft_coliseu_initialize(coliseus, NUMBER_OF_COLISEUS, ARENA_32KB);
 	if (action == TAKE)

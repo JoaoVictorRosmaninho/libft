@@ -91,3 +91,22 @@ Test(allocator, temp_arena) {
 
     allocator.release(&coliseu, 1); 
 }
+
+Test(allocator, temp_arena_with_global_coliseu) {
+    Allocator allocator = allocator_for_arena();
+    void*     memory    = NULL;
+    TmpArena  tmp       = tmp_coliseu_new(ft_coliseu_manager(TAKE));
+
+    char*     begin     = tmp.coliseu->region->begin;
+
+    memory              = allocator.alloc(1024, tmp.coliseu);
+
+    cr_expect( memory != NULL, "expect to return a valid address");
+
+    cr_assert( begin < tmp.coliseu->region->begin, "expect to move the pointer foward");
+    tmp_coliseu_end(&tmp);
+
+    cr_expect( begin == tmp.coliseu->region->begin, "expect to return the pointer to real begin address");
+
+    ft_coliseu_manager(FREE);
+}

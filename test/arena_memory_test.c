@@ -118,5 +118,5 @@ Test(arena_allocator, ft_coliseu_manager) {
     cr_expect(mid != NULL, "expect recieve a valid pointer");
     cr_expect(end != NULL, "expect recieve a valid pointer");
 
-    ft_coliseu_manager(GIVE_BACK);
+    ft_coliseu_manager(FREE);
 }
