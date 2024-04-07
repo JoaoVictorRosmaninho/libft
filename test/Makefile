@@ -41,15 +41,15 @@ all: $(TESTS) clean
 debug:
 	@echo $(OBJS)
 
-arena: arena_memory_test.c $(LIBFT)
+arena: memory/arena_memory_test.c $(LIBFT)
 	cp ../libft.a .
 	@$(call run, "$^")
 
-monotonic: monotonic_memory_test.c $(LIBFT)
+monotonic: memory/monotonic_memory_test.c $(LIBFT)
 	cp ../libft.a .
 	@$(call run, "$^")
 
-allocator: allocator_interface_test.c $(LIBFT)
+allocator: memory/allocator_interface_test.c $(LIBFT)
 	cp ../libft.a .
 	@$(call run, "$^")
 

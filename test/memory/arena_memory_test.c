@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "../utils.h"
 
 Test(allocate_memory, ft_arena_alloc_test)
 {

@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "../utils.h"
 
 Test(allocator, monotonic) {
     void* allocated_memory;
