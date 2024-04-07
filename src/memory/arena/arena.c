@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:48:59 by jv                #+#    #+#             */
-/*   Updated: 2024/04/06 19:36:11 by jv               ###   ########.fr       */
+/*   Updated: 2024/04/07 12:37:06 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,19 +106,19 @@ t_coliseu	*ft_coliseu_manager(enum e_types action)
 	static t_coliseu	coliseus[NUMBER_OF_COLISEUS] = {0};
 	unsigned short int	index;
 	t_coliseu			*ptr;
-
+//	size_t				sizes[NUMBER_OF_COLISEUS]    = { ARENA_32KB };
 	index = 0;
 	if (!coliseus[0].region)
 		ft_coliseu_initialize(coliseus, NUMBER_OF_COLISEUS, ARENA_32KB);
 	if (action == TAKE)
 	{
 		index = 1;
-		ptr = &coliseus[0];
+		ptr   = coliseus;
 		while (index < NUMBER_OF_COLISEUS)
 		{
 			if ((coliseus[index].region->end - coliseus[index].region->begin)
 				> (ptr->region->end - ptr->region->begin))
-				ptr = &coliseus[index];
+				ptr = coliseus + index;
 			index++;
 		}
 		return (ptr);

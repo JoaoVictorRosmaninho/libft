@@ -57,18 +57,16 @@ void	ft_arena_destroy(void*  buffer)
 	coliseu->region = NULL;
 }
 
-void	ft_coliseu_initialize(t_coliseu	*group, size_t length, ...)
+void	ft_coliseu_initialize(t_coliseu	*group, size_t length, size_t size)
 {
 	size_t	index;
-	va_list	ap;
 
-	va_start(ap,  length);
-	index = 0;
-	while (index < length)
+	index 	   = 0;
+ 	while (index < length)
 	{
 		group[index].region = NULL;
-		group[index].door = NULL;
-		group[index].size = va_arg(ap, size_t);
+		group[index].door 	= NULL;
+		group[index].size 	= size;
 		ft_coliseu_create(&group[index]);
 		index++;
 	}

@@ -21,5 +21,5 @@ typedef struct {
 
 
 Allocator allocator_new(AllocatorContext context);
-
+Allocator allocator_for_arena(void);
 #endif

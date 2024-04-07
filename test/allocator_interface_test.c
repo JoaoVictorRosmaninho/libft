@@ -44,7 +44,7 @@ Test(allocator, coliseu) {
 Test(allocator, coliseus) {
     t_coliseu coliseus[3];
 
-    ft_coliseu_initialize(coliseus, 3, ARENA_32KB, ARENA_4KB, ARENA_512B);
+    ft_coliseu_initialize(coliseus, 3, ARENA_32KB);
     void* memory = NULL;
 
     Allocator allocator = allocator_new(
@@ -61,4 +61,33 @@ Test(allocator, coliseus) {
     memory = allocator.alloc(1024, coliseus + 2);
     cr_assert(memory != NULL, "expected a valid address");
     allocator.release(coliseus, 3);
+}
+
+
+Test(allocator, temp_arena) {
+    t_coliseu coliseu   = { .door = NULL, .region = NULL, .size = ARENA_512B };
+    Allocator allocator = allocator_for_arena();
+
+    void* memory;
+
+    // then
+
+    memory      = allocator.alloc(64, &coliseu);
+    char* begin = coliseu.region->begin;
+
+    cr_assert(memory != NULL, "expect a valid memory pointer");
+
+    TmpArena tmp = tmp_coliseu_new(&coliseu);
+
+    memory       = allocator.alloc(64, tmp.coliseu);
+
+    cr_assert(memory != NULL, "expect a valid memory pointer");
+    cr_assert( begin < coliseu.region->begin, "expect to move the pointer foward");
+
+    tmp_coliseu_end(&tmp);
+
+    cr_assert(begin == coliseu.region->begin, "expect to return the pointer for the initial");
+
+
+    allocator.release(&coliseu, 1); 
 }

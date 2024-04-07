@@ -34,6 +34,7 @@
 # define ARENA_65KB 65536 // 65KB
 # define ARENA_131KB 131072 // 130KB
 
+
 enum e_types
 {
 	TAKE,
@@ -56,12 +57,21 @@ typedef struct s_ctx_arena
 	long	real_size;
 }	t_ctx_arena;
 
+
 typedef struct s_coliseu
 {
 	t_arena	*door;
 	t_arena	*region;
 	size_t	size;
 }	t_coliseu;
+
+typedef struct {
+	t_coliseu*	coliseu;
+	t_arena*	prev_region;
+	char*    	prev_offset;
+	uint8_t  	has_next;
+} TmpArena;
+
 // free arena
 void		ft_arena_free(void* buffer);
 // destroy_arena and free process memory
@@ -79,13 +89,17 @@ t_coliseu	*ft_coliseu_manager(enum e_types action);
 //  smart allocator, no leaks
 void		*ft_smart_calloc(size_t count, size_t size, t_coliseu *coliseu);
 
-void		ft_coliseu_initialize(t_coliseu *group, size_t length, ...);
+void	ft_coliseu_initialize(t_coliseu	*group, size_t length, size_t size);
 
 size_t		ft_arena_normalizer(size_t chunk);
 
 size_t		ft_align(size_t request_size);
 
 t_arena		*ft_arena_init(size_t chunk);
+
+TmpArena tmp_coliseu_new(t_coliseu* coliseu);
+
+void     tmp_coliseu_end(TmpArena*  tmp);
 
 void	ft_coliseu_release_all(void	*group, size_t length);
 #endif
