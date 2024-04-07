@@ -5,7 +5,7 @@ RESET := \033[0m
 LOG   := printf "[$(CYAN)INFO$(RESET)] %s\n"
 
 SRC_DIR   := .
-OBJ_DIR   := ../obj
+OBJ_DIR   := ../dist
 LIBFT_DIR := ../
 LIBFT     := libft.a
 INC_DIRS  := ../includes
@@ -19,11 +19,12 @@ SOURCES := $(filter-out main.c, $(SOURCES))
 OBJS    := $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
 SOURCES := $(shell find $(SRC_DIR) -name '*.c')
 
-CC     	:= clang
-CFLAGS  := -Wall -Werror -Wextra -O3 -ggdb  -c 
-LDFLAGS := -L$(LIBFT_DIR)
-GFLAGS  := -fsanitize=address
-LDLIBS  := -lft -lcriterion
+CC     		:= clang
+DEV_FLAGS 	:= -ggdb
+CFLAGS  	:= -Wall -Werror -Wextra -O3 -c 
+LDFLAGS 	:= -L$(LIBFT_DIR)
+GFLAGS  	:= -fsanitize=address
+LDLIBS  	:= -lft -lcriterion
 
 define run
  	$(CC) $^ $(LDFLAGS) $(LDLIBS) $(GFLAGS) -o $@ && ./$@ --verbose
@@ -40,7 +41,15 @@ all: $(TESTS) clean
 debug:
 	@echo $(OBJS)
 
-memory: arena_memory_test.c $(LIBFT)
+arena: arena_memory_test.c $(LIBFT)
+	cp ../libft.a .
+	@$(call run, "$^")
+
+monotonic: monotonic_memory_test.c $(LIBFT)
+	cp ../libft.a .
+	@$(call run, "$^")
+
+allocator: allocator_interface_test.c $(LIBFT)
 	cp ../libft.a .
 	@$(call run, "$^")
 
@@ -55,8 +64,6 @@ fclean:
 
 dclean: fclean
 	make -C .. fclean
-
-
 
 # Makefile rules to clean stdin/stdout/stderr test's files
 clean:

@@ -1,4 +1,4 @@
-#include "../../../../includes/libft.h"
+#include "libft.h"
 
 
 static void split_list(t_node **a, t_node **b, t_node *source) {
@@ -33,8 +33,8 @@ static t_node *merge(t_node *a, t_node *b) {
   else if (b == NULL)
     return (a);
   
-  int ac = *(int *) a->content;
-  int bc = *(int *) b->content;
+  int ac = *(int *) a->data->content;
+  int bc = *(int *) b->data->content;
   if ( ac <= bc ) {
     result = a;
     result->next = merge(a->next, b);

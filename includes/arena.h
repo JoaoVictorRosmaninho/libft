@@ -18,8 +18,6 @@
 # include <stdio.h>
 # include <string.h>
 
-# include "libft.h"
-
 # define ARENA_MIN_ALLOC_SIZE 8
 # define ARENA_ALIGN_SIZE 8
 
@@ -65,11 +63,11 @@ typedef struct s_coliseu
 	size_t	size;
 }	t_coliseu;
 // free arena
-void		ft_arena_free(t_coliseu *coliseu);
+void		ft_arena_free(void* buffer);
 // destroy_arena and free process memory
-void		ft_arena_destroy(t_coliseu *coliseu);
+void		ft_arena_destroy(void* buffer);
 // alloc memory from specific arena
-void		*ft_arena_alloc(size_t chunk, t_coliseu *coliseu);
+void		*ft_arena_alloc(size_t chunk, void* buffer);
 // create a coliseu
 void		ft_coliseu_create(t_coliseu	*coliseu);
 
@@ -81,12 +79,13 @@ t_coliseu	*ft_coliseu_manager(enum e_types action);
 //  smart allocator, no leaks
 void		*ft_smart_calloc(size_t count, size_t size, t_coliseu *coliseu);
 
-void		ft_coliseu_initialize(t_coliseu *group, size_t size_of_coliseu,
-				size_t length);
+void		ft_coliseu_initialize(t_coliseu *group, size_t length, ...);
 
 size_t		ft_arena_normalizer(size_t chunk);
 
 size_t		ft_align(size_t request_size);
 
 t_arena		*ft_arena_init(size_t chunk);
+
+void	ft_coliseu_release_all(void	*group, size_t length);
 #endif

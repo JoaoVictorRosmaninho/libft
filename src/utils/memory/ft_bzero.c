@@ -6,11 +6,11 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 21:40:00 by jv                #+#    #+#             */
-/*   Updated: 2022/04/09 21:40:57 by jv               ###   ########.fr       */
+/*   Updated: 2024/04/06 12:49:42 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/libft.h"
+#include "libft.h"
 
 void	ft_bzero(void *BLOCK, size_t SIZE)
 {

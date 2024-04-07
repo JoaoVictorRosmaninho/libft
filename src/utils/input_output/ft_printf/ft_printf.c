@@ -6,11 +6,11 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:16:21 by jv                #+#    #+#             */
-/*   Updated: 2023/11/26 19:51:25 by jv               ###   ########.fr       */
+/*   Updated: 2024/04/06 12:59:08 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/libft.h"
+#include "libft.h"
 
 static int	parser(char *token, va_list items, int fout)
 {

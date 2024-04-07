@@ -6,11 +6,11 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:59:00 by jv                #+#    #+#             */
-/*   Updated: 2022/04/19 20:30:00 by jv               ###   ########.fr       */
+/*   Updated: 2024/04/06 12:49:42 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/libft.h"
+#include "libft.h"
 
 char	*ft_strchr(const char *STRING, int C)
 {

@@ -6,11 +6,11 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 19:20:19 by jv                #+#    #+#             */
-/*   Updated: 2022/06/26 00:05:53 by jv               ###   ########.fr       */
+/*   Updated: 2024/04/06 12:49:42 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/libft.h"
+#include "libft.h"
 
 void	*ft_memchr(const void *BLOCK, int C, size_t SIZE)
 {

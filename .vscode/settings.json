@@ -4,6 +4,16 @@
         "libft.h": "c",
         "arena.h": "c",
         "stdint.h": "c",
-        "bitset": "c"
+        "bitset": "c",
+        "assert.h": "c",
+        "monotonic.h": "c",
+        "array": "c",
+        "hash_map": "c",
+        "string_view": "c",
+        "format": "c",
+        "initializer_list": "c",
+        "span": "c",
+        "valarray": "c",
+        "*.tcc": "c"
     }
 }

@@ -6,154 +6,66 @@
 #    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2024/03/18 22:53:18 by jv               ###   ########.fr        #
+#    Updated: 2024/04/06 16:38:01 by jv               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libft.a
+NAME    	:= libft.a
 
-CC 		= clang
+CC 			:= clang
 
-GDB_FLAG  	= -ggdb -g -fsanitize=address -fno-omit-frame-pointer
+#DEV_FLAGS  := -ggdb -g -fsanitize=address -fno-omit-frame-pointer
 
-FLAGS 	= -Wall -Werror -Wextra -g
+CFLAGS 		:= -Wall -Werror -Wextra -I./includes
 
-REMOVE 	= rm -f
+REMOVE 		:= rm -f
 
-LFLAGS =	-L. -lft 
+LFLAGS	 	:=	-L. -lft 
 
 VALGRIND_FLAGS = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose
 
-TARGET 	 = utils/string/ft_isalpha.c 			\
-					utils/string/ft_isdigit.c 			\
-					utils/string/ft_isalnum.c 			\
-					utils/string/ft_isascii.c 			\
-					utils/string/ft_isspace.c 			\
-					utils/string/ft_isprint.c 			\
-					utils/string/ft_strlen.c 			  \
-					utils/string/ft_strlcpy.c 			\
-					utils/string/ft_strlcat.c 			\
-					utils/string/ft_toupper.c 			\
-					utils/string/ft_tolower.c 			\
-					utils/string/ft_strchr.c 			  \
-					utils/string/ft_strrchr.c 			\
-					utils/string/ft_strncmp.c			  \
-					utils/string/ft_strnstr.c			  \
-					utils/string/ft_atoi.c 			    \
-					utils/string/ft_strdup.c 			  \
-					utils/string/ft_itoa.c 			    \
-					utils/string/ft_substr.c	 		  \
-					utils/string/ft_split.c 			  \
-					utils/string/ft_strjoin.c 			\
-					utils/string/ft_strtrim.c			  \
-					utils/string/ft_strmapi.c 			\
-					utils/string/ft_striteri.c 			\
-					utils/string/ft_strtok.c				\
-					utils/string/ft_strndup.c				\
-					utils/memory/ft_bzero.c 			  \
-					utils/memory/ft_calloc.c 			  \
-					utils/memory/ft_memmove.c 			\
-					utils/memory/ft_memset.c 			  \
-					utils/memory/ft_memchr.c				\
-					utils/memory/ft_memcpy.c 			  \
-					utils/memory/ft_memcmp.c				\
-					utils/input_output/utils/ft_putchar_fd.c 		          \
-				  	utils/input_output/utils/ft_putstr_fd.c 			        \
-					utils/input_output/utils/ft_putendl_fd.c 		          \
-					utils/input_output/utils/ft_putnbr_fd.c			          \
-					utils/input_output/ft_printf/ft_printf.c 			        \
-					utils/input_output/ft_printf/ft_printf_ptr.c          \
-					utils/input_output/ft_printf/ft_printf_hex_lower.c 		\
-					utils/input_output/ft_printf/ft_printf_hex_upper.c 		\
-					utils/input_output/ft_printf/ft_printf_uint.c 		    \
-					utils/input_output/ft_printf/ft_printf_utils.c 				\
-					utils/input_output/get_next_line/get_next_line.c 				\
-					ds/ft_list/src/ft_lstnew_node.c		 	 \
-					ds/ft_list/src/ft_lstnew.c		 	     \
-					ds/ft_list/src/ft_lstprint.c		 		 \
-					ds/ft_list/src/ft_lstadd_front.c	   \
-					ds/ft_list/src/ft_lstadd_back.c	     \
-					ds/ft_list/src/ft_lstdelone.c		     \
-					ds/ft_list/src/ft_lstclear.c		     \
-					ds/ft_list/src/ft_lstiter.c		       \
-					ds/ft_list/src/ft_lstpop.c           \
-					ds/ft_list/src/ft_lstpop_head.c      \
-					ds/ft_list/src/ft_lstpop_tail.c      \
-					ds/ft_list/src/ft_lstitem.c          \
-					ds/ft_list/src/ft_lstmap.c           \
-					ds/ft_list/src/ft_lst_mv_next_to_front.c           \
-					ds/ft_list/utils/mk_int_content.c    \
-					ds/ft_list/utils/mk_char_content.c   \
-					ds/ft_list/utils/mk_generic_content.c   \
-					ds/ft_list/utils/mk_float_content.c  \
-					ds/ft_list/utils/mk_double_content.c \
-					ds/ft_list/utils/mk_string_content.c \
-					memory/arena.c \
-					memory/arena_utils.c \
-					memory/arena_align_utils.c \
+# Make does not offer a recursive wildcard function, so here's one:
+SOURCES 	:= $(shell find src -type f -name '*.c')
 
-TEST_TARGET = test/main.c \
-			  test/test_utils.c \
-			  test/utils/input_output/get_next_line/get_next_line_test.c \
-			  test/utils/string/ft_strtok_test.c
+OBJ_DIR  	:= dist
+
+OBJS 		:= $(addprefix $(OBJ_DIR)/, $(notdir $(SOURCES:.c=.o))) 
+
+HEADERDIR   := includes
+
+SOURCEDIR	:= $(dir $(SOURCES))
 
 
-SRCS 		= $(addprefix ./src/, $(TARGET))
-OBJS 		= $(addprefix ./$(OBJ_DIR)/, $(TARGET:.c=.o)) 
-OBJS_TEST   = $(addprefix ./$(OBJ_DIR)/, $(TEST_TARGET:.c=.o))
+vpath %.h $(HEADERDIR)
+vpath %.c $(SOURCEDIR)
 
-OBJ_DIR  = obj
+all: $(NAME)
 
-OBJ_DIRS = 	 obj \
-			 obj/ds \
-			 obj/ds/ft_list \
-			 obj/ds/ft_list/src \
-			 obj/ds/ft_list/utils \
-			 obj/utils/input_output 	\
-			 obj/utils/input_output/ft_printf 	\
-			 obj/utils/input_output/utils 	\
-			 obj/utils/input_output/get_next_line	\
-			 obj/utils/memory 	\
-			 obj/memory \
-			 obj/utils/string	\
-			 obj/test	\
-			 obj/test/utils	\
-			 obj/test/utils/input_output \
-			 obj/test/utils/string
+debug:
+	@echo $(SOURCEDIR)
 
-all:	${NAME}
-
-test: $(NAME) $(OBJS_TEST) 
-	$(CC) $(OBJS_TEST) $(LFLAGS) -o $(NAME)_test
-	@clear
-	@./$(NAME)_test 
-
-$(NAME):  $(OBJ_DIR) $(OBJS) 
+$(NAME): $(OBJS) 
 		@echo "\n$(NAME): $(NAME) was created"
 		ar -rcs $(NAME) $(OBJS)
 
 $(OBJ_DIR):
-	mkdir -p ${OBJ_DIRS}
+	@echo "comendaod"
+	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: src/%.c
-	@echo "$@: object files were created"
-	$(CC) $(FLAGS)  $(GDB_FLAG) -c $< -o $@
-
-$(OBJ_DIR)/test/%.o: test/%.c 
-	$(CC) $(FLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: %.c $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(DEV_FLAGS) -c $< -o $@
 	
 clean:
 		@echo "\n$(NAME): object files were deleted"
 		${REMOVE} ${OBJS} 
-		@echo
 
-fclean:		clean
+fclean: clean
 		@echo "$(NAME): $(NAME) was deleted"
 		${REMOVE} ${NAME}
 		@echo
 
-re :		fclean all
+re :   fclean all
 
 so :
-	$(CC) -nostartfiles -fPIC $(FLAGS) $(SRCS) $(BONUS_SRCS)
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SOURCES) $(BONUS_SRCS)
 	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)

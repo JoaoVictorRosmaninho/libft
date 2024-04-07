@@ -6,11 +6,11 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 23:38:53 by jv                #+#    #+#             */
-/*   Updated: 2024/03/10 14:59:55 by jv               ###   ########.fr       */
+/*   Updated: 2024/04/06 12:59:08 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/libft.h"
+#include "libft.h"
 
 t_node	*ft_lstnew_node(void *data, DataType type, t_coliseu* coliseu)
 {

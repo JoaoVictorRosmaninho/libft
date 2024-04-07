@@ -7,12 +7,11 @@
 # include <stdio.h>
 
 # include "../includes/libft.h"
-
+//# include "arena.h"
+//# include "monotonic.h"
 
 # define EPSILON 0.00001
 # define BLACK new_color(0, 0, 0)
 # define WHITE new_color(1, 1, 1)
-
-
 
 #endif

@@ -1,4 +1,4 @@
-#include "../../../../includes/libft.h"
+#include "libft.h"
 
 Data * mk_int_content(int content, t_coliseu* coliseu) 
 {

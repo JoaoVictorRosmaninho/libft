@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/03/10 14:46:00 by jv               ###   ########.fr       */
+/*   Updated: 2024/04/06 12:57:43 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h> 
-# include "arena.h"
-# include "linked.h"
+
 
 # define BUFFER_SIZE 64
 # define NUMBER_OF_COLISEUS 5
+
+# include "arena.h"
+# include "monotonic.h"
+# include "allocator.h"
+# include "linked.h"
 
 int			ft_isalpha(int C);
 int			ft_isdigit(int C);

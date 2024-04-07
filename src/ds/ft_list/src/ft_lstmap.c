@@ -6,11 +6,11 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 22:58:06 by jv                #+#    #+#             */
-/*   Updated: 2024/03/10 15:05:50 by jv               ###   ########.fr       */
+/*   Updated: 2024/04/06 12:59:08 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/libft.h"
+#include "libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), t_coliseu* coliseu)
 {

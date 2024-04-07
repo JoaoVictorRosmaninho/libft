@@ -1,4 +1,4 @@
-#include "../../../../includes/libft.h"
+#include "libft.h"
 
 t_list *ft_lstnew(t_coliseu* coliseu) {
   t_list *new_list;

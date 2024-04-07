@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
-void	ft_arena_free(t_coliseu *coliseu)
+void	ft_arena_free(void* buffer)
 {
-	t_arena	*arena;
+	t_coliseu* coliseu;
+	t_arena*   arena;
 
+	coliseu =  (t_coliseu*) buffer;
 	if (!coliseu || !coliseu->door)
 		return ;
 	arena = coliseu->door;
@@ -37,11 +39,13 @@ void	ft_coliseu_rollback(t_arena *region, size_t rollback)
 	region->begin -= rollback;
 }
 
-void	ft_arena_destroy(t_coliseu *coliseu)
+void	ft_arena_destroy(void*  buffer)
 {
-	t_arena	*arena;
-	t_arena	*_arena;
+	t_coliseu* coliseu;
+	t_arena*   arena;
+	t_arena*   _arena;
 
+	coliseu = (t_coliseu*) buffer;
 	arena = coliseu->door;
 	while (arena)
 	{
@@ -53,18 +57,31 @@ void	ft_arena_destroy(t_coliseu *coliseu)
 	coliseu->region = NULL;
 }
 
-void	ft_coliseu_initialize(t_coliseu	*group,
-	size_t size_of_coliseu, size_t length)
+void	ft_coliseu_initialize(t_coliseu	*group, size_t length, ...)
 {
 	size_t	index;
+	va_list	ap;
 
+	va_start(ap,  length);
 	index = 0;
 	while (index < length)
 	{
 		group[index].region = NULL;
 		group[index].door = NULL;
-		group[index].size = size_of_coliseu;
+		group[index].size = va_arg(ap, size_t);
 		ft_coliseu_create(&group[index]);
+		index++;
+	}
+}
+
+void	ft_coliseu_release_all(void	*group, size_t length)
+{
+	size_t	   index = 0;
+	t_coliseu* cs 	 = (t_coliseu*) group;
+
+	while (index < length)
+	{
+		ft_arena_destroy(cs + index);
 		index++;
 	}
 }

@@ -6,17 +6,19 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:48:59 by jv                #+#    #+#             */
-/*   Updated: 2024/03/18 23:17:53 by jv               ###   ########.fr       */
+/*   Updated: 2024/04/06 19:36:11 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
-void	*ft_arena_alloc(size_t chunk, t_coliseu *coliseu)
+void	*ft_arena_alloc(size_t chunk, void* buffer)
 {
-	void	*memory;
-	long	real_chunk;
+	void*		memory;
+	long		real_chunk;
+	t_coliseu*  coliseu; 
 
+	coliseu = (t_coliseu*) buffer;
 	if (!coliseu || !chunk)
 		return (NULL);
 	real_chunk = ft_align(chunk);
@@ -107,7 +109,7 @@ t_coliseu	*ft_coliseu_manager(enum e_types action)
 
 	index = 0;
 	if (!coliseus[0].region)
-		ft_coliseu_initialize(coliseus, ARENA_32KB, NUMBER_OF_COLISEUS);
+		ft_coliseu_initialize(coliseus, NUMBER_OF_COLISEUS, ARENA_32KB);
 	if (action == TAKE)
 	{
 		index = 1;

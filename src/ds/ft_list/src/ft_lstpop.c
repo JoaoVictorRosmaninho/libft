@@ -1,4 +1,4 @@
-#include "../../../../includes/libft.h"
+#include "libft.h"
 
 
 t_node *ft_lstpop(t_list *list, unsigned int at)
