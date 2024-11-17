@@ -2,33 +2,44 @@
 #ifndef FTPRINTFH
 #define FTPRINTFH
 
-
 typedef enum {
-    FLOAT,
-    INTEGER,
-    CHAR,
-    STRING,
-    LOWX,
-    HIGHX,
-    ELOW,  // cientific notation
-    EHIGH, // cientific uppercase notation
-    POINTER,
+    PDIGIT = 1,
+    PUDIGIT,
+    PUOCTAL,
+    PLOWX,
+    PHIGHX,
+    PLOWF,
+    PHIGHF,
+    PELOW,  // cientific notation
+    PEHIGH,  // cientific uppercase notation
+    PSHORLOWREPR,
+    PSHORHIGHREPR,
+    PHEXFLOW,
+    PHEXFHIGH,
+    PCHAR,
+    PSTRING,
+    PPOINTER,
+    PNOTHING,
+    PPERCENT,
     TOBEPRINTED
 } PrintfType;
 
 typedef struct {
-    char*       start_str;
-    char*       end_str;
-    PrintfType  type;
-    int         precision;
-    int         width;
+    PrintfType        type;
+    int               precision;
+    int               width;
+    t_coliseu*        buffer;
     union {
-        float   f;
-        char    c;
-        double  d;
-        int     i;
-        void*   p;  
+        char          c;
+        char*         p;  
     } content;
 } PrintfInstruction;
+
+
+typedef struct {
+    t_coliseu* buffer;
+    char*     content;
+    size_t    size;
+} PrintfStringBuilder;
 
 #endif

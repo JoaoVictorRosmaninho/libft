@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arena.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:48:59 by jv                #+#    #+#             */
-/*   Updated: 2024/03/24 17:02:25 by jv               ###   ########.fr       */
+/*   Updated: 2024/11/15 00:37:34 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,12 @@ t_arena	*ft_arena_init(size_t chunk)
 		printf("Tamanho, insuficiente para Arena\n");
 		return (NULL);
 	}
+	
 	arena->chunk = chunk;
 	arena->begin = (char *) arena + sizeof(t_arena);
-	arena->end = (char *) arena + chunk;
-	arena->next = NULL;
+	arena->end   = (char *) arena + chunk;
+	arena->next  = NULL;
+	
 	return (arena);
 }
 

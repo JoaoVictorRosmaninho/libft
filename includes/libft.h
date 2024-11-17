@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/03/23 19:53:45 by jv               ###   ########.fr       */
+/*   Updated: 2024/11/16 22:13:32 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 # define LIBFT_H 
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 # include <stdarg.h> 
 # include "arena.h"
 # include "linked.h"
+# include "ft_printf.h"
 
 # define BUFFER_SIZE 64
-# define NUMBER_OF_COLISEUS 5
+# define NUMBER_OF_COLISEUS 2
 
 # define ABS(x) ( ( (x) < 0) ? -(x) : (x) )
 
@@ -57,9 +59,11 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n, t_coliseu* coliseu);
+char		*ft_ftoa(double n, t_coliseu* coliseu);
+char		*ft_ftoan(double n, t_coliseu* coliseu, unsigned char precision);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char		*ft_strtok(char *str, const char *delimiter);
-char	  *ft_strndup(const char *str, unsigned int n);
+char	    *ft_strndup(const char *str, unsigned int n);
 
 ssize_t		ft_putchar_fd(char c, int fd);
 ssize_t		ft_putstr_fd(char *s, int fd);

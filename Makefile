@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jv <jv@student.42.fr>                      +#+  +:+       +#+         #
+#    By: joao <joao@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2024/03/23 19:38:08 by jv               ###   ########.fr        #
+#    Updated: 2024/11/16 21:04:35 by joao             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					utils/string/ft_atoi.c 			    \
 					utils/string/ft_strdup.c 			  \
 					utils/string/ft_itoa.c 			    \
+					utils/string/ft_ftoa.c 			    \
 					utils/string/ft_substr.c	 		  \
 					utils/string/ft_split.c 			  \
 					utils/string/ft_strjoin.c 			\

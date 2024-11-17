@@ -1,6 +1,6 @@
 #include "utils.h"
 
-
+/*
 uint8_t  cmp(void* a, void* b) {
      int r = ft_strncmp((char*)a, (char*)b, ft_strlen((const char*) a));
 
@@ -40,3 +40,10 @@ uint8_t  cmp(void* a, void* b) {
 
     ft_arena_destroy(&coliseu);
  }
+ */
+
+
+
+int main( void ) {
+    ft_printf("number passed is: %2s", "abelha");
+}

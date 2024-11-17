@@ -65,6 +65,7 @@ typedef struct s_coliseu
 	size_t	size;
 	size_t  total_arenas;
 }	t_coliseu;
+
 // free arena
 void		ft_arena_free(t_coliseu *coliseu);
 // destroy_arena and free process memory
