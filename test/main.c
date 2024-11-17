@@ -45,5 +45,6 @@ uint8_t  cmp(void* a, void* b) {
 
 
 int main( void ) {
-    ft_printf("number passed is: %2s", "abelha");
+    printf("number passed is: %15s\n", "abelha");
+    ft_printf("number passed is: %15s\n", "abelha");
 }

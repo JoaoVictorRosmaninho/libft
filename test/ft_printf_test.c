@@ -75,5 +75,5 @@ Test(parse_raw_string_and_iterpolate_float_with_decimal_count, ft_printf_lexer, 
 Test(parse_raw_string_and_iterpolate_string_with_spaces, ft_printf_lexer, .init = cr_redirect_stdout) {
     ft_printf("number passed is: %2s", "abelha");
 
-    cr_assert_stdout_eq_str("number passed is:   abelha");
+    cr_assert_stdout_eq_str("number passed is: abelha");
 }

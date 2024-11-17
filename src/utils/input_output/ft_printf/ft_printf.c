@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:16:21 by jv                #+#    #+#             */
-/*   Updated: 2024/11/16 23:01:06 by joao             ###   ########.fr       */
+/*   Updated: 2024/11/16 23:29:50 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,18 @@ static void printf_instruction_set_args(PrintfInstruction* instruction, va_list 
 	}
 
 	if ( instruction->type == PSTRING ) {
-		char  *content = va_arg(args, char*);
+		char  *content      = va_arg(args, char*);
 		
-		if (instruction->width > 0) {
-			size_t size    = instruction->width + ft_strlen(content) + 1;
+		int content_size    = (int) ft_strlen(content);
+
+		if (instruction->width > content_size) {
+			size_t size    = (instruction->width - content_size) + ft_strlen(content) + 1;
 
   			char *spaces   = ft_calloc(size, sizeof(char), instruction->buffer);
 			
-			ft_memset(spaces, ' ', instruction->width);
+			ft_memset(spaces, ' ', instruction->width - content_size);
 			
-			ft_strlcpy(spaces + instruction->width, content, size); ;
+			ft_strlcpy(spaces + instruction->width - content_size, content, size); ;
 
 			instruction->content.p = spaces;
 		} else {
