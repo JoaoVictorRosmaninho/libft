@@ -6,7 +6,7 @@
 #    By: joao <joao@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2024/11/16 21:04:35 by joao             ###   ########.fr        #
+#    Updated: 2024/11/17 15:46:53 by joao             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= libft.a
 
 CC 		= clang
 
-GDB_FLAG  	= -ggdb -g -fsanitize=address -fno-omit-frame-pointer
+GDB_FLAG  	= -ggdb
 
 FLAGS 	= -Wall -Werror -Wextra -g
 
