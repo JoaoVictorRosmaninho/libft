@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/11/16 22:13:32 by joao             ###   ########.fr       */
+/*   Updated: 2024/11/16 23:43:30 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ ssize_t		ft_printf_hex_lower(int n);
 ssize_t		ft_printf_hex_upper(int n);
 ssize_t		ft_printf_uint(unsigned	int n);
 void		reverse_array(char *str, int end);
-char		*int2hex(unsigned int n, unsigned char op);
+char		*int2hex(unsigned int n, unsigned char op, char* buffer);
 char		*lint2hex(unsigned long int n);
 ssize_t		ft_printf_ptr(unsigned long int n);
 
