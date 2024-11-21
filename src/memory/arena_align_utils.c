@@ -25,6 +25,6 @@ size_t	ft_arena_normalizer(size_t chunk)
 
 size_t	ft_align(size_t request_size)
 {
-	return (((request_size) + ((ARENA_ALIGN_SIZE) - 1))
-		& ~((ARENA_ALIGN_SIZE) - 1));
+	return (((request_size) + ((ARENA_ALIGN_SIZE_IN_BYTES) - 1))
+		& ~((ARENA_ALIGN_SIZE_IN_BYTES) - 1));
 }

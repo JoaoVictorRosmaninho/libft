@@ -40,7 +40,7 @@
   } t_list;
 
   typedef struct  {
-    t_coliseu* bucket_items;
+    t_coliseu* bucket;
     Data*      array;
     size_t     capacity;
     size_t     index;
@@ -54,7 +54,7 @@
            float: array_list_add_float, double: array_list_add_double )(array, item)
 
 
-  ArrayList   array_list_init( void );
+  ArrayList   array_list_init( size_t capacity );
 
   ArrayList*  array_list_add_int(ArrayList* array, int n);
   

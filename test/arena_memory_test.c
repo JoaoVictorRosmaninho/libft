@@ -29,7 +29,7 @@ Test(allocate_with_right_size, ft_arena_alloc_test) {
     char* file_content      = ft_arena_alloc(150, &coliseu);
     ptrdiff_t diff          = coliseu.region->end - coliseu.region->begin;
     ptrdiff_t diff2         = coliseu.region->chunk - sizeof(t_coliseu) - sizeof(void*) - 150;
-    cr_expect(coliseu.region->chunk == ARENA_8KB - sizeof(void*), "It is expected do create arena with right size");
+    cr_expect(coliseu.region->chunk == ARENA_8KB, "It is expected do create arena with right size");
     cr_expect(diff2 - diff <= 2, "It is to allocate the correct size");
     ft_arena_destroy(&coliseu);
 }
@@ -163,27 +163,34 @@ Test(arena_allocator, resize2) {
 
     ft_coliseu_create(&coliseu);
 
-    cr_log_info("avaliabl ANTES: %zu\n", coliseu.region->end - coliseu.region->begin);
+    printf("avaliabl ANTES: %zu\n", coliseu.region->end - coliseu.region->begin);
 
-    char* space = ft_arena_alloc(32, &coliseu);
+    char* space = ft_arena_alloc(2, &coliseu);
+    
+    printf("avaliabl DEPOIS: %zu\n", coliseu.region->end - coliseu.region->begin);
 
     cr_expect(space != NULL, "valid addresss");
-    cr_expect(coliseu.total_arenas == 1, "valid addresss");
+
+    cr_expect(coliseu.total_arenas == 1, "expect to use one arena");
+
+    size_t bytes_diff = (coliseu.region->end - coliseu.region->begin);
+
+    cr_expect( bytes_diff == 30 , "expect to allocate the right size of bytes");
 
     space = ft_arena_alloc(1, &coliseu);
-    cr_expect(coliseu.total_arenas == 1, "valid addresss");
+    cr_expect(coliseu.total_arenas == 1, "expect to allocate all memory in same arena");
     cr_log_info("avaliable DEPOIS: %zu\n", coliseu.region->end - coliseu.region->begin);
 
     space = ft_arena_alloc(1, &coliseu);
-    cr_expect(coliseu.total_arenas == 1, "valid addresss");
+    cr_expect(coliseu.total_arenas == 1, "expect to allocate all memory in same arena");
     cr_log_info("avaliable DEPOIS: %zu\n", coliseu.region->end - coliseu.region->begin);
 
     space = ft_arena_alloc(1, &coliseu);
-    cr_expect(coliseu.total_arenas == 1, "valid addresss");
+    cr_expect(coliseu.total_arenas == 1, "expect to allocate all memory in same arena");
     cr_log_info("avaliable DEPOIS: %zu\n", coliseu.region->end - coliseu.region->begin);
     
     space = ft_arena_alloc(1024, &coliseu);
-    cr_expect(coliseu.total_arenas == 2, "valid addresss");
+    cr_expect(coliseu.total_arenas == 2, "expect to allocate all memory in same arena");
     cr_log_info("avaliable DEPOIS: %zu\n", coliseu.region->end - coliseu.region->begin);
 
     ft_arena_destroy(&coliseu);

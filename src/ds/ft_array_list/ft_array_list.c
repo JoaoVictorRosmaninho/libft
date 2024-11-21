@@ -33,13 +33,13 @@ void array_list_print(ArrayList* arraylist) {
 
 
 
-ArrayList   array_list_init( void ) {
-    t_coliseu* coliseu_array = ft_coliseu_create_on_arena(ARENA_16KB);
+ArrayList   array_list_init( size_t capacity ) {
+    t_coliseu* coliseu_array = ft_coliseu_create_on_arena( capacity * sizeof(Data) );
 
     ArrayList array =  {
-        .bucket_items =  coliseu_array,
+        .bucket =  coliseu_array,
         .array        =  (Data*)coliseu_array->region->begin,
-        .capacity     =  coliseu_array->region->end - coliseu_array->region->begin,
+        .capacity     =  capacity,
         .index        =  0
     };
 
@@ -47,11 +47,11 @@ ArrayList   array_list_init( void ) {
 }
 
 void   array_list_deinit( ArrayList* array ) {
-    ft_arena_destroy(array->bucket_items);
+    ft_arena_destroy(array->bucket);
 }
 
   ArrayList*  array_list_add_int(ArrayList* array, int n) {
-    mk_int_content(n, array->bucket_items);
+    mk_int_content(n, array->bucket);
     
     array->index++;
 
@@ -59,25 +59,25 @@ void   array_list_deinit( ArrayList* array ) {
   }
 
   ArrayList*  array_list_add_str(ArrayList* array, char* string) {
-    mk_string_content(string, array->bucket_items);
+    mk_string_content(string, array->bucket);
     array->index++;
     return array;
   }
 
 ArrayList*  array_list_pop( ArrayList* array ) {
      array->index--;
-     ft_coliseu_rollback(array->bucket_items->region, sizeof(Data*));
+     ft_coliseu_rollback(array->bucket->region, sizeof(Data*));
      return array;
 }
 
 ArrayList*  array_list_add_float(ArrayList* array, float n) {
-  mk_float_content(n, array->bucket_items);
+  mk_float_content(n, array->bucket);
   array->index++;
   return array;
 }
 
 ArrayList*  array_list_add_double(ArrayList* array, double n) {
-  mk_double_content(n, array->bucket_items);
+  mk_double_content(n, array->bucket);
   array->index++;
   return array;
 }

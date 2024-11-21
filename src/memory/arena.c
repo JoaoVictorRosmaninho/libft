@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:48:59 by jv                #+#    #+#             */
-/*   Updated: 2024/11/20 23:05:49 by joao             ###   ########.fr       */
+/*   Updated: 2024/11/21 08:36:12 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_arena	*ft_arena_init(size_t chunk)
 
 	if (chunk & (chunk -1))
 		chunk = ft_arena_normalizer(chunk);
-	if (chunk < sizeof(void *) || (chunk - sizeof(void *)) < ARENA_ALIGN_SIZE)
+	if (chunk < sizeof(void *) || (chunk - sizeof(void *)) < ARENA_ALIGN_SIZE_IN_BYTES)
 	{
 		printf("tamanho %ld menor que o minimo aceitável\n", chunk);
 		return (NULL);
@@ -90,7 +90,8 @@ void	ft_coliseu_create(t_coliseu *coliseu)
 	coliseu->door = ft_arena_init(coliseu->size);
 	if (!coliseu->door)
 		return ;
-	coliseu->region = coliseu->door;
+	coliseu->region       = coliseu->door;
+	coliseu->total_arenas = 1;
 }
 
 void	*ft_find_or_create_arena(t_coliseu *coliseu, size_t chunk)

@@ -20,8 +20,8 @@
 
 # include "libft.h"
 
-# define ARENA_MIN_ALLOC_SIZE 8
-# define ARENA_ALIGN_SIZE 8
+# define ARENA_MIN_ALLOC_SIZE_IN_BYTES 1
+# define ARENA_ALIGN_SIZE_IN_BYTES 1
 
 # define ARENA_64B 64 // 64 bytes
 # define ARENA_128B 128 // 128 bytes
