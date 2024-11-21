@@ -90,3 +90,17 @@ Test(includes, ft_linkest_search_and_remove) {
 
     ft_arena_destroy(&coliseu);
 }
+
+
+Test(array_list, add_new_item) {
+
+    ArrayList al = array_list_init( ARENA_16KB );
+
+
+    array_list_add_int(&al, 10);
+
+    cr_expect( al.index == 1, "expect add one element");
+
+    array_list_deinit(&al);
+
+}

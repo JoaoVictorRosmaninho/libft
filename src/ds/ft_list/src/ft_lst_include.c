@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_include.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 18:55:14 by jv                #+#    #+#             */
-/*   Updated: 2024/03/23 22:46:31 by jv               ###   ########.fr       */
+/*   Updated: 2024/11/20 17:54:04 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_node* ft_lst_include(t_list *lst, void* item, uint8_t (*f)(void*, void*))
   	node = lst->head;
 	while (node != NULL)
 	{
-		if (f(item, node->data->content))
+		if (f(item, node->data->content.p))
             return (node);
 		node = node->next;
 	}

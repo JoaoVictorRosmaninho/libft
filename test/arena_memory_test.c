@@ -188,3 +188,17 @@ Test(arena_allocator, resize2) {
 
     ft_arena_destroy(&coliseu);
 }
+Test(arena_allocator, alocate_total_memory) {
+
+    t_coliseu coliseu = { .door = NULL, .region = NULL, .size = ARENA_64B, .total_arenas = 0 };
+
+    ft_coliseu_create(&coliseu);
+
+    cr_log_info("avaliable: %zu\n", coliseu.region->end - coliseu.region->begin);
+    cr_log_info("chunk: %zu\n", coliseu.region->chunk);
+
+    cr_expect(coliseu.size == 64, "expect to create with correct size");
+
+    ft_arena_destroy(&coliseu);
+
+}

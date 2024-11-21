@@ -6,13 +6,14 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/11/16 23:43:30 by joao             ###   ########.fr       */
+/*   Updated: 2024/11/20 14:41:14 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H 
 # include <stdlib.h>
+# include <stdint.h>
 # include <unistd.h>
 # include <math.h>
 # include <stdarg.h> 

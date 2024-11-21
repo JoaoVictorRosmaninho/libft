@@ -2,6 +2,7 @@
 # define LINKED_H
 # include <stdlib.h>
 
+
   typedef enum {
     STRING,
     DOUBLE,
@@ -13,7 +14,15 @@
   } DataType;
 
   typedef struct t_data {
-    void *content;
+    union {
+      double         d;
+      int            i;
+      unsigned  int  ui;
+      float          f;
+      char*          s;
+      void*          p;
+      char           c;
+    } content;
     DataType type;
   } Data;
 
@@ -30,6 +39,43 @@
       unsigned int size;
   } t_list;
 
+  typedef struct  {
+    t_coliseu* bucket_items;
+    Data*      array;
+    size_t     capacity;
+    size_t     index;
+ } ArrayList;
+
+
+  /* ArrayListAPi*/
+
+  # define array_list_add(array, item) _Generic((item), \
+           int:   array_list_add_int,   char*: array_list_add_str, \
+           float: array_list_add_float, double: array_list_add_double )(array, item)
+
+
+  ArrayList   array_list_init( void );
+
+  ArrayList*  array_list_add_int(ArrayList* array, int n);
+  
+  ArrayList*  array_list_add_float(ArrayList* array, float n);
+
+
+  ArrayList*  array_list_add_str(ArrayList* array, char* string);
+
+  ArrayList*  array_list_pop( ArrayList* array );
+
+  ArrayList*  array_list_add_double(ArrayList* array, double n) ;
+
+  void        array_list_deinit( ArrayList* array );
+
+  Data*       array_list_getitem(ArrayList* array, size_t index);
+
+  void array_list_print(ArrayList* arraylist);
+
+
+
+  /* LinkedListApi */
 
   Data *mk_string_content(char *content, t_coliseu* coliseu);
 

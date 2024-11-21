@@ -11,22 +11,22 @@ void ft_lstprint(t_list *lst) {
     switch (head->data->type) 
     {
       case STRING:
-        ft_printf("%s", (char *) head->data->content);
+        ft_printf("%s", head->data->content.s);
       break;
       case INTEGER:
-        ft_printf("%d", *(int *) head->data->content);
+        ft_printf("%d", head->data->content.i);
       break;
       case FLOAT:
-        ft_printf("%f", *(float *) head->data->content);
+        ft_printf("%f", head->data->content.f);
       break;
       case DOUBLE:
-        ft_printf("%f", *(double *) head->data->content);
+        ft_printf("%f", head->data->content.d);
       break;
       case CHAR:
-        ft_printf("%c", *(char *) head->data->content);
+        ft_printf("%c", head->data->content.c);
       break;
       default:
-        ft_printf("%p", head->data->content);
+        ft_printf("%p", head->data->content.p);
       break;
     }
     if (head->next != NULL)

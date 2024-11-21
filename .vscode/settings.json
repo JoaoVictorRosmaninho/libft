@@ -6,6 +6,8 @@
         "stdint.h": "c",
         "bitset": "c",
         "stdio.h": "c",
-        "utils.h": "c"
+        "utils.h": "c",
+        "linked.h": "c",
+        "ft_printf.h": "c"
     }
 }

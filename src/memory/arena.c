@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:48:59 by jv                #+#    #+#             */
-/*   Updated: 2024/11/15 00:37:34 by joao             ###   ########.fr       */
+/*   Updated: 2024/11/20 23:05:49 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,23 @@ void	*ft_arena_alloc(size_t chunk, t_coliseu *coliseu)
 	return (memory);
 }
 
+// TODO create a coliseceu creator on arena memory 
+t_coliseu* ft_coliseu_create_on_arena( size_t size ) {
+	
+	t_coliseu* coliseu = NULL;
+	t_arena*   arena   = ft_arena_init(size);
+	t_coliseu  temp    = { .door = arena, .region = arena };
+
+	coliseu = ft_calloc(1, sizeof(t_coliseu), &temp);
+
+	coliseu->door   = arena;
+	coliseu->region = arena;
+	coliseu->size   = temp.size - sizeof(t_coliseu);
+
+	return coliseu;
+}
+
+
 t_arena	*ft_arena_init(size_t chunk)
 {
 	t_arena	*arena;
@@ -50,7 +67,6 @@ t_arena	*ft_arena_init(size_t chunk)
 		printf("tamanho %ld menor que o minimo aceitável\n", chunk);
 		return (NULL);
 	}
-	chunk -= sizeof(void*);
 
 	if (chunk <= sizeof(t_arena)) 
 		return (NULL);

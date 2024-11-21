@@ -91,4 +91,7 @@ size_t		ft_arena_normalizer(size_t chunk);
 size_t		ft_align(size_t request_size);
 
 t_arena		*ft_arena_init(size_t chunk);
+
+//create a new coliseu from arena
+t_coliseu* ft_coliseu_create_on_arena( size_t size );
 #endif

@@ -6,21 +6,21 @@
 #    By: joao <joao@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2024/11/17 15:46:53 by joao             ###   ########.fr        #
+#    Updated: 2024/11/20 18:00:19 by joao             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libft.a
+NAME           = libft.a
 
-CC 		= clang
+CC 		       = clang
 
-GDB_FLAG  	= -ggdb
+GDB_FLAG  	   = -ggdb
 
-FLAGS 	= -Wall -Werror -Wextra -g
+FLAGS 	       = -Wall -Werror -Wextra 
 
-REMOVE 	= rm -f
+REMOVE 	       = rm -f
 
-LFLAGS =	-L. -lft 
+LFLAGS         =	-L. -lft
 
 VALGRIND_FLAGS = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose
 
@@ -69,6 +69,7 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					utils/input_output/ft_printf/ft_printf_uint.c 		    \
 					utils/input_output/ft_printf/ft_printf_utils.c 				\
 					utils/input_output/get_next_line/get_next_line.c 				\
+					ds/ft_array_list/ft_array_list.c		 	 \
 					ds/ft_list/src/ft_lstnew_node.c		 	 \
 					ds/ft_list/src/ft_lstnew.c		 	     \
 					ds/ft_list/src/ft_lstprint.c		 		 \
@@ -112,6 +113,7 @@ OBJ_DIR  = obj
 OBJ_DIRS = 	 obj \
 			 obj/ds \
 			 obj/ds/ft_list \
+			 obj/ds/ft_array_list \
 			 obj/ds/ft_list/src \
 			 obj/ds/ft_list/utils \
 			 obj/utils/input_output 	\

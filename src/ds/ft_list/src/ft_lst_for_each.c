@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_for_each.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 22:58:06 by jv                #+#    #+#             */
-/*   Updated: 2024/03/23 18:52:18 by jv               ###   ########.fr       */
+/*   Updated: 2024/11/20 17:53:52 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void ft_lst_for_each(t_list *lst, void (*f)(void *))
   	node = lst->head;
 	while (node != NULL)
 	{
-		f(node->data->content);
+		f(node->data->content.p);
 		node = node->next;
 	}
 }

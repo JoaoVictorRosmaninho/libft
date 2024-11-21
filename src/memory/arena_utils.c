@@ -53,6 +53,7 @@ void	ft_arena_destroy(t_coliseu *coliseu)
 	coliseu->region = NULL;
 }
 
+
 void	ft_coliseu_initialize(t_coliseu	*group,
 	size_t size_of_coliseu, size_t length)
 {
