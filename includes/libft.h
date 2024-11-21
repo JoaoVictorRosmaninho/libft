@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/11/20 14:41:14 by joao             ###   ########.fr       */
+/*   Updated: 2024/11/21 09:51:19 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdarg.h> 
 # include "arena.h"
 # include "linked.h"
+# include "map.h"
 # include "ft_printf.h"
 
 # define BUFFER_SIZE 64

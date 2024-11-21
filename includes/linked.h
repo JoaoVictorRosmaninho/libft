@@ -51,21 +51,40 @@
 
   # define array_list_add(array, item) _Generic((item), \
            int:   array_list_add_int,   char*: array_list_add_str, \
-           float: array_list_add_float, double: array_list_add_double )(array, item)
+           float: array_list_add_float, double: array_list_add_double, \
+           Data*: array_list_add_data)(array, item)
+  
+  # define array_list_add_on(array, index, item) _Generic((item), \
+           int:   array_list_add_int_on,   char*: array_list_add_str_on, \
+           float: array_list_add_float_on, double: array_list_add_double_on, \
+           Data*: array_list_add_data_on)(array, index, item)
 
 
   ArrayList   array_list_init( size_t capacity );
 
-  ArrayList*  array_list_add_int(ArrayList* array, int n);
+  ArrayList*  array_list_init_on_buffer( size_t capacity );
+
+  ArrayList*  array_list_add_int_on(ArrayList* array, size_t index, int n);
+
+  ArrayList*  array_list_add_str_on(ArrayList* array, size_t index, char* n);
+
+  ArrayList*  array_list_add_float_on(ArrayList* array, size_t index, float n);
+
+  ArrayList*  array_list_add_double_on(ArrayList* array, size_t index, double n);
+
+  ArrayList*  array_list_add_data_on(ArrayList* array, size_t index, Data* n);
   
+  ArrayList*  array_list_add_int(ArrayList* array, int n);
+
   ArrayList*  array_list_add_float(ArrayList* array, float n);
 
+  ArrayList*  array_list_add_data(ArrayList* array, Data* n);
 
   ArrayList*  array_list_add_str(ArrayList* array, char* string);
 
-  ArrayList*  array_list_pop( ArrayList* array );
-
   ArrayList*  array_list_add_double(ArrayList* array, double n) ;
+
+  ArrayList*  array_list_pop( ArrayList* array );
 
   void        array_list_deinit( ArrayList* array );
 

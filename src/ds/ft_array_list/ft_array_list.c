@@ -46,23 +46,36 @@ ArrayList   array_list_init( size_t capacity ) {
     return array;
 }
 
+ArrayList*   array_list_init_on_buffer( size_t capacity ) {
+    t_coliseu* bucket = ft_coliseu_create_on_arena( capacity * sizeof(Data) + sizeof(ArrayList));
+
+    ArrayList* array  = ft_calloc(1, sizeof(ArrayList), bucket);
+
+
+    array->bucket     = bucket;
+    array->array      = (Data*) bucket->region->begin;
+    array->capacity   = capacity;
+    array->index      = 0;
+
+    return array;
+}
+
 void   array_list_deinit( ArrayList* array ) {
     ft_arena_destroy(array->bucket);
 }
 
-  ArrayList*  array_list_add_int(ArrayList* array, int n) {
-    mk_int_content(n, array->bucket);
-    
-    array->index++;
+ArrayList*  array_list_add_int(ArrayList* array, int n) {
+  mk_int_content(n, array->bucket);
+  
+  array->index++;
+  return array;
+}
 
-    return array;
-  }
-
-  ArrayList*  array_list_add_str(ArrayList* array, char* string) {
-    mk_string_content(string, array->bucket);
-    array->index++;
-    return array;
-  }
+ArrayList*  array_list_add_str(ArrayList* array, char* string) {
+  mk_string_content(string, array->bucket);
+  array->index++;
+  return array;
+}
 
 ArrayList*  array_list_pop( ArrayList* array ) {
      array->index--;
@@ -80,6 +93,40 @@ ArrayList*  array_list_add_double(ArrayList* array, double n) {
   mk_double_content(n, array->bucket);
   array->index++;
   return array;
+}
+
+ArrayList*  array_list_add_str_on(ArrayList* array, size_t index, char* n) {
+  if (index > array->capacity) return NULL;
+
+  if (index + 1 > array->index) array->index = index + 1;
+
+
+  char* begin                  = array->bucket->region->begin;
+
+  array->bucket->region->begin = (char*) (array->array + index);
+
+  mk_string_content(n, array->bucket);
+
+  array->bucket->region->begin = begin;
+
+  return array;  
+}
+
+ArrayList* array_list_add_int_on(ArrayList* array, size_t index, int n) {
+  
+  if (index > array->capacity) return NULL;
+
+  if (index + 1 > array->index) array->index = index + 1;
+  
+  char* begin                  = array->bucket->region->begin;
+
+  array->bucket->region->begin = (char*) (array->array + index);
+
+  mk_int_content(n, array->bucket);
+
+  array->bucket->region->begin = begin;
+
+  return array;  
 }
 
 Data* array_list_getitem(ArrayList* array, size_t index) {
