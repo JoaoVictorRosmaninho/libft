@@ -6,12 +6,17 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:16:21 by jv                #+#    #+#             */
-/*   Updated: 2024/11/16 23:29:50 by joao             ###   ########.fr       */
+/*   Updated: 2024/11/22 23:58:00 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../includes/libft.h"
 
+
+// TODO :: Buffer do printf com tamanho fixo, impedindo o uso para strings grandes, processar texto. etc 
+// solucao: temos que ter um string builder de verdade, que cresce seu bloco dinamicamente
+
+// TODO :: ft_printf nao reconhece \n no final de uma interpolacao de strinf
 
 static unsigned char STOPLETTERS[256] = {
     ['d'] = PDIGIT,       ['i'] = PDIGIT,
@@ -34,7 +39,7 @@ static PrintfStringBuilder init_printf_string_builder( void ) {
 		.content = NULL
 	};
 
-	string.content = (char*) ft_calloc(512, sizeof(char), string.buffer);
+	string.content = (char*) ft_calloc(PRINTF_BUFF_SIZE, sizeof(char), string.buffer);
 	
 	return string;
 }
@@ -135,23 +140,35 @@ static PrintfInstruction printf_instruction_builder(char* start, char* end, va_l
 	
 }
 
-static PrintfStringBuilder* ft_interpolate_ftprintf(char* start, char* end, va_list args, PrintfStringBuilder* buffer) {	
+static size_t ft_interpolate_ftprintf(char* start, char* end, va_list args, PrintfStringBuilder* buffer) {	
 	
 	PrintfInstruction instruction = printf_instruction_builder(start, end, args);
 
+	size_t content_size 		  = 0;
+
 	if ( instruction.type == PCHAR) {
 		buffer->content[buffer->size++] = instruction.content.c;
-	} else {
-		ft_strlcat(buffer->content, instruction.content.p, 512);
-		buffer->size += ft_strlen(instruction.content.p);
+	} else if (buffer->size < PRINTF_BUFF_SIZE - 1) {
+		content_size = ft_strlen(instruction.content.p);
 
+		while ( content_size > 0 ) {
+			size_t bytes_readed = ft_strlcat(buffer->content, instruction.content.p, PRINTF_BUFF_SIZE);
+			ft_putstr_fd(buffer->content, 1);
+			
+			buffer->size = 0;
+			ft_bzero(buffer->content, PRINTF_BUFF_SIZE);
+			
+			content_size 		  -= bytes_readed;
+			instruction.content.p += bytes_readed;
+
+	  	}
 		ft_arena_free(instruction.buffer);
 	}
-	return buffer;
+	return content_size;
 }
 
 
-static PrintfStringBuilder ft_printf_lexer(const char* TEMPLATE, va_list args) {
+static size_t ft_printf_lexer(const char* TEMPLATE, va_list args) {
 	
 	/* 
 		Notas de desenvolvimento da 1.0
@@ -164,6 +181,8 @@ static PrintfStringBuilder ft_printf_lexer(const char* TEMPLATE, va_list args) {
 	char* end    = (char*) TEMPLATE;
 	char* start  = (char*) TEMPLATE;
 	size_t index = 0; 
+	size_t bytes = 0;
+
 
 	// TODO -> problema na arena quando usamos o tamanho total
 	// TODO -> continuar usando arenas aqui ou usar um buffer da stack ?
@@ -205,31 +224,27 @@ static PrintfStringBuilder ft_printf_lexer(const char* TEMPLATE, va_list args) {
 		
 		if ( TEMPLATE[index] && STOPLETTERS[(unsigned char)TEMPLATE[index]] ) {
 			// + 1 -> se nao somar 1, ele ira passar %s, só quero que passe o s
-			ft_interpolate_ftprintf(start + 1, end, args, &string);
+			bytes += ft_interpolate_ftprintf(start + 1, end, args, &string);
+
 			index += 1;
 			end   += 1;
 			start  = end;
 		}
 	}
-
-	string.content[string.size++] = '\0';
-	
-	return string;
+	return bytes;
 } 
 
 int	ft_printf(const char *TEMPLATE, ...)
 {
 	va_list		arg_list;
-	ssize_t		len     = 0;
+	size_t      len = 0;
 
 	if (!TEMPLATE)
 		return (0);
 	
 	va_start(arg_list, TEMPLATE);
 	
-	PrintfStringBuilder string = ft_printf_lexer(TEMPLATE, arg_list);
-
-	ft_putstr_fd(string.content, 1);
+	len = ft_printf_lexer(TEMPLATE, arg_list);
 
 	va_end(arg_list);
 
