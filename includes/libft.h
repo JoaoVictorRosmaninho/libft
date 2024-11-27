@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/11/21 09:51:19 by joao             ###   ########.fr       */
+/*   Updated: 2024/11/23 15:25:55 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@
 # include <unistd.h>
 # include <math.h>
 # include <stdarg.h> 
+
+// TODO: Refactoring this shit
+
 # include "arena.h"
 # include "linked.h"
-# include "map.h"
+# include "ft_map.h"
 # include "ft_printf.h"
 
 # define BUFFER_SIZE 64
-# define NUMBER_OF_COLISEUS 2
+# define NUMBER_OF_COLISEUS 5
 
 # define ABS(x) ( ( (x) < 0) ? -(x) : (x) )
 
@@ -57,14 +60,14 @@ char		*ft_strdup(const char *S, t_coliseu* coliseu);
 char		*ft_strchr(const char *STRING, int C);
 char		*ft_strrchr(const char *STRING, int C);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
-char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strjoin(char const *s1, char const *s2, t_coliseu* coliseu);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n, t_coliseu* coliseu);
 char		*ft_ftoa(double n, t_coliseu* coliseu);
 char		*ft_ftoan(double n, t_coliseu* coliseu, unsigned char precision);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char		*ft_strtok(char *str, const char *delimiter);
+char		*ft_strtok(char *str, const char *delimiter, char** toker, t_coliseu* coliseu);
 char	    *ft_strndup(const char *str, unsigned int n);
 
 ssize_t		ft_putchar_fd(char c, int fd);
@@ -83,5 +86,5 @@ ssize_t		ft_printf_ptr(unsigned long int n);
 
 /* get_next_line */
 
-char  *get_next_line(int fd);
+char  *get_next_line(int fd, t_coliseu* coliseu);
 #endif

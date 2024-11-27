@@ -2,6 +2,8 @@
 #ifndef FTPRINTFH
 #define FTPRINTFH
 
+#define PRINTF_BUFF_SIZE 2048
+
 typedef enum {
     PDIGIT = 1,
     PUDIGIT,

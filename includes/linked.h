@@ -2,7 +2,6 @@
 # define LINKED_H
 # include <stdlib.h>
 
-
   typedef enum {
     STRING,
     DOUBLE,
@@ -23,7 +22,17 @@
       void*          p;
       char           c;
     } content;
-    DataType type;
+    union {
+      double         d;
+      int            i;
+      unsigned  int  ui;
+      float          f;
+      char*          s;
+      void*          p;
+      char           c;
+    } value;
+    DataType content_type;
+    DataType value_type;
   } Data;
 
   typedef struct s_node
@@ -42,7 +51,6 @@
   typedef struct  {
     t_coliseu* bucket;
     Data*      array;
-    size_t     capacity;
     size_t     index;
  } ArrayList;
 
@@ -60,9 +68,9 @@
            Data*: array_list_add_data_on)(array, index, item)
 
 
-  ArrayList   array_list_init( size_t capacity );
+  ArrayList   array_list_init( void );
 
-  ArrayList*  array_list_init_on_buffer( size_t capacity );
+  ArrayList*  array_list_init_on_buffer( void );
 
   ArrayList*  array_list_add_int_on(ArrayList* array, size_t index, int n);
 
@@ -107,6 +115,8 @@
   Data *mk_char_content(char content, t_coliseu* coliseu);
 
   Data *mk_generic_content(void *content, t_coliseu* coliseu);
+
+  Data * mk_data_content(Data* content, t_coliseu* coliseu);
 
 
   t_list	*ft_lstmap(t_list *lst, void *(*f)(void *,  t_coliseu*), t_coliseu* coliseu);

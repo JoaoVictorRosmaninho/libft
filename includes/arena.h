@@ -18,8 +18,6 @@
 # include <stdio.h>
 # include <string.h>
 
-# include "libft.h"
-
 # define ARENA_MIN_ALLOC_SIZE_IN_BYTES 1
 # define ARENA_ALIGN_SIZE_IN_BYTES 1
 
@@ -42,6 +40,11 @@ enum e_types
 	GIVE_BACK
 };
 
+enum arena_type {
+	ARENA_POOL  = 0, 
+	ARENA_BLOCK = 1
+};
+
 typedef struct s_arena
 {
 	struct s_arena	*next;
@@ -60,10 +63,12 @@ typedef struct s_ctx_arena
 
 typedef struct s_coliseu
 {
-	t_arena	*door;
-	t_arena	*region;
-	size_t	size;
-	size_t  total_arenas;
+	t_arena			 *door;
+	t_arena			 *region;
+	struct s_coliseu *neasted;
+	size_t			 size;
+	uint16_t  		 total_arenas;
+	enum arena_type  type;
 }	t_coliseu;
 
 // free arena
@@ -93,5 +98,11 @@ size_t		ft_align(size_t request_size);
 t_arena		*ft_arena_init(size_t chunk);
 
 //create a new coliseu from arena
-t_coliseu* ft_coliseu_create_on_arena( size_t size );
+t_coliseu*  ft_coliseu_create_on_arena( size_t size, enum arena_type type );
+//avaliable size
+size_t  	ft_coliseu_size(t_coliseu* coliseu);
+
+//realloc 
+t_coliseu*	ft_coliseu_realloc_block(t_coliseu* coliseu);
+
 #endif
