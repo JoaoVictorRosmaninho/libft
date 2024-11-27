@@ -20,13 +20,13 @@ OBJS    := $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
 SOURCES := $(shell find $(SRC_DIR) -name '*.c')
 
 CC     	:= clang
-CFLAGS  := -Wall -Werror -Wextra -O3 -ggdb  -c 
+CFLAGS  := -Wall -Werror -Wextra
+GFLAGS  := -ggdb 
 LDFLAGS := -L$(LIBFT_DIR)
-GFLAGS  := -fsanitize=address
-LDLIBS  := -lft -lcriterion
+LDLIBS  := -lft -lcriterion -lm
 
 define run
- 	$(CC) $^ $(LDFLAGS)  $(LDLIBS) $(GFLAGS) -o $@ && ./$@ 
+ 	$(CC) $^ $(LDFLAGS)  $(LDLIBS) $(GFLAGS) -o $@ 
 endef
 
 ################################################################################

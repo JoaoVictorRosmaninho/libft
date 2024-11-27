@@ -6,7 +6,7 @@
 #    By: joao <joao@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2024/11/20 18:00:19 by joao             ###   ########.fr        #
+#    Updated: 2024/11/22 20:54:47 by joao             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,8 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					utils/input_output/ft_printf/ft_printf_utils.c 				\
 					utils/input_output/get_next_line/get_next_line.c 				\
 					ds/ft_array_list/ft_array_list.c		 	 \
+					ds/ft_map/ft_map.c		 	 \
+					ds/ft_map/ft_hash_functions.c		 	 \
 					ds/ft_list/src/ft_lstnew_node.c		 	 \
 					ds/ft_list/src/ft_lstnew.c		 	     \
 					ds/ft_list/src/ft_lstprint.c		 		 \
@@ -90,6 +92,7 @@ TARGET 	 = utils/string/ft_isalpha.c 			\
 					ds/ft_list/src/ft_lst_mv_next_to_front.c           \
 					ds/ft_list/utils/mk_int_content.c    \
 					ds/ft_list/utils/mk_char_content.c   \
+					ds/ft_list/utils/mk_data_content.c   \
 					ds/ft_list/utils/mk_generic_content.c   \
 					ds/ft_list/utils/mk_float_content.c  \
 					ds/ft_list/utils/mk_double_content.c \
@@ -114,6 +117,7 @@ OBJ_DIRS = 	 obj \
 			 obj/ds \
 			 obj/ds/ft_list \
 			 obj/ds/ft_array_list \
+			 obj/ds/ft_map \
 			 obj/ds/ft_list/src \
 			 obj/ds/ft_list/utils \
 			 obj/utils/input_output 	\
