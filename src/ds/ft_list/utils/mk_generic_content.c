@@ -10,7 +10,7 @@ Data * mk_generic_content(void *content, t_coliseu* coliseu)
     return (NULL);
 
   data->content.p = content;
-  data->type     = POINTER;
+  data->content_type      = POINTER;
 
   return (data);
 }

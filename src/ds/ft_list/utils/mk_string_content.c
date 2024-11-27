@@ -10,7 +10,7 @@ Data * mk_string_content(char *content,  t_coliseu* coliseu)
     return (NULL);
 
   data->content.s = content;
-  data->type      = STRING;
+  data->content_type      = STRING;
 
   return (data);
 }

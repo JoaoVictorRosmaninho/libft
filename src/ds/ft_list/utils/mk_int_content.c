@@ -11,7 +11,7 @@ Data * mk_int_content(int content, t_coliseu* coliseu)
 
   
   data->content.i  = content;
-  data->type       = INTEGER;
+  data->content_type       = INTEGER;
 
   return (data);
 }

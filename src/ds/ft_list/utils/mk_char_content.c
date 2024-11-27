@@ -10,7 +10,7 @@ Data * mk_char_content(char content, t_coliseu* coliseu)
     return (NULL);
 
   data->content.c = content;
-  data->type = CHAR;
+  data->content_type = CHAR;
 
   return (data);
 }

@@ -10,7 +10,7 @@ Data * mk_float_content(float content, t_coliseu* coliseu)
     return (NULL);
 
   data->content.f = content;
-  data->type      = FLOAT;
+  data->content_type      = FLOAT;
 
   return (data);
 }

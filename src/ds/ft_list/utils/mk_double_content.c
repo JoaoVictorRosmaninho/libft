@@ -11,7 +11,7 @@ Data * mk_double_content(double content, t_coliseu* coliseu)
 
 
   data->content.d = content;
-  data->type      = DOUBLE;
+  data->content_type      = DOUBLE;
 
   return (data);
 }
