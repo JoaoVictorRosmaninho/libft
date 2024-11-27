@@ -3,80 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:49:59 by jv                #+#    #+#             */
-/*   Updated: 2024/03/23 16:00:04 by jv               ###   ########.fr       */
+/*   Updated: 2024/11/23 15:13:02 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../includes/libft.h"
 
-char *read_line(char *buffer, int fd)
+char *read_line(char *buffer, int fd, t_coliseu* coliseu)
 {
-	ssize_t	size_read;
-	char	*line;
-	char 	*final;
-	char	*tmp;
+	char	*line     = NULL;
+	char 	*final    = NULL;
 
-	size_read = 0;
-	if (*buffer == '\0')
-	{
-		size_read = read(fd, buffer, BUFFER_SIZE);
-		if (size_read < 1)
-			return (NULL); // read error or EOF
-	}
-	final = NULL;
-	line  = ft_strtok(buffer, "\n");
-	if (!line && size_read > 0)
-	{
-		final = ft_strdup(buffer, NULL);
-		while (1)
-		{
-			tmp = final;
-			size_read = read(fd, buffer, BUFFER_SIZE);
-			if (size_read < 1) break;
-			final = ft_strjoin(final, buffer);
-			free(tmp);
-		}
+	ssize_t bytes = 0;
+
+	char* toker = NULL;
+
+	if (ft_strlen(buffer) > 0 ) {
+		if ( ( line = ft_strtok(buffer, "\n", &toker, coliseu) ) != NULL ) {
+			size_t size_line = ft_strlen(line);
+			ft_strlcpy(buffer,  buffer + size_line + 1, BUFFER_SIZE);
+			return final ? ft_strjoin(final, line, coliseu) : ft_strdup(line, coliseu);
+		} 
+		
+		final = final ? ft_strjoin(final, buffer, coliseu) : ft_strdup(buffer, coliseu);		
 	} 
-	else
-	{
-		final = ft_strdup(line, NULL);
-		while (line)
-		{
-			tmp = final;
-			line = ft_strtok(buffer, "\n");
-			if (line)
-			{
-				final = ft_strjoin(final, line);
-				free(tmp);
-			}
+	
+	ft_bzero(buffer, BUFFER_SIZE);
+
+	while ( ( bytes = read(fd, buffer, BUFFER_SIZE - 1) ) > 0 ) {
+		
+		buffer[bytes] = '\0';
+
+		if ( ( line = ft_strtok(buffer, "\n", &toker, coliseu) ) != NULL ) {
+			size_t size_line = ft_strlen(line);
+			ft_strlcpy(buffer,  buffer + size_line + 1, BUFFER_SIZE);
+			return final ? ft_strjoin(final, line, coliseu) : ft_strdup(line, coliseu);
 		}
-		ft_memset(buffer, 0, BUFFER_SIZE + 1);
-	}
-	tmp = final;
-	final = ft_strjoin(final, "\n");
-	free(tmp);
+
+		final = final ? ft_strjoin(final, buffer, coliseu) : ft_strdup(buffer, coliseu);		
+			
+		ft_memset(buffer, 0, BUFFER_SIZE);
+	} 
 	return (final);
 }	
 
-char  *get_next_line(int fd)
+char  *get_next_line(int fd, t_coliseu* coliseu)
 {
-	static char *buffer = NULL;
+	static char  buffer[BUFFER_SIZE] = { 0 };
 	char 		*result = NULL;
 
+	if (fd == 0) return (result);
 
-	if (!buffer)
-		buffer = (char *) ft_calloc(BUFFER_SIZE + 1, sizeof(char), NULL);
-	if (!buffer)
-		ft_printf("GNL error: alocate buffer error\n");
-	result = read_line(buffer, fd);
-	if (!result || fd == 0)
-	{
-		free(buffer);
-		buffer = NULL;
-		return (result);
-	}
+	result = read_line(buffer, fd, coliseu);
 	return result;
 }
