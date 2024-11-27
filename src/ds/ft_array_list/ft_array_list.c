@@ -5,7 +5,7 @@
 void array_list_print(ArrayList* arraylist) {
   ft_printf("[");
   for( size_t i = 0; i < arraylist->index; i++) {
-    switch (arraylist->array[i].type) 
+    switch (arraylist->array[i].content_type) 
     {
       case STRING:
         ft_printf("%s", arraylist->array[i].content.s);
@@ -33,28 +33,27 @@ void array_list_print(ArrayList* arraylist) {
 
 
 
-ArrayList   array_list_init( size_t capacity ) {
-    t_coliseu* coliseu_array = ft_coliseu_create_on_arena( capacity * sizeof(Data) );
+ArrayList   array_list_init() {
+    t_coliseu* coliseu_array = ft_coliseu_create_on_arena( ARENA_131KB, ARENA_BLOCK );
 
     ArrayList array =  {
         .bucket =  coliseu_array,
         .array        =  (Data*)coliseu_array->region->begin,
-        .capacity     =  capacity,
         .index        =  0
     };
 
     return array;
 }
 
-ArrayList*   array_list_init_on_buffer( size_t capacity ) {
-    t_coliseu* bucket = ft_coliseu_create_on_arena( capacity * sizeof(Data) + sizeof(ArrayList));
+ArrayList*   array_list_init_on_buffer( void ) {
+    t_coliseu* bucket = ft_coliseu_create_on_arena( ARENA_32KB , ARENA_BLOCK );
+
+    ft_memset(bucket->region->begin, 0, bucket->region->end - bucket->region->begin);
 
     ArrayList* array  = ft_calloc(1, sizeof(ArrayList), bucket);
 
-
     array->bucket     = bucket;
     array->array      = (Data*) bucket->region->begin;
-    array->capacity   = capacity;
     array->index      = 0;
 
     return array;
@@ -79,7 +78,7 @@ ArrayList*  array_list_add_str(ArrayList* array, char* string) {
 
 ArrayList*  array_list_pop( ArrayList* array ) {
      array->index--;
-     ft_coliseu_rollback(array->bucket->region, sizeof(Data*));
+     ft_coliseu_rollback(array->bucket->region, sizeof(Data));
      return array;
 }
 
@@ -95,11 +94,13 @@ ArrayList*  array_list_add_double(ArrayList* array, double n) {
   return array;
 }
 
+ArrayList*  array_list_add_data(ArrayList* array, Data* n) {
+  mk_data_content(n, array->bucket);
+  array->index++;
+  return array;
+}
+
 ArrayList*  array_list_add_str_on(ArrayList* array, size_t index, char* n) {
-  if (index > array->capacity) return NULL;
-
-  if (index + 1 > array->index) array->index = index + 1;
-
 
   char* begin                  = array->bucket->region->begin;
 
@@ -112,12 +113,21 @@ ArrayList*  array_list_add_str_on(ArrayList* array, size_t index, char* n) {
   return array;  
 }
 
-ArrayList* array_list_add_int_on(ArrayList* array, size_t index, int n) {
-  
-  if (index > array->capacity) return NULL;
+ArrayList*  array_list_add_data_on(ArrayList* array, size_t index, Data* n) {
+  char* begin                  = array->bucket->region->begin;
 
-  if (index + 1 > array->index) array->index = index + 1;
-  
+  array->bucket->region->begin = (char*) (array->array + index);
+
+  mk_data_content(n, array->bucket);
+
+  array->bucket->region->begin = begin;
+
+  if ( array->index < index ) ++array->index; // novo item em uma posicao aleatoria 
+
+  return array;  
+}
+
+ArrayList* array_list_add_int_on(ArrayList* array, size_t index, int n) {
   char* begin                  = array->bucket->region->begin;
 
   array->bucket->region->begin = (char*) (array->array + index);
@@ -130,7 +140,7 @@ ArrayList* array_list_add_int_on(ArrayList* array, size_t index, int n) {
 }
 
 Data* array_list_getitem(ArrayList* array, size_t index) {
-  if (index > array->capacity) return NULL;
+  if (index > array->index) return NULL;
 
   return array->array + index;
 }

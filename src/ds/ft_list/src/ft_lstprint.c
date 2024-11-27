@@ -8,7 +8,7 @@ void ft_lstprint(t_list *lst) {
 
   ft_printf("[");
   while (head != NULL) {
-    switch (head->data->type) 
+    switch (head->data->content_type) 
     {
       case STRING:
         ft_printf("%s", head->data->content.s);
