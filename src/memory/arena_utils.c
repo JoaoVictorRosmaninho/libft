@@ -49,8 +49,14 @@ void	ft_arena_destroy(t_coliseu *coliseu)
 		arena = arena->next;
 		free(_arena);
 	}
-	coliseu->door = NULL;
-	coliseu->region = NULL;
+}
+
+size_t ft_coliseu_size(t_coliseu* coliseu) {
+	return coliseu->region->end - coliseu->region->begin;
+}
+
+size_t ft_coliseu_avalible_size(t_coliseu* coliseu) {
+	return coliseu->region->end - coliseu->region->begin;
 }
 
 
@@ -69,4 +75,20 @@ void	ft_coliseu_initialize(t_coliseu	*group,
 		ft_coliseu_create(&group[index]);
 		index++;
 	}
+}
+
+
+t_coliseu*	ft_coliseu_realloc_block(t_coliseu* coliseu) {
+
+	t_coliseu* new = ft_coliseu_create_on_arena(coliseu->size * 2, ARENA_BLOCK);
+
+	size_t  diff   =  (coliseu->region->begin - (char*)coliseu->region);
+
+	ft_memcpy(new->region->begin, coliseu->region->begin, diff);
+
+	new->region->begin += diff;
+
+	ft_arena_destroy(coliseu);
+
+	return new;
 }

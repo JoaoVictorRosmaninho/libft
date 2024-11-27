@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:48:59 by jv                #+#    #+#             */
-/*   Updated: 2024/11/21 08:36:12 by joao             ###   ########.fr       */
+/*   Updated: 2024/11/23 11:13:45 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ void	*ft_arena_alloc(size_t chunk, t_coliseu *coliseu)
 }
 
 // TODO create a coliseceu creator on arena memory 
-t_coliseu* ft_coliseu_create_on_arena( size_t size ) {
+t_coliseu* ft_coliseu_create_on_arena( size_t size, enum arena_type type ) {
 	
 	t_coliseu* coliseu = NULL;
-	t_arena*   arena   = ft_arena_init(size);
-	t_coliseu  temp    = { .door = arena, .region = arena };
+	t_coliseu  temp    = { .door = NULL, .region = NULL, .type = type, .size = size };
 
 	coliseu = ft_calloc(1, sizeof(t_coliseu), &temp);
 
-	coliseu->door   = arena;
-	coliseu->region = arena;
+	coliseu->door   = temp.region;
+	coliseu->region = temp.region;
+	coliseu->type   = type;
 	coliseu->size   = temp.size - sizeof(t_coliseu);
 
 	return coliseu;
@@ -98,12 +98,12 @@ void	*ft_find_or_create_arena(t_coliseu *coliseu, size_t chunk)
 {
 	t_ctx_arena	ctx;
 
-	ctx.arena = coliseu->region;
+	ctx.arena      = coliseu->region;
 	ctx.arena_prev = NULL;
 	while (ctx.arena && (long) chunk > (ctx.arena->end - ctx.arena->begin))
 	{
 		ctx.arena_prev = ctx.arena;
-		ctx.arena = ctx.arena->next;
+		ctx.arena      = ctx.arena->next;
 	}
 	if (ctx.arena) {
 		coliseu->region = ctx.arena;
@@ -115,10 +115,20 @@ void	*ft_find_or_create_arena(t_coliseu *coliseu, size_t chunk)
 		ctx.real_size = coliseu->size;
 	while ((long)(chunk + sizeof(t_arena)) >= ctx.real_size)
 		ctx.real_size <<= 1;
-	ctx.arena = ft_arena_init(ctx.real_size);
-	ctx.arena_prev->next = ctx.arena;
-	coliseu->region = ctx.arena;
-	coliseu->total_arenas++;
+	 
+	if (coliseu->type == ARENA_POOL || ctx.arena == NULL) {
+		ctx.arena            = ft_arena_init(ctx.real_size);
+		ctx.arena_prev->next = ctx.arena;
+		coliseu->region      = ctx.arena;
+		
+		coliseu->total_arenas++;
+	} else {
+		ctx.arena->chunk = (ctx.arena->end - ctx.arena->begin) * 2;
+		ctx.arena        = realloc(ctx.arena, ctx.arena->chunk);
+
+		if (!ctx.arena) ft_printf("Error: realloc arena fail\n");
+	}
+
 	return (ctx.arena->begin);
 }
 
