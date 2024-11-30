@@ -4,13 +4,17 @@
 #include <stdint.h>
 
 typedef struct t_map {
-   ArrayList*     buckets; // -> irar armazenar ponteiros para outros arrayLists
+   Vector*     buckets; // -> irar armazenar ponteiros para outros arrayLists
    t_coliseu*     buffer;
    size_t         capacity;
    uint8_t        (*cmp)(Data*, Data*);
    uint64_t       (*hashf)(Data*);
    struct t_map*  (*insert)(struct t_map*, Data*);
 } Map;
+
+
+#define hashmap(key_type, value_type) \
+         
 
 
 Map*     map_create(uint8_t (*cmp)(Data*, Data*), uint64_t (*hashf)(Data*) );

@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:48:59 by jv                #+#    #+#             */
-/*   Updated: 2024/11/23 11:13:45 by joao             ###   ########.fr       */
+/*   Updated: 2024/11/30 20:03:55 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	*ft_arena_alloc(size_t chunk, t_coliseu *coliseu)
 	{
 		if (!coliseu->size)
 			return (NULL);
+		
 		ft_coliseu_create(coliseu);
 		memory = ft_find_or_create_arena(coliseu, chunk);
 	}
@@ -35,7 +36,8 @@ void	*ft_arena_alloc(size_t chunk, t_coliseu *coliseu)
 		if (coliseu->region->begin + real_chunk > coliseu->region->end)
 			memory = ft_find_or_create_arena(coliseu, real_chunk);
 	}
-	coliseu->region->begin += real_chunk;
+	coliseu->region->begin     += real_chunk;
+	coliseu->region->avaliable -= real_chunk;
 	return (memory);
 }
 
@@ -77,10 +79,13 @@ t_arena	*ft_arena_init(size_t chunk)
 		return (NULL);
 	}
 	
-	arena->chunk = chunk;
-	arena->begin = (char *) arena + sizeof(t_arena);
-	arena->end   = (char *) arena + chunk;
-	arena->next  = NULL;
+	ft_bzero(arena, chunk);
+
+	arena->chunk     = chunk;
+	arena->begin     = (char *) arena + sizeof(t_arena);
+	arena->end       = (char *) arena + chunk;
+	arena->avaliable = arena->end - arena->begin;
+	arena->next      = NULL;
 	
 	return (arena);
 }
@@ -100,7 +105,7 @@ void	*ft_find_or_create_arena(t_coliseu *coliseu, size_t chunk)
 
 	ctx.arena      = coliseu->region;
 	ctx.arena_prev = NULL;
-	while (ctx.arena && (long) chunk > (ctx.arena->end - ctx.arena->begin))
+	while (ctx.arena && (long) chunk > (ctx.arena->end - ctx.arena->begin)  /* && coliseu->type == ARENA_POOL  NOTE: ajustar depois */ )
 	{
 		ctx.arena_prev = ctx.arena;
 		ctx.arena      = ctx.arena->next;
@@ -116,17 +121,15 @@ void	*ft_find_or_create_arena(t_coliseu *coliseu, size_t chunk)
 	while ((long)(chunk + sizeof(t_arena)) >= ctx.real_size)
 		ctx.real_size <<= 1;
 	 
-	if (coliseu->type == ARENA_POOL || ctx.arena == NULL) {
+	if (coliseu->type == ARENA_POOL || !ctx.arena) {
 		ctx.arena            = ft_arena_init(ctx.real_size);
 		ctx.arena_prev->next = ctx.arena;
 		coliseu->region      = ctx.arena;
-		
 		coliseu->total_arenas++;
 	} else {
-		ctx.arena->chunk = (ctx.arena->end - ctx.arena->begin) * 2;
-		ctx.arena        = realloc(ctx.arena, ctx.arena->chunk);
-
-		if (!ctx.arena) ft_printf("Error: realloc arena fail\n");
+		t_coliseu new   = ft_coliseu_realloc_block(coliseu);
+		ctx.arena       =  new.region;
+		*coliseu        = new;  
 	}
 
 	return (ctx.arena->begin);

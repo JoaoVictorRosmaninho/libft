@@ -25,7 +25,7 @@ Map*  map_create(uint8_t (*cmp)(Data*, Data*), size_t (*hashf)(Data*) ) {
 
     map->buckets          = array_list_init_on_buffer();
 
-    map->capacity         = ft_coliseu_size(map->buckets->bucket) / sizeof(Data);
+    map->capacity         = ft_coliseu_occuped_size(map->buckets->bucket) / sizeof(Data);
 
     map->cmp              = cmp != NULL ? cmp : map_equal;
 
@@ -36,12 +36,12 @@ Map*  map_create(uint8_t (*cmp)(Data*, Data*), size_t (*hashf)(Data*) ) {
     return map;
 }
 
-static inline ArrayList*  map_neasted_bucket(Map* map, size_t index) {
+static inline Vector*  map_neasted_bucket(Map* map, size_t index) {
     return map->buckets->array[index].content.p;
 }
 
 static void map_insert_or_update_bucket(Map* map, Data* pair, size_t index) {
-    ArrayList* bucket = map_neasted_bucket(map, index);
+    Vector* bucket = map_neasted_bucket(map, index);
 
     for (size_t i = 0; i < bucket->index; i++) {
         if (map->cmp(bucket->array + i, pair)) {
@@ -79,9 +79,9 @@ Map*     map_insert( Map* map, Data* pair ) {
    //     size_t adrss    = (char*)map->buckets - (char*)map->buckets->bucket->region;  
    //     t_coliseu* tmp   = ft_coliseu_realloc_block(map->buckets->bucket);
 //
-   //     map->buckets          = (ArrayList*) (map->buckets->bucket + adrss);
+   //     map->buckets          = (Vector*) (map->buckets->bucket + adrss);
    //     map->buckets->bucket  = tmp;
-   //     map->capacity         = ft_coliseu_size(map->buckets->bucket) / sizeof(Data);
+   //     map->capacity         = ft_coliseu_occuped_size(map->buckets->bucket) / sizeof(Data);
    // }
 
     return map;
@@ -101,7 +101,7 @@ void  map_destroy( Map* map) {
 Data*    map_get(Map* map, Data* pair) {
     size_t hash_value = map->hashf(pair) % map->capacity;
 
-    ArrayList* bucket = map_neasted_bucket(map, hash_value);
+    Vector* bucket = map_neasted_bucket(map, hash_value);
     
     if ( !bucket ) return NULL;
 

@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/11/23 15:25:55 by joao             ###   ########.fr       */
+/*   Updated: 2024/11/29 22:54:54 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@
 
 # include "arena.h"
 # include "linked.h"
-# include "ft_map.h"
 # include "ft_printf.h"
+# include "vector.h"
 
 # define BUFFER_SIZE 64
 # define NUMBER_OF_COLISEUS 5
 
 # define ABS(x) ( ( (x) < 0) ? -(x) : (x) )
+
+
+
 
 int			ft_isalpha(int C);
 int			ft_isdigit(int C);
@@ -87,4 +90,5 @@ ssize_t		ft_printf_ptr(unsigned long int n);
 /* get_next_line */
 
 char  *get_next_line(int fd, t_coliseu* coliseu);
+
 #endif

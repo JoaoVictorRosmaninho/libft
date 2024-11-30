@@ -48,6 +48,10 @@ list: linked_list_test.c $(LIBFT)
 	cp ../libft.a .
 	@$(call run, "$^")
 
+vector: vector_test.c $(LIBFT)
+	cp ../libft.a .
+	@$(call run, "$^")
+
 printf: ft_printf_test.c $(LIBFT)
 	cp ../libft.a .
 	@$(call run, "$^")

@@ -51,8 +51,8 @@ void	ft_arena_destroy(t_coliseu *coliseu)
 	}
 }
 
-size_t ft_coliseu_size(t_coliseu* coliseu) {
-	return coliseu->region->end - coliseu->region->begin;
+size_t ft_coliseu_occuped_size(t_coliseu* coliseu) {
+	return coliseu->region->begin - (char*)coliseu->region - sizeof(t_arena) ;
 }
 
 size_t ft_coliseu_avalible_size(t_coliseu* coliseu) {
@@ -78,15 +78,19 @@ void	ft_coliseu_initialize(t_coliseu	*group,
 }
 
 
-t_coliseu*	ft_coliseu_realloc_block(t_coliseu* coliseu) {
+t_coliseu ft_coliseu_realloc_block(t_coliseu* coliseu) {
 
-	t_coliseu* new = ft_coliseu_create_on_arena(coliseu->size * 2, ARENA_BLOCK);
 
-	size_t  diff   =  (coliseu->region->begin - (char*)coliseu->region);
+	//coliseu->region = realloc(coliseu->region, coliseu->size * 2);
 
-	ft_memcpy(new->region->begin, coliseu->region->begin, diff);
+	t_coliseu new  =  { .size = coliseu->size * 2 , .type = coliseu->type, .door = NULL, .region = NULL };
 
-	new->region->begin += diff;
+	ft_coliseu_create(&new);
+
+	ft_memcpy(new.region->begin, (unsigned char*)coliseu->region  + sizeof(t_arena), ft_coliseu_occuped_size(coliseu));
+
+	new.region->avaliable -= ft_coliseu_occuped_size(coliseu);
+	new.region->begin     += ft_coliseu_occuped_size(coliseu);
 
 	ft_arena_destroy(coliseu);
 

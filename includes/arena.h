@@ -26,7 +26,7 @@
 # define ARENA_256B 256 // 256 bytes
 # define ARENA_512B 512 // 512 bytes
 # define ARENA_1KB 1024 // 1kb
-# define ARENA_2KB 2056 // 2kb
+# define ARENA_2KB 2048 // 2kb
 # define ARENA_4KB 4096 //  4kb
 # define ARENA_8KB 8192 // 8kb
 # define ARENA_16KB 16384 // 16KB
@@ -49,6 +49,7 @@ typedef struct s_arena
 {
 	struct s_arena	*next;
 	size_t			chunk;
+	size_t			avaliable;
 	char			*end;
 	char			*begin;
 }	t_arena;
@@ -65,7 +66,6 @@ typedef struct s_coliseu
 {
 	t_arena			 *door;
 	t_arena			 *region;
-	struct s_coliseu *neasted;
 	size_t			 size;
 	uint16_t  		 total_arenas;
 	enum arena_type  type;
@@ -100,9 +100,9 @@ t_arena		*ft_arena_init(size_t chunk);
 //create a new coliseu from arena
 t_coliseu*  ft_coliseu_create_on_arena( size_t size, enum arena_type type );
 //avaliable size
-size_t  	ft_coliseu_size(t_coliseu* coliseu);
+size_t  	ft_coliseu_occuped_size(t_coliseu* coliseu);
 
 //realloc 
-t_coliseu*	ft_coliseu_realloc_block(t_coliseu* coliseu);
+t_coliseu	ft_coliseu_realloc_block(t_coliseu* coliseu);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 21:49:22 by jv                #+#    #+#             */
-/*   Updated: 2024/03/24 15:37:02 by jv               ###   ########.fr       */
+/*   Updated: 2024/11/30 19:36:16 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ void	*ft_calloc(size_t COUNT, size_t ELTSIZE, t_coliseu* coliseu)
 	
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, COUNT * ELTSIZE);
 	return (ptr);
 }
