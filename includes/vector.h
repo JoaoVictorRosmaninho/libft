@@ -32,6 +32,12 @@ typedef enum {
 
 /* API FIRST */
 
+
+typedef struct {
+    t_coliseu*     coliseu;
+    unsigned char* buffer;
+} VectorParams;
+
 #define Vector(T) struct { \
     T* items;              \
     size_t capacity;       \
@@ -58,7 +64,19 @@ Vector(int) vec;
             default: _vector_push \
         )((vec), &(typeof(*(vec)->items)){item})
 
+#define vector_insert(vec, item, pos) \
+        _Generic((item), \
+            char*:    _vector_insert_pointer_at, \
+            void*:    _vector_insert_pointer_at, \
+            int*:     _vector_insert_pointer_at, \
+            double*:  _vector_insert_pointer_at, \
+            float*:   _vector_insert_pointer_at, \
+            default: _vector_insert_at \
+        )((vec), &(typeof(*(vec)->items)){item}, pos)
+
 #define vector_init(vec) _vector_init(vec, GET_TYPE(*(vec)->items), sizeof(*(vec)->items))
+
+#define vector_pop(vec, ...) _vector_pop(vec, &(VectorParams) { __VA_ARGS__ } );
 
 
 void        _vector_push(void* vector, void* item);
@@ -70,5 +88,11 @@ void        _vector_init(void* vector, VectorType type, size_t size_item);
 void        _vector_destroy(void* vector);
 
 void        _vector_print(void* vector);
+
+ void       _vector_insert_at(void* vector, void* item, size_t pos);
+ 
+ void       _vector_insert_pointer_at(void* vector, void* item, size_t pos);
+
+ void*      _vector_pop(void* vector, VectorParams* params);
 
 #endif

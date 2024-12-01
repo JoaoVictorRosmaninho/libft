@@ -1,25 +1,55 @@
 
 #include "../../../includes/libft.h"
 
+
+  void  _vector_insert_at(void* vector, void* item, size_t pos) {
+    Vector(void)* v = vector;  
+
+    char* begin = (char*) v->allocator.region->begin;
+
+    v->allocator.region->begin = ((char*) v->allocator.region) + sizeof(t_arena) + pos * v->item_size;
+
+    _vector_push(vector, item);
+
+    v->allocator.region->begin = begin;
+
+    if (pos > v->size) v->size++;
+
+  }
+  
+  void  _vector_insert_pointer_at(void* vector, void* item, size_t pos) {
+    Vector(void)* v = vector;  
+
+    char* begin = (char*) v->allocator.region->begin;
+
+    v->allocator.region->begin = ((char*) v->allocator.region) + sizeof(t_arena) + pos * v->item_size;
+
+    _vector_push_pointer(vector, item);
+
+    v->allocator.region->begin = begin;
+
+  }
+
   void   _vector_push(void* vector, void* item) {
-  Vector(void)* v = vector;  
+    Vector(void)* v = vector;  
 
-  if ( !v->items ) {
-    printf("ERROR: vector dont initialized\n");
-    return ;
+    if ( !v->items ) {
+      printf("ERROR: vector dont initialized\n");
+      return ;
+    }
+
+    if (v->allocator.region->avaliable <= v->item_size) {
+        v->allocator = ft_coliseu_realloc_block(&v->allocator);
+        v->items     = ((char*)v->allocator.region) + sizeof(t_arena);
+    }
+
+    void* p = ft_calloc(1, v->item_size, &v->allocator);
+
+    ft_memcpy(p, item, v->item_size);
+
+    v->size++;
   }
 
-  if (v->allocator.region->avaliable <= v->item_size) {
-      v->allocator = ft_coliseu_realloc_block(&v->allocator);
-      v->items     = ((unsigned char*)v->allocator.region) + sizeof(t_arena);
-  }
-
-  void* p = ft_calloc(1, v->item_size, &v->allocator);
-
-  ft_memcpy(p, item, v->item_size);
-
-  v->size++;
-}
 
   void   _vector_push_pointer(void* vector, void* item) {
   Vector(void*)* v = vector;  
@@ -37,6 +67,31 @@
     ft_memcpy((v->items + (v->size * v->item_size)), *(void**)item, v->item_size);
     v->size++;
 }
+
+ void*      _vector_pop(void* vector, VectorParams* params) {
+
+    Vector(void)* v = vector;
+
+    ft_coliseu_rollback(v->allocator.region, v->item_size);
+
+    v->size--;
+
+    if (params->buffer) {
+      ft_memcpy(params->buffer, v->allocator.region->begin, v->item_size);
+
+      return params->buffer;
+    }
+
+    if (params->coliseu) {
+      unsigned char* buffer = ft_calloc(1, v->item_size, params->coliseu);
+
+      ft_memcpy(buffer, v->allocator.region->begin, v->item_size);
+
+      return buffer;
+    }
+
+    return NULL;
+ }
 
 void        _vector_init(void* vector, VectorType type, size_t item_size) {
    Vector(char)* v = vector;
@@ -83,9 +138,9 @@ void  _vector_print(void* vector) {
     break;
     case TYPE_FLOAT:
       for ( ; index < v->size - 1; index++) {
-        printf("%f, ", *(float*)(v->items + (index * sizeof(float))));
+        printf("%f, ", *(((float*)v->items) + index));
       }
-      printf("%f",*(float*)(v->items + (index * sizeof(float))));
+      printf("%f",*(((float*)v->items) + index));
     break;
     case TYPE_CHAR_ARRAY:
       for ( ; index < v->size - 1; index++) {
