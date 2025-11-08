@@ -6,7 +6,7 @@
 #    By: joao <joao@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 20:28:19 by jv                #+#    #+#              #
-#    Updated: 2024/11/29 23:37:09 by joao             ###   ########.fr        #
+#    Updated: 2025/11/08 15:10:08 by joao             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ FLAGS 	       = -Wall -Werror -Wextra
 
 REMOVE 	       = rm -f
 
-LFLAGS         =	-L. -lft
+LFLAGS         =	-L. -lft -lm
 
 VALGRIND_FLAGS = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose
 
