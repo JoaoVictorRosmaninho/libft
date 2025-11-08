@@ -3,6 +3,7 @@
 #include "../../../includes/libft.h"
 
 
+
 char* ft_ftoan(double n, t_coliseu* coliseu, unsigned char precision) {
 
     int n_int    = (int) n;
