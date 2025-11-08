@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2024/11/29 22:54:54 by joao             ###   ########.fr       */
+/*   Updated: 2025/11/08 14:57:54 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@
 # define NUMBER_OF_COLISEUS 5
 
 # define ABS(x) ( ( (x) < 0) ? -(x) : (x) )
-
-
-
 
 int			ft_isalpha(int C);
 int			ft_isdigit(int C);

@@ -1,6 +1,9 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+# include <stddef.h>
+# include "arena.h"
+
 typedef enum {
     TYPE_UNKNOWN,
     TYPE_INT,

@@ -1,6 +1,8 @@
 #ifndef LINKED_H
 # define LINKED_H
 # include <stdlib.h>
+# include <stdint.h>
+# include "arena.h"
 
   typedef enum {
     STRING,

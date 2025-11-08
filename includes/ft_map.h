@@ -2,9 +2,15 @@
 #define FT_MAP_H
 
 #include <stdint.h>
+#include <stdlib.h>
+
+# include <stdint.h>
+# include "arena.h"
+# include "linked.h"
+# include "vector.h"
 
 typedef struct t_map {
-   Vector*     buckets; // -> irar armazenar ponteiros para outros arrayLists
+   void**         buckets; // -> irar armazenar ponteiros para outros arrayLists
    t_coliseu*     buffer;
    size_t         capacity;
    uint8_t        (*cmp)(Data*, Data*);
@@ -12,10 +18,7 @@ typedef struct t_map {
    struct t_map*  (*insert)(struct t_map*, Data*);
 } Map;
 
-
-#define hashmap(key_type, value_type) \
-         
-
+#define hashmap(key_type, value_type) \         
 
 Map*     map_create(uint8_t (*cmp)(Data*, Data*), uint64_t (*hashf)(Data*) );
 

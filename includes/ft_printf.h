@@ -2,7 +2,10 @@
 #ifndef FTPRINTFH
 #define FTPRINTFH
 
+# include "arena.h"
+
 #define PRINTF_BUFF_SIZE 2048
+#define MAX_FORMAT_SPEC_SIZE 512
 
 typedef enum {
     PDIGIT = 1,
