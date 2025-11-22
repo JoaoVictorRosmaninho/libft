@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2025/11/08 14:57:54 by joao             ###   ########.fr       */
+/*   Updated: 2025/11/22 16:09:30 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 # include <math.h>
 # include <stdarg.h> 
 
-// TODO: Refactoring this shit
-
-# include "arena.h"
-# include "linked.h"
-# include "ft_printf.h"
-# include "vector.h"
+// Headers modulares (ordem importa devido a dependências)
+# include "arena.h"     // ← Primeiro: base de tudo
+# include "linked.h"    // ← Depende de arena.h
+# include "ft_printf.h" // ← Depende de arena.h
+# include "vector.h"    // ← Depende de arena.h
+# include "ft_map.h"    // ← Depende de todos acima
 
 # define BUFFER_SIZE 64
 # define NUMBER_OF_COLISEUS 5
