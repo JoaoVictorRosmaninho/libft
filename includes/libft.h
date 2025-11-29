@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 15:58:20 by jv                #+#    #+#             */
-/*   Updated: 2025/11/22 16:09:30 by joao             ###   ########.fr       */
+/*   Updated: 2025/11/22 16:44:16 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <math.h>
 # include <stdarg.h> 
 
-// Headers modulares (ordem importa devido a dependências)
+// Headers modulares(ordem importa devido a dependências)
 # include "arena.h"     // ← Primeiro: base de tudo
 # include "linked.h"    // ← Depende de arena.h
 # include "ft_printf.h" // ← Depende de arena.h

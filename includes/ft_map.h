@@ -18,7 +18,7 @@ typedef struct t_map {
    struct t_map*  (*insert)(struct t_map*, Data*);
 } Map;
 
-#define hashmap(key_type, value_type) \         
+#define hashmap(key_type, value_type)         
 
 Map*     map_create(uint8_t (*cmp)(Data*, Data*), uint64_t (*hashf)(Data*) );
 
