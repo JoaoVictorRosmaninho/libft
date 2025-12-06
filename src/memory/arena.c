@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:48:59 by jv                #+#    #+#             */
-/*   Updated: 2024/11/30 20:03:55 by joao             ###   ########.fr       */
+/*   Updated: 2025/12/04 09:43:23 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ t_coliseu* ft_coliseu_create_on_arena( size_t size, enum arena_type type ) {
 	t_coliseu  temp    = { .door = NULL, .region = NULL, .type = type, .size = size };
 
 	coliseu = ft_calloc(1, sizeof(t_coliseu), &temp);
+
+	if ( coliseu == NULL ) {
+		// TODO: Implementar um ArenaLog
+		ft_printf("[ArenaLog] - An Error ocurred while trying to allocate memory for the arena: %s:%d\n", __FILE__, __LINE__);
+		return NULL;
+	} 
 
 	coliseu->door   = temp.region;
 	coliseu->region = temp.region;

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-paul <jde-paul@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/17 18:20:04 by jde-paul                #+#    #+#             */
-/*   Updated: 2024/03/17 19:43:59 by jde-paul               ###   ########.fr       */
+/*   Created: 2024/03/17 18:20:04 by jde-paul                #+#    #+#       */
+/*   Updated: 2024/03/17 19:43:59 by jde-paul               ###   ########.fr */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	ft_arena_destroy(t_coliseu *coliseu)
 	t_arena	*arena;
 	t_arena	*_arena;
 
+	if (!coliseu)
+		return ;
 	arena = coliseu->door;
 	while (arena)
 	{
@@ -49,6 +51,8 @@ void	ft_arena_destroy(t_coliseu *coliseu)
 		arena = arena->next;
 		free(_arena);
 	}
+	coliseu->door = NULL;
+	coliseu->region = NULL;
 }
 
 size_t ft_coliseu_occuped_size(t_coliseu* coliseu) {
