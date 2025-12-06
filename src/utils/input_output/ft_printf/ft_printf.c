@@ -6,7 +6,7 @@
 /*   By: joao <joao@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:16:21 by jv                #+#    #+#             */
-/*   Updated: 2025/11/08 16:27:47 by joao             ###   ########.fr       */
+/*   Updated: 2025/12/06 15:29:55 by joao             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,11 +305,11 @@ int ft_printf(const char *format, ...)
 
 	va_start(arg_list, format);
 
+	// TODO: Criar uma arena especifica para o ft_printf
+
 	len = ft_printf_lexer(format, arg_list);
 
 	va_end(arg_list);
-
-	ft_coliseu_manager(GIVE_BACK);
 
 	return (len);
 }
